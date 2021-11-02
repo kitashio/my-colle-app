@@ -17,29 +17,27 @@ class _MyBookPageState extends State<MyBookPage> {
         title: Text('My辞書'),
       ),
       body: Container(
-        child: ListView(
-          children: <Widget>[
-            ListTile(
-              title: Text("スパイダーマン"),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView(
+          children: [
+            ButtonTheme(
+              minWidth: 80.0,
+              height: 250.0,
+            child: RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyListPage()),
+                );
+              },
+            child: Text('辞書'),
             ),
-            ListTile(
-              title: Text("バイオハザード RE:2"),
-            ),
-            ListTile(
-              title: Text("ファイナルファンタジー７リメイク"),
             ),
           ],
+          ),
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => MyListPage()),
-          );
-        },
-        child: Icon(Icons.add),
-      ),
     );
   }
 }
