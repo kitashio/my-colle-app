@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'Bottom_Tab_page.dart';
-import 'Home_Page/home_page.dart';
+import 'Top_Page/top_page.dart';
+import 'Top_Page/top_user_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: BottomTabPage(),
+      home: TopUserPage(),
     );
   }
 }
