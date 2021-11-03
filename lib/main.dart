@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Top_Page/top_page.dart';
-import 'Top_Page/top_user_page.dart';
+import 'Top_Page/user_add_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: TopUserPage(),
+      home: RegisterPage(),
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'My_Account_page.dart';
 import 'list_add_page.dart';
+import 'list_detail.page.dart';
 
 class MyListPage extends StatefulWidget {
 
@@ -24,10 +24,17 @@ class _MyListPageState extends State<MyListPage> {
               child: ListTile(
                 title: Text('泥中の蓮'),
               ),
+
             ),
             Card(
               child: ListTile(
                 title: Text('座右の銘'),
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ListDetailPage()),
+                  );
+                },
               ),
             ),
           ],
