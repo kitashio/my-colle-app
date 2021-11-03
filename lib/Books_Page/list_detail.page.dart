@@ -18,10 +18,21 @@ class _ListDetailPageState extends State<ListDetailPage> {
         // 余白を付ける
         padding: EdgeInsets.all(64),
         child: Center(
-          child: Text('泥中の蓮',
-          style: TextStyle(
-            fontSize: 30,
-          ),
+          child: Column(
+            children: [
+              Text('泥中の蓮',
+              style: TextStyle(
+                fontSize: 30,
+              ),
+              ),
+              Divider(
+                height: 40,
+                thickness: 1,
+                color: Colors.grey,
+                indent: 16,
+                endIndent: 16,
+              ),
+            ],
           ),
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.

@@ -43,6 +43,9 @@ class RegisterPage extends StatelessWidget {
                       context,
                       MaterialPageRoute(builder: (context) => BottomTabPage()),
                   );
+                  Future<bool> _willPopCallback() async {
+                    return true;
+                  }
                 },
                 child: Text("登録"),
               ),

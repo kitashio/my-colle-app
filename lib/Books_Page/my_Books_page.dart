@@ -15,6 +15,7 @@ class _MyBookPageState extends State<MyBookPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('My辞書'),
+          automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(10, 20, 10, 10),

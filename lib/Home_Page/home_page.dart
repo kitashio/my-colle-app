@@ -16,6 +16,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('ホーム'),
+          automaticallyImplyLeading: false,
       ),
       body: Container(
         child: Column(

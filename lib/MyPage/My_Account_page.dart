@@ -16,6 +16,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('マイページ'),
+          automaticallyImplyLeading: false,
       ),
       body: Container(
         child: Column(

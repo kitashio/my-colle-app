@@ -44,7 +44,8 @@ class _MyListPageState extends State<MyListPage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ListAddPage()),
+            MaterialPageRoute(builder: (context) => ListAddPage(),
+              fullscreenDialog: true,),
           );
         },
         child: Icon(Icons.add),
