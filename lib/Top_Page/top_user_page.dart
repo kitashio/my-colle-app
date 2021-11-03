@@ -14,41 +14,42 @@ class _TopPageState extends State<TopUserPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('My辞書'),
-      ),
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListView(
-            children: [
-              ButtonTheme(
-                minWidth: 80.0,
-                height: 250.0,
-                child: ElevatedButton(
+      body: Center(
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(30,500,30,0),
+            child: ListView(
+              children: [
+                ElevatedButton(
+                  child: Text('アカウント登録'),
+                  style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                    padding: EdgeInsets.fromLTRB(15, 5, 15, 8),
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => RegisterPage()),
                     );
                   },
-                  child: Text('初めての方はこちら'),
                 ),
-              ),
-              ButtonTheme(
-                minWidth: 80.0,
-                height: 250.0,
-                child: ElevatedButton(
+                const SizedBox(height: 8),
+                ElevatedButton(
+                  child: Text('ログイン',
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                    padding: EdgeInsets.fromLTRB(15, 5, 15, 8),
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => LoginPage()),
                     );
                   },
-                  child: Text('ログイン（アカウントをお持ちの方はこちら）'),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.

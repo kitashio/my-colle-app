@@ -16,28 +16,43 @@ class _MyBookPageState extends State<MyBookPage> {
       appBar: AppBar(
         title: Text('My辞書'),
       ),
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListView(
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 20, 10, 10),
+        child: Row(
           children: [
-            ButtonTheme(
-              minWidth: 80.0,
-              height: 250.0,
-            child: RaisedButton(
-              onPressed: () {
+            GestureDetector(
+              onTap: (){
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => MyListPage()),
                 );
               },
-            child: Text('辞書'),
+              child: Stack(
+                alignment: Alignment.center,
+                children:[ Container(
+                  width: 180,
+                  padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: Image.asset('assets/book.png'),
+                ),
+                      Text('語彙',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          letterSpacing: 3,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                ],
+              ),
             ),
+            Container(
+              width: 180,
+              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: Image.asset('assets/book.png'),
             ),
-          ],
-          ),
+        ],
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
