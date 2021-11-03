@@ -13,7 +13,7 @@ class LoginPage extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(30, 160, 30, 0),
           child: Column(
             children: [
-              Image.asset('assets/book.png',
+              Image.asset('assets/image/book.png',
                 width: 70,),
               const SizedBox(height: 50),
               Text('ログイン',

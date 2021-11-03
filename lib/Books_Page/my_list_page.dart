@@ -23,6 +23,12 @@ class _MyListPageState extends State<MyListPage> {
             Card(
               child: ListTile(
                 title: Text('泥中の蓮'),
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ListDetailPage()),
+                  );
+                },
               ),
 
             ),
@@ -30,10 +36,6 @@ class _MyListPageState extends State<MyListPage> {
               child: ListTile(
                 title: Text('座右の銘'),
                 onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ListDetailPage()),
-                  );
                 },
               ),
             ),

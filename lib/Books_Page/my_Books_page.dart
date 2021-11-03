@@ -33,7 +33,7 @@ class _MyBookPageState extends State<MyBookPage> {
                 children:[ Container(
                   width: 180,
                   padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: Image.asset('assets/book.png'),
+                  child: Image.asset('assets/image/book.png'),
                 ),
                       Text('語彙',
                         style: TextStyle(
@@ -49,7 +49,7 @@ class _MyBookPageState extends State<MyBookPage> {
             Container(
               width: 180,
               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: Image.asset('assets/book.png'),
+              child: Image.asset('assets/image/book.png'),
             ),
         ],
         ),

@@ -1,20 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ListAddPage extends StatefulWidget {
+class ListUpdatePage extends StatefulWidget {
 
   @override
-  _ListAddPageState createState() => _ListAddPageState();
+  _ListUpdatePageState createState() => _ListUpdatePageState();
 }
 
-class _ListAddPageState extends State<ListAddPage> {
+class _ListUpdatePageState extends State<ListUpdatePage> {
   String _text = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('新規登録'),
+        title: Text('編集'),
       ),
       body: Container(
         // 余白を付ける
