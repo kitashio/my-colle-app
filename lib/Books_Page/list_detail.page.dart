@@ -8,9 +8,9 @@ class ListDetailPage extends StatefulWidget {
 }
 
 class _ListDetailPageState extends State<ListDetailPage> {
+  final message = "Initial Message.";
   var _selectedValue = '編集';
   var _usStates = ["編集", "削除"];
-
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,6 @@ class _ListDetailPageState extends State<ListDetailPage> {
       appBar: AppBar(
         actions: [
           PopupMenuButton<String>(
-            initialValue: _selectedValue,
             onSelected: (String s) {
               setState(() {
                 _selectedValue = s;
@@ -78,4 +77,31 @@ class _ListDetailPageState extends State<ListDetailPage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+
+void popupMenuSelected(Menu selectedMenu){
+  switch(selectedMenu) {
+    case Menu.google_sign_in:
+      _pushPage(context, GoogleSignInPage());
+      break;
+    case Menu.firestore_cloud_vision:
+      _pushPage(context, FirestoreCloudVisionPage());
+      break;
+    default:
+      break;
+  }
+}
+
+void _pushPage(BuildContext context, Widget page) {
+  Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (_) => page)
+  );
+}
+}
+
+class MyHomePage extends StatefulWidget {
+  final String message;
+  MyHomePage({this.message}):super() {}
+  @override
+  State<StatefulWidget> createState() => new ListDetailPage();
 }

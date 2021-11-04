@@ -18,7 +18,7 @@ class RegisterPage extends StatelessWidget {
               const SizedBox(height: 50),
               Text('アカウント作成',
               style: TextStyle(
-                color: Colors.green,
+                color: Colors.cyan,
               fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),
@@ -57,7 +57,10 @@ class RegisterPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => LoginPage()),
                     );
                     },
-                  child: Text('アカウントをお持ちの方はこちらからログイン'),
+                  child: Text('アカウントをお持ちの方はこちらからログイン',
+                  style: TextStyle(
+                    color: Colors.cyan,
+                  ),),
               ),
             ],
           ),

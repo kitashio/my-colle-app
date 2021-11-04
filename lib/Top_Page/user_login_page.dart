@@ -18,7 +18,7 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 50),
               Text('ログイン',
                 style: TextStyle(
-                  color: Colors.green,
+                  color: Colors.cyan,
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
                 ),
