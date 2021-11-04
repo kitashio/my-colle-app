@@ -8,8 +8,8 @@ class ListDetailPage extends StatefulWidget {
 }
 
 class _ListDetailPageState extends State<ListDetailPage> {
-  var _selectedValue = 'Hawaii';
-  var _usStates = ["California", "Hawaii", "Texas"];
+  var _selectedValue = '編集';
+  var _usStates = ["編集", "削除"];
 
 
   @override
@@ -17,20 +17,22 @@ class _ListDetailPageState extends State<ListDetailPage> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          // IconButton(icon: Icon(Icons.more_horiz), onPressed: () {}),
-          // PopupMenuButton<String>(
-          //   onSelected: (String result) { setState(() { _selection = result; }); },
-          //   itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-          //     const PopupMenuItem<String>(
-          //       value: String.harder,
-          //       child: Text('Working a lot harder'),
-          //     ),
-          //     const PopupMenuItem<String>(
-          //       value: String.smarter,
-          //       child: Text('Being a lot smarter'),
-          //     ),
-          //   ],
-          // ),
+          PopupMenuButton<String>(
+            initialValue: _selectedValue,
+            onSelected: (String s) {
+              setState(() {
+                _selectedValue = s;
+              });
+            },
+            itemBuilder: (BuildContext context) {
+              return _usStates.map((String s) {
+                return PopupMenuItem(
+                  child: Text(s),
+                  value: s,
+                );
+              }).toList();
+            },
+          ),
         ],
       ),
       body: Container(
