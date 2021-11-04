@@ -31,7 +31,7 @@ class _BottomTabPageState extends State<BottomTabPage> {
           BottomNavigationBarItem(icon: Icon(Icons.person), title: Text('マイページ')),
         ],
         currentIndex: _currentIndex,
-        fixedColor: Colors.green,
+        fixedColor: Colors.cyan,
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
       ),

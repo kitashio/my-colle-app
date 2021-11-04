@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'list_update_page.dart';
 
 class ListDetailPage extends StatefulWidget {
 
@@ -9,21 +8,29 @@ class ListDetailPage extends StatefulWidget {
 }
 
 class _ListDetailPageState extends State<ListDetailPage> {
+  var _selectedValue = 'Hawaii';
+  var _usStates = ["California", "Hawaii", "Texas"];
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(
-            icon: Icon(Icons.more_vert),
-            onPressed: () => setState(() {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ListUpdatePage()),
-              );
-            }),
-          ),
+          // IconButton(icon: Icon(Icons.more_horiz), onPressed: () {}),
+          // PopupMenuButton<String>(
+          //   onSelected: (String result) { setState(() { _selection = result; }); },
+          //   itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+          //     const PopupMenuItem<String>(
+          //       value: String.harder,
+          //       child: Text('Working a lot harder'),
+          //     ),
+          //     const PopupMenuItem<String>(
+          //       value: String.smarter,
+          //       child: Text('Being a lot smarter'),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
       body: Container(
