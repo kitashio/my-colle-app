@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'list_update_page.dart';
 
 class ListDetailPage extends StatefulWidget {
@@ -15,7 +14,7 @@ class _ListDetailPageState extends State<ListDetailPage> {
 
   _useCamera(BuildContext context, bool b) {
     setState(() {
-      _label = 'You select ' + (b ? 'AGREE' : 'CANCEL');
+      _label = '削除しますか？' + (b ? 'はい' : 'いいえ');
     });
     Navigator.pop(context);
   }
@@ -42,8 +41,6 @@ class _ListDetailPageState extends State<ListDetailPage> {
       },
     );
   }
-
-  int _value = 0;
 
   @override
   Widget build(BuildContext context) {

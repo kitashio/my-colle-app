@@ -41,10 +41,10 @@ class _ListAddPageState extends State<ListAddPage> {
               // リスト追加ボタン
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.black, //ボタンの背景色
+                  primary: Colors.cyan, //ボタンの背景色
                 ),
                 onPressed: () {},
-                child: Text('追加', style: TextStyle(color: Colors.white)),
+                child: Text('登録'),
               ),
             ),
             const SizedBox(height: 8),
