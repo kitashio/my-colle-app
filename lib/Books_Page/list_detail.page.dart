@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'list_update_page.dart';
+
 class ListDetailPage extends StatefulWidget {
 
   @override
@@ -8,32 +10,77 @@ class ListDetailPage extends StatefulWidget {
 }
 
 class _ListDetailPageState extends State<ListDetailPage> {
-  final message = "Initial Message.";
-  var _selectedValue = '編集';
-  var _usStates = ["編集", "削除"];
+
+  String _label = '';
+
+  _useCamera(BuildContext context, bool b) {
+    setState(() {
+      _label = 'You select ' + (b ? 'AGREE' : 'CANCEL');
+    });
+    Navigator.pop(context);
+  }
+
+  Future _showAlertDialog (BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('削除'),
+          content: Text('本当に削除しますか？'),
+          actions: <Widget>[
+            ElevatedButton(
+              child: Text('いいえ'),
+              onPressed: () => _useCamera(context, false),
+            ),
+            ElevatedButton(
+              child: Text('はい'),
+              onPressed: () => _useCamera(context, true),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  int _value = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          PopupMenuButton<String>(
-            onSelected: (String s) {
+          PopupMenuButton(
+            icon: Icon(Icons.more_horiz),
+            onSelected: (newValue) { // add this property
               setState(() {
-                _selectedValue = s;
+                int _value = 0;
+                switch (_value) {
+                  case 0:
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ListUpdatePage()),
+                    );
+                    break;
+                  case 1:
+                    _showAlertDialog(context);
+                    break;
+                }
               });
             },
-            itemBuilder: (BuildContext context) {
-              return _usStates.map((String s) {
-                return PopupMenuItem(
-                  child: Text(s),
-                  value: s,
-                );
-              }).toList();
-            },
-          ),
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                child: Text("編集"),
+                value: 0,
+              ),
+              PopupMenuItem(
+                child: Text("削除"),
+                value: 1,
+              ),
+            ],
+          )
         ],
-      ),
+    ),
       body: Container(
         // 余白を付ける
         padding: EdgeInsets.fromLTRB(60, 130, 60, 0,),
@@ -77,31 +124,4 @@ class _ListDetailPageState extends State<ListDetailPage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-}
-
-void popupMenuSelected(Menu selectedMenu){
-  switch(selectedMenu) {
-    case Menu.google_sign_in:
-      _pushPage(context, GoogleSignInPage());
-      break;
-    case Menu.firestore_cloud_vision:
-      _pushPage(context, FirestoreCloudVisionPage());
-      break;
-    default:
-      break;
-  }
-}
-
-void _pushPage(BuildContext context, Widget page) {
-  Navigator.of(context).push(
-      MaterialPageRoute<void>(builder: (_) => page)
-  );
-}
-}
-
-class MyHomePage extends StatefulWidget {
-  final String message;
-  MyHomePage({this.message}):super() {}
-  @override
-  State<StatefulWidget> createState() => new ListDetailPage();
 }
