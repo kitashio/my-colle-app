@@ -37,7 +37,7 @@ class _ListDetailPageState extends State<ListDetailPage> {
               child: Text('はい'),
               onPressed: () => _useCamera(context, true),
             ),
-          ],
+          ]
         );
       },
     );
@@ -50,35 +50,29 @@ class _ListDetailPageState extends State<ListDetailPage> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          PopupMenuButton(
+          PopupMenuButton<int>(
             icon: Icon(Icons.more_horiz),
-            onSelected: (newValue) { // add this property
-              setState(() {
-                int _value = 0;
-                switch (_value) {
-                  case 0:
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ListUpdatePage()),
-                    );
-                    break;
-                  case 1:
-                    _showAlertDialog(context);
-                    break;
-                }
-              });
-            },
             itemBuilder: (context) => [
               PopupMenuItem(
                 child: Text("編集"),
                 value: 0,
-              ),
+    ),
               PopupMenuItem(
                 child: Text("削除"),
                 value: 1,
               ),
             ],
-          )
+        onSelected: (choice) {
+          if (choice == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ListUpdatePage()),
+            );
+        } else
+          if (choice == 1) {
+            _showAlertDialog (context);
+          }
+              }),
         ],
     ),
       body: Container(
