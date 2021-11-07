@@ -23,7 +23,6 @@ class _ListAddPageState extends State<ListAddPage> {
         // 余白を付ける
         padding: EdgeInsets.all(25),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const SizedBox(height: 8),
             // テキスト入力
@@ -114,7 +113,7 @@ class _ListAddPageState extends State<ListAddPage> {
             const SizedBox(height: 30),
             Container(
               // 横幅いっぱいに広げる
-              width: double.infinity,
+              width: 100,
               // リスト追加ボタン
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
