@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Top_Page/user_add_page.dart';
+import 'Top_Page/top_user_page.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -12,9 +13,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'My辞書',
       theme: ThemeData(
+        // textTheme: GoogleFonts.sawarabiMinchoTextTheme(
+        //   Theme.of(context).textTheme,
+        // ),
         primarySwatch: Colors.cyan,
       ),
-      home: RegisterPage(),
+      home: TopUserPage(),
     );
   }
 }

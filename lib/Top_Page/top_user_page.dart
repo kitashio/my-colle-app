@@ -45,10 +45,16 @@ class _TopPageState extends State<TopUserPage> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 200),
+                const SizedBox(height: 150),
                 ElevatedButton(
-                  child: Text('アカ登録'),
+                  child: Text('SIGN UP',
+                    style: GoogleFonts.raleway(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   style: ElevatedButton.styleFrom(
+                    primary: Color.fromRGBO(61, 86, 178, 100),
                     shape: const StadiumBorder(),
                     padding: EdgeInsets.fromLTRB(15, 5, 15, 8),
                   ),
@@ -61,9 +67,14 @@ class _TopPageState extends State<TopUserPage> {
                 ),
                 const SizedBox(height: 8),
                 ElevatedButton(
-                  child: Text('ログイン',
+                  child: Text('SIGN IN',
+                    style: GoogleFonts.raleway(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   style: ElevatedButton.styleFrom(
+                    primary: Colors.black38,
                     shape: const StadiumBorder(),
                     padding: EdgeInsets.fromLTRB(15, 5, 15, 8),
                   ),
