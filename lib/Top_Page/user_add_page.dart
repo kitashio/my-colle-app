@@ -10,16 +10,17 @@ class RegisterPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Container(
+          decoration: BoxDecoration(color: Color.fromRGBO(61, 86, 178, 100),),
           padding: EdgeInsets.fromLTRB(30, 160, 30, 0),
           child: Column(
             children: [
               Image.asset('assets/image/book.png',
               width: 70,),
               const SizedBox(height: 50),
-              Text('アカウント作成',
+              Text('SIGN UP',
               style: TextStyle(
-                color: Colors.cyan,
-              fontSize: 25,
+                color: Colors.white,
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),
               ),

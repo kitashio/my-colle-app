@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         // textTheme: GoogleFonts.sawarabiMinchoTextTheme(
         //   Theme.of(context).textTheme,
         // ),
-        primarySwatch: Colors.cyan,
+        primarySwatch: Colors.indigo,
       ),
       home: TopUserPage(),
     );
