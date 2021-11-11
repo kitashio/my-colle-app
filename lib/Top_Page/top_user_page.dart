@@ -28,7 +28,7 @@ class _TopPageState extends State<TopUserPage> {
                   text: TextSpan(
                     style: GoogleFonts.raleway(
                       color: Colors.black,
-                      fontSize: 20,
+                      fontSize: 23,
                     ),
                     children: <TextSpan>[
                       TextSpan(
@@ -37,7 +37,6 @@ class _TopPageState extends State<TopUserPage> {
                       TextSpan(
                         text: 'My COLLE',
                         style: TextStyle(
-                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Color.fromRGBO(61, 86, 178, 100),
                         ),
@@ -45,9 +44,9 @@ class _TopPageState extends State<TopUserPage> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 150),
+                const SizedBox(height: 250),
                 ElevatedButton(
-                  child: Text('SIGN UP',
+                  child: Text('はじめる',
                     style: GoogleFonts.raleway(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -66,25 +65,26 @@ class _TopPageState extends State<TopUserPage> {
                   },
                 ),
                 const SizedBox(height: 8),
-                ElevatedButton(
-                  child: Text('SIGN IN',
-                    style: GoogleFonts.raleway(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.black38,
-                    shape: const StadiumBorder(),
-                    padding: EdgeInsets.fromLTRB(15, 5, 15, 8),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
-                    );
-                  },
-                ),
+                //■　ログインボタン
+                // ElevatedButton(
+                //   child: Text('SIGN IN',
+                //     style: GoogleFonts.raleway(
+                //       color: Colors.white,
+                //       fontWeight: FontWeight.bold,
+                //     ),
+                //   ),
+                //   style: ElevatedButton.styleFrom(
+                //     primary: Colors.black38,
+                //     shape: const StadiumBorder(),
+                //     padding: EdgeInsets.fromLTRB(15, 5, 15, 8),
+                //   ),
+                //   onPressed: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(builder: (context) => LoginPage()),
+                //     );
+                //   },
+                // ),
               ],
             ),
           ),

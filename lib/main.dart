@@ -13,10 +13,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'My辞書',
       theme: ThemeData(
-        // textTheme: GoogleFonts.sawarabiMinchoTextTheme(
-        //   Theme.of(context).textTheme,
-        // ),
-        primarySwatch: Colors.indigo,
       ),
       home: TopUserPage(),
     );

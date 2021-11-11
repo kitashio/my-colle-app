@@ -36,6 +36,7 @@ class _ListAddPageState extends State<ListAddPage> {
               textAlign: TextAlign.start,),
             ),
             TextField(
+              cursorHeight: 100,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey.shade200,
@@ -139,7 +140,7 @@ class _ListAddPageState extends State<ListAddPage> {
             ),
           ],
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }

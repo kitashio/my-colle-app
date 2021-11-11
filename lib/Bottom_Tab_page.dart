@@ -15,8 +15,8 @@ class _BottomTabPageState extends State<BottomTabPage> {
 
   int _currentIndex = 0;
   final _pageWidgets = [
-    MyHomePage(),
     MyBookPage(),
+    MyHomePage(),
     MyAccountPage(),
   ];
 
@@ -26,9 +26,9 @@ class _BottomTabPageState extends State<BottomTabPage> {
       body: _pageWidgets.elementAt(_currentIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('ホーム')),
-          BottomNavigationBarItem(icon: Icon(Icons.book), title: Text('My辞書')),
-          BottomNavigationBarItem(icon: Icon(Icons.person), title: Text('マイページ')),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Mine',),
+          BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Others',),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'マイページ',),
         ],
         currentIndex: _currentIndex,
         fixedColor: Colors.cyan,

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:myfirstapp/Top_Page/user_login_page.dart';
 import '../Bottom_Tab_page.dart';
 
@@ -14,14 +15,13 @@ class RegisterPage extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(30, 160, 30, 0),
           child: Column(
             children: [
-              Image.asset('assets/image/book.png',
-              width: 70,),
+              // Image.asset('assets/image/book.png',
+              // width: 70,),
               const SizedBox(height: 50),
               Text('SIGN UP',
-              style: TextStyle(
-                color: Colors.white,
+              style: GoogleFonts.raleway(
+                color:  Colors.white,
                 fontSize: 25,
-                fontWeight: FontWeight.bold,
               ),
               ),
               const SizedBox(height: 20),
@@ -48,7 +48,7 @@ class RegisterPage extends StatelessWidget {
                     return true;
                   }
                 },
-                child: Text("登録"),
+                child: Text("＞＞"),
               ),
               const SizedBox(height: 15),
               TextButton(
@@ -60,7 +60,8 @@ class RegisterPage extends StatelessWidget {
                     },
                   child: Text('アカウントをお持ちの方はこちらからログイン',
                   style: TextStyle(
-                    color: Colors.cyan,
+                    fontSize: 13,
+                    color: Colors.white,
                   ),),
               ),
             ],

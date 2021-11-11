@@ -15,7 +15,7 @@ class _MyListPageState extends State<MyListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My辞書'),
+        title: Text('マイコレ'),
       ),
       body: Container(
         child: ListView(

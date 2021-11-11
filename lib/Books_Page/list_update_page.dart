@@ -17,7 +17,7 @@ class _ListUpdatePageState extends State<ListUpdatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('編集'),
+        title: Text('集'),
       ),
       body: Container(
         // 余白を付ける

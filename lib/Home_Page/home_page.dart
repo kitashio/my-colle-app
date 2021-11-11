@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 // import 'My_Account_page.dart';
 import '../Books_Page/list_add_page.dart';
 
@@ -14,19 +15,21 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('ホーム'),
-          automaticallyImplyLeading: false,
+      appBar: NeumorphicAppBar(
+
       ),
       body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('ホームページ'),
-          ],
-
+        decoration: BoxDecoration(color: Color.fromRGBO(246, 246, 246, 100)),
+        child: NeumorphicBackground(
+          padding: EdgeInsets.fromLTRB(20, 100, 20, 400),
+          child: NeumorphicText('Flutter大学',
+            textStyle: NeumorphicTextStyle(
+              fontWeight: FontWeight.w900,
+              fontSize: 90,
+            ),
+          ),
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
