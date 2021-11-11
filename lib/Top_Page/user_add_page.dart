@@ -11,7 +11,7 @@ class RegisterPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Container(
-          decoration: BoxDecoration(color: Color.fromRGBO(61, 86, 178, 100),),
+          decoration: BoxDecoration(color: Color.fromRGBO(167, 197, 235, 100),),
           padding: EdgeInsets.fromLTRB(30, 160, 30, 0),
           child: Column(
             children: [

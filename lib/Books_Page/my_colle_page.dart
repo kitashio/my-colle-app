@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'my_colle_add.dart';
 import 'my_list_page.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
@@ -17,14 +18,19 @@ class _MyBookPageState extends State<MyBookPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('My Collctions',
+        backgroundColor:Color.fromRGBO(150, 186, 255, 100),
+        title: Text('My Collction',
         style: TextStyle(
           fontSize: 18,
         ),
         ),
         actions: [
-          IconButton(icon: Icon(Icons.add,), onPressed: (){
-
+          IconButton(icon: Icon(Icons.add,),
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ColleAddPage()),
+                );
           })
         ],
       ),

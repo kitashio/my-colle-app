@@ -46,6 +46,7 @@ class _ListDetailPageState extends State<ListDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor:Color.fromRGBO(150, 186, 255, 100),
         actions: [
           PopupMenuButton<int>(
             icon: Icon(Icons.more_horiz),

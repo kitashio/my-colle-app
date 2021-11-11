@@ -17,7 +17,12 @@ class _ListUpdatePageState extends State<ListUpdatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('集'),
+        title: Text('Update',
+        style: TextStyle(
+          fontSize: 18,
+        ),
+        ),
+        backgroundColor:Color.fromRGBO(150, 186, 255, 100),
       ),
       body: Container(
         // 余白を付ける
@@ -29,7 +34,7 @@ class _ListUpdatePageState extends State<ListUpdatePage> {
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(5),
-              child: Text('見出し語',
+              child: Text('タイトル',
                 style: TextStyle(
                   fontSize: 13,
                 ),
@@ -52,40 +57,13 @@ class _ListUpdatePageState extends State<ListUpdatePage> {
                 });
               },
             ),
-            const SizedBox(height: 10),
-            // テキスト入力
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(5),
-              child: Text('読み',
-                style: TextStyle(
-                  fontSize: 13,
-                ),
-                textAlign: TextAlign.start,),
-            ),
-            TextField(
-              decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.grey.shade200,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
-                  )
-              ),
-              onChanged: (String value){
-                // データが変更したことを知らせる（画面を更新する）
-                setState(() {
-                  // データを変更
-                  _yomi = value;
-                });
-              },
-            ),
+
             const SizedBox(height: 8),
             // テキスト入力
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(5),
-              child: Text('意味（本文）',
+              child: Text('説明文',
                 style: TextStyle(
                   fontSize: 13,
                 ),
@@ -117,7 +95,7 @@ class _ListUpdatePageState extends State<ListUpdatePage> {
               // リスト追加ボタン
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.cyan, //ボタンの背景色
+                  primary: Color.fromRGBO(150, 186, 255, 100),//ボタンの背景色
                 ),
                 onPressed: () {},
                 child: Text('更新'),

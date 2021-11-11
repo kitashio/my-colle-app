@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'Books_Page/my_Books_page.dart';
+import 'Books_Page/my_colle_page.dart';
 import 'MyPage/My_Account_page.dart';
 import 'Home_Page/home_page.dart';
 
@@ -26,12 +26,12 @@ class _BottomTabPageState extends State<BottomTabPage> {
       body: _pageWidgets.elementAt(_currentIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Mine',),
-          BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Others',),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'マイページ',),
+          BottomNavigationBarItem(icon: Icon(Icons.lens_outlined), label: 'My',),
+          BottomNavigationBarItem(icon: Icon(Icons.fiber_smart_record_outlined), label: 'Others',),
+          BottomNavigationBarItem(icon: Icon(Icons.account_circle_outlined), label: 'Mypage',),
         ],
         currentIndex: _currentIndex,
-        fixedColor: Colors.cyan,
+        fixedColor: Colors.indigo,
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
       ),

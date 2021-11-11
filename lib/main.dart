@@ -13,7 +13,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'My辞書',
       theme: ThemeData(
-      ),
+        primarySwatch: Colors.indigo,
+    ),
       home: TopUserPage(),
     );
   }

@@ -18,7 +18,6 @@ class _TopPageState extends State<TopUserPage> {
       body: Center(
         child: Container(
           alignment: Alignment.center,
-          decoration: BoxDecoration(color: Color.fromRGBO(255, 243, 228, 100)),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(30,300,30,0),
             child: ListView(
@@ -46,16 +45,18 @@ class _TopPageState extends State<TopUserPage> {
                 ),
                 const SizedBox(height: 250),
                 ElevatedButton(
-                  child: Text('はじめる',
+                  child: Text('Start ▶︎',
                     style: GoogleFonts.raleway(
                       color: Colors.white,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
+                      letterSpacing: 1,
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Color.fromRGBO(61, 86, 178, 100),
+                    primary: Color.fromRGBO(150, 186, 255, 100),
                     shape: const StadiumBorder(),
-                    padding: EdgeInsets.fromLTRB(15, 5, 15, 8),
+                    padding: EdgeInsets.all(10),
                   ),
                   onPressed: () {
                     Navigator.push(

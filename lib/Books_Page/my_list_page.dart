@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'list_add_page.dart';
-import 'list_detail.page.dart';
+import 'my_list_detail.dart';
 
 class MyListPage extends StatefulWidget {
 
@@ -15,7 +15,13 @@ class _MyListPageState extends State<MyListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('マイコレ'),
+        title: Text("collection's title",
+        style: TextStyle(
+          fontSize: 18,
+        ),
+        ),
+        backgroundColor:Color.fromRGBO(150, 186, 255, 100),
+
       ),
       body: Container(
         child: ListView(
@@ -43,6 +49,7 @@ class _MyListPageState extends State<MyListPage> {
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color.fromRGBO(150, 186, 255, 100),
         onPressed: () {
           Navigator.push(
             context,

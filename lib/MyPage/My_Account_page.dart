@@ -15,8 +15,14 @@ class _MyAccountPageState extends State<MyAccountPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('マイページ'),
+        title: Text('My Page',
+        style: TextStyle(
+        fontSize: 18,
+        ),
+        ),
           automaticallyImplyLeading: false,
+        backgroundColor:Color.fromRGBO(150, 186, 255, 100),
+
       ),
       body: Container(
         child: Column(

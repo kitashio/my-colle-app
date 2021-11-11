@@ -1,28 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ListAddPage extends StatefulWidget {
+class ColleAddPage extends StatefulWidget {
 
   @override
-  _ListAddPageState createState() => _ListAddPageState();
+  _ColleAddPageState createState() => _ColleAddPageState();
 }
 
-class _ListAddPageState extends State<ListAddPage> {
+class _ColleAddPageState extends State<ColleAddPage> {
   String _midashi = '';
   String _yomi = '';
   String _imi = '';
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('New Item',
+        title: Text('New Collection',
         style: TextStyle(
         fontSize: 18,
         ),
         ),
         backgroundColor:Color.fromRGBO(150, 186, 255, 100),
+
       ),
       body: Container(
         // 余白を付ける
@@ -35,20 +35,19 @@ class _ListAddPageState extends State<ListAddPage> {
               width: double.infinity,
               padding: EdgeInsets.all(5),
               child: Text('タイトル',
-              style: TextStyle(
-                fontSize: 13,
-              ),
-              textAlign: TextAlign.start,),
+                style: TextStyle(
+                  fontSize: 13,
+                ),
+                textAlign: TextAlign.start,),
             ),
             TextField(
-              cursorHeight: 100,
               decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.grey.shade200,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
-                )
+                  filled: true,
+                  fillColor: Colors.grey.shade200,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  )
               ),
               onChanged: (String value){
                 // データが変更したことを知らせる（画面を更新する）
@@ -58,8 +57,9 @@ class _ListAddPageState extends State<ListAddPage> {
                 });
               },
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 10),
             // テキスト入力
+
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(5),
@@ -95,7 +95,7 @@ class _ListAddPageState extends State<ListAddPage> {
               // リスト追加ボタン
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Color.fromRGBO(150, 186, 255, 100),//ボタンの背景色
+                  primary: Color.fromRGBO(150, 186, 255, 100), //ボタンの背景色
                 ),
                 onPressed: () {},
                 child: Text('登録'),
@@ -112,10 +112,7 @@ class _ListAddPageState extends State<ListAddPage> {
                   // "pop"で前の画面に戻る
                   Navigator.of(context).pop();
                 },
-                child: Text('キャンセル',
-                style: TextStyle(
-                  color: Colors.black38,
-                ),),
+                child: Text('キャンセル'),
               ),
             ),
           ],

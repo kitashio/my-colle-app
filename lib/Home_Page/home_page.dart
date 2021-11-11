@@ -15,21 +15,18 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: NeumorphicAppBar(
-
+      appBar: AppBar(
+        title: Text('Others Collection',
+        style: TextStyle(
+          fontSize: 18,
+        ),),
+        automaticallyImplyLeading: false,
+        backgroundColor:Color.fromRGBO(150, 186, 255, 100),
       ),
       body: Container(
-        decoration: BoxDecoration(color: Color.fromRGBO(246, 246, 246, 100)),
-        child: NeumorphicBackground(
-          padding: EdgeInsets.fromLTRB(20, 100, 20, 400),
-          child: NeumorphicText('Flutter大学',
-            textStyle: NeumorphicTextStyle(
-              fontWeight: FontWeight.w900,
-              fontSize: 90,
-            ),
-          ),
+        // decoration: BoxDecoration(color: Color.fromRGBO(147, 181, 198, 100)),
+
         ),
-      ),
     );
   }
 }
