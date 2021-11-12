@@ -45,7 +45,7 @@ class _TopPageState extends State<TopUserPage> {
                 ),
                 const SizedBox(height: 250),
                 ElevatedButton(
-                  child: Text('Start ▶︎',
+                  child: Text('Start →︎',
                     style: GoogleFonts.raleway(
                       color: Colors.white,
                       fontSize: 16,

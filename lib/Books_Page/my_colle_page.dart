@@ -34,9 +34,7 @@ class _MyBookPageState extends State<MyBookPage> {
           })
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 20, 10, 10),
-        child: Container(
+      body: Container(
           child: Row(
             children: [
               GestureDetector(
@@ -48,10 +46,14 @@ class _MyBookPageState extends State<MyBookPage> {
                 },
                 child: Stack(
                   alignment: Alignment.center,
-                  children:[ Container(
-                    width: 180,
-                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    child: Image.asset('assets/image/book.png'),
+                  children:[
+                    Container(
+                    child: Image.asset('assets/image/IMG_6426.JPG',
+                      height: 170,
+                      width: 170,
+                      fit: BoxFit.cover,
+                    ), 
+                    padding: EdgeInsets.all(15),
                   ),
                         Text('語彙',
                           style: TextStyle(
@@ -64,10 +66,37 @@ class _MyBookPageState extends State<MyBookPage> {
                   ],
                 ),
               ),
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyListPage()),
+                  );
+                },
+                child: Stack(
+                  alignment: Alignment.center,
+                  children:[
+                    Container(
+                      child: Image.asset('assets/image/okoge.jpeg',
+                        height: 170,
+                        width: 170,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Text('にゃん',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        letterSpacing: 3,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
           ],
           ),
         ),
-      ),
     );
   }
 }
