@@ -75,13 +75,19 @@ class _ListDetailPageState extends State<ListDetailPage> {
     ),
       body: Container(
         // 余白を付ける
-        padding: EdgeInsets.fromLTRB(60, 130, 60, 0,),
+        padding: EdgeInsets.all(30),
         child: Center(
           child: Column(
             children: [
-              Text('泥中の蓮',
+            Image.asset('assets/image/IMG_6426.JPG',
+            height: 300,
+            width: 300,
+            fit: BoxFit.cover,
+              ),
+              const SizedBox(height: 20),
+              Text('タイトル',
               style: TextStyle(
-                fontSize: 30,
+              fontSize: 20,
               ),
               ),
               const SizedBox(height: 20),
