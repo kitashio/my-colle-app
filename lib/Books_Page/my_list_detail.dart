@@ -96,21 +96,21 @@ class _ListDetailPageState extends State<ListDetailPage> {
                 color: Colors.grey,
               ),
               const SizedBox(height: 15),
-              Container(
-                width: 100,
-                height: 23,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(60.0),
-                  color: Colors.grey,
-                ),
-                child: Text('意 味',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-                ),
-              ),
-              const SizedBox(height: 30),
+              // Container(
+              //   width: 100,
+              //   height: 23,
+              //   alignment: Alignment.center,
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(60.0),
+              //     color: Colors.grey,
+              //   ),
+              //   child: Text('意 味',
+              //   style: TextStyle(
+              //     color: Colors.white,
+              //   ),
+              //   ),
+              // ),
+              // const SizedBox(height: 30),
               Text('汚れた環境下でも影響されず、清らかな魅力を保っていること。',
                 style: TextStyle(
                   fontSize: 17,
