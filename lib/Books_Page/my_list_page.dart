@@ -22,21 +22,43 @@ class _MyListPageState extends State<MyListPage> {
         ),
         ),
         backgroundColor:Color.fromRGBO(150, 186, 255, 100),
-
       ),
       body: GridView.count(
         crossAxisCount: 2,
+        crossAxisSpacing: 10.0, // 縦
+        mainAxisSpacing: 10.0, // 横
+        childAspectRatio: 0.87, // 高さ
+        shrinkWrap: true,
         padding: EdgeInsets.all(10),
         children: List.generate(100, (index) {
           return Container(
-            height: 300,
-            // color: Colors.indigo,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                // new BoxShadow(
+                //   color: Colors.grey,
+                //   blurRadius: 10,
+                // ),
+              ],
+            ),
             child: Column(
               children: [
-                Image.asset('assets/image/IMG_6426.JPG',
-                height: 170,
-                width: 170,
-                fit: BoxFit.cover,
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ListDetailPage()),
+                    );
+                  },
+                  child: Image.asset('assets/image/IMG_6426.JPG',
+                  height: 170,
+                  width: 170,
+                  fit: BoxFit.cover,
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(8),
+                  child: Text(''),
                 ),
               ],
             ),
