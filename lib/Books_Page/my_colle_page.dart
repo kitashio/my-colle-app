@@ -35,68 +35,68 @@ class _MyBookPageState extends State<MyBookPage> {
         ],
       ),
       body: Container(
-          child: Row(
-            children: [
-              GestureDetector(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyListPage()),
-                  );
-                },
-                child: Stack(
-                  alignment: Alignment.center,
-                  children:[
-                    Container(
-                    child: Image.asset('assets/image/IMG_6426.JPG',
-                      height: 170,
-                      width: 170,
-                      fit: BoxFit.cover,
-                    ), 
-                    padding: EdgeInsets.all(15),
-                  ),
-                        Text('語彙',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            letterSpacing: 3,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                  ],
-                ),
-              ),
-              GestureDetector(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyListPage()),
-                  );
-                },
-                child: Stack(
-                  alignment: Alignment.center,
-                  children:[
-                    Container(
-                      child: Image.asset('assets/image/okoge.jpeg',
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyListPage()),
+                    );
+                  },
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children:[
+                      Container(
+                      child: Image.asset('assets/image/IMG_6426.JPG',
                         height: 170,
                         width: 170,
                         fit: BoxFit.cover,
-                      ),
+                      ), 
+                      padding: EdgeInsets.all(15),
                     ),
-                    Text('にゃん',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        letterSpacing: 3,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+                          Text('語彙',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              letterSpacing: 3,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                    ],
+                  ),
                 ),
-              ),
-          ],
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyListPage()),
+                    );
+                  },
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children:[
+                      Container(
+                        child: Image.asset('assets/image/okoge.jpeg',
+                          height: 170,
+                          width: 170,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Text('にゃん',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          letterSpacing: 3,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+            ],
+            ),
           ),
-        ),
     );
   }
 }
