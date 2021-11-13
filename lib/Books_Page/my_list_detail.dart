@@ -47,7 +47,13 @@ class _ListDetailPageState extends State<ListDetailPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor:Color.fromRGBO(150, 186, 255, 100),
+        title: Text('1/20',
+        style: TextStyle(
+          fontSize: 16,
+        ),
+        ),
         actions: [
+          //右上のポップアップメニュー
           PopupMenuButton<int>(
             icon: Icon(Icons.more_horiz),
             itemBuilder: (context) => [
@@ -114,7 +120,7 @@ class _ListDetailPageState extends State<ListDetailPage> {
               Text('汚れた環境下でも影響されず、清らかな魅力を保っていること。',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 17,
+                  fontSize: 16,
 
                 ),
               ),

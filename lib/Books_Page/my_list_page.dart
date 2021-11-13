@@ -22,6 +22,14 @@ class _MyListPageState extends State<MyListPage> {
         ),
         ),
         backgroundColor:Color.fromRGBO(150, 186, 255, 100),
+        actions: [
+          Container(
+            // color: Colors.white,
+            padding: EdgeInsets.fromLTRB(0, 20, 10, 0),
+              child: Text('(20)',
+              ),
+          ),
+        ],
       ),
       body: GridView.count(
         crossAxisCount: 2,
@@ -30,7 +38,7 @@ class _MyListPageState extends State<MyListPage> {
         childAspectRatio: 0.87, // 高さ
         shrinkWrap: true,
         padding: EdgeInsets.all(10),
-        children: List.generate(100, (index) {
+        children: List.generate(20, (index) {
           return Container(
             decoration: BoxDecoration(
               color: Colors.white,

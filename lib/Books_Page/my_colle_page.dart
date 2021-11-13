@@ -27,6 +27,7 @@ class _MyBookPageState extends State<MyBookPage> {
         actions: [
           IconButton(icon: Icon(Icons.add,),
               onPressed: (){
+                //コレクション追加ページへ遷移
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => ColleAddPage()),
@@ -39,6 +40,7 @@ class _MyBookPageState extends State<MyBookPage> {
               children: [
                 GestureDetector(
                   onTap: (){
+                    //コレクションアイテム一覧ページへ遷移
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => MyListPage()),
