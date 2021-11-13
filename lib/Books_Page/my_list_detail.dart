@@ -95,7 +95,7 @@ class _ListDetailPageState extends State<ListDetailPage> {
                 thickness: 1,
                 color: Colors.grey,
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 20),
               // Container(
               //   width: 100,
               //   height: 23,
@@ -112,8 +112,10 @@ class _ListDetailPageState extends State<ListDetailPage> {
               // ),
               // const SizedBox(height: 30),
               Text('汚れた環境下でも影響されず、清らかな魅力を保っていること。',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 17,
+
                 ),
               ),
             ],
