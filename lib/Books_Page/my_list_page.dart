@@ -10,6 +10,7 @@ class MyListPage extends StatefulWidget {
 }
 
 class _MyListPageState extends State<MyListPage> {
+  String itemtitle = "僕";
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class _MyListPageState extends State<MyListPage> {
         crossAxisCount: 2,
         crossAxisSpacing: 10.0, // 縦
         mainAxisSpacing: 10.0, // 横
-        childAspectRatio: 0.87, // 高さ
+        childAspectRatio: 0.86, // 高さ
         shrinkWrap: true,
         padding: EdgeInsets.all(10),
         children: List.generate(20, (index) {
@@ -55,7 +56,7 @@ class _MyListPageState extends State<MyListPage> {
                   onTap: (){
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ListDetailPage()),
+                      MaterialPageRoute(builder: (context) => ListDetailPage(itemtitle)),
                     );
                   },
                   child: Image.asset('assets/image/IMG_6426.JPG',
@@ -66,7 +67,7 @@ class _MyListPageState extends State<MyListPage> {
                 ),
                 Container(
                   margin: EdgeInsets.all(8),
-                  child: Text(''),
+                  child: Text(itemtitle),//●タイトルが長過ぎた時の改行せずに・・・にする
                 ),
               ],
             ),

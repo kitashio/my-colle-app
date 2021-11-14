@@ -8,9 +8,8 @@ class ListUpdatePage extends StatefulWidget {
 }
 
 class _ListUpdatePageState extends State<ListUpdatePage> {
-  String _midashi = '';
-  String _yomi = '';
-  String _imi = '';
+  String midashi = '';
+  String imi = '';
 
 
   @override
@@ -53,7 +52,7 @@ class _ListUpdatePageState extends State<ListUpdatePage> {
                 // データが変更したことを知らせる（画面を更新する）
                 setState(() {
                   // データを変更
-                  _midashi = value;
+                  midashi = value;
                 });
               },
             ),
@@ -83,7 +82,7 @@ class _ListUpdatePageState extends State<ListUpdatePage> {
                   // データが変更したことを知らせる（画面を更新する）
                   setState(() {
                     // データを変更
-                    _imi = value;
+                    imi = value;
                   });
                 },
               ),

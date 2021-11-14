@@ -1,14 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'list_update_page.dart';
+import 'my_list_update.dart';
 
 class ListDetailPage extends StatefulWidget {
 
+  ListDetailPage(this._itemtitle);
+  String _itemtitle;
+
   @override
-  _ListDetailPageState createState() => _ListDetailPageState();
+  _ListDetailPageState createState() => _ListDetailPageState(_itemtitle);
 }
 
 class _ListDetailPageState extends State<ListDetailPage> {
+
+  _ListDetailPageState(this._itemtitle);
+  String _itemtitle;
 
   String _label = '';
 
@@ -91,7 +97,7 @@ class _ListDetailPageState extends State<ListDetailPage> {
             fit: BoxFit.cover,
               ),
               const SizedBox(height: 20),
-              Text('タイトル',
+              Text(_itemtitle,
               style: TextStyle(
               fontSize: 20,
               ),
@@ -102,21 +108,6 @@ class _ListDetailPageState extends State<ListDetailPage> {
                 color: Colors.grey,
               ),
               const SizedBox(height: 20),
-              // Container(
-              //   width: 100,
-              //   height: 23,
-              //   alignment: Alignment.center,
-              //   decoration: BoxDecoration(
-              //     borderRadius: BorderRadius.circular(60.0),
-              //     color: Colors.grey,
-              //   ),
-              //   child: Text('意 味',
-              //   style: TextStyle(
-              //     color: Colors.white,
-              //   ),
-              //   ),
-              // ),
-              // const SizedBox(height: 30),
               Text('汚れた環境下でも影響されず、清らかな魅力を保っていること。',
                 textAlign: TextAlign.center,
                 style: TextStyle(
