@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+
+//　【My】2.コレクション追加画面
+
 class ColleAddPage extends StatefulWidget {
 
   @override
@@ -29,6 +32,13 @@ class _ColleAddPageState extends State<ColleAddPage> {
         padding: EdgeInsets.all(25),
         child: Column(
           children: <Widget>[
+            Container(
+            child: Image.asset('assets/image/IMG_6426.JPG',
+              height: 200,
+              width: 200,
+              fit: BoxFit.cover,
+            ),
+            ),
             const SizedBox(height: 8),
             // テキスト入力
             Container(
@@ -59,7 +69,6 @@ class _ColleAddPageState extends State<ColleAddPage> {
             ),
             const SizedBox(height: 10),
             // テキスト入力
-
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(5),
@@ -69,24 +78,22 @@ class _ColleAddPageState extends State<ColleAddPage> {
                 ),
                 textAlign: TextAlign.start,),
             ),
-            Container(
-              child: TextField(
-                decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.grey.shade200,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide.none,
-                    )
-                ),
-                onChanged: (String value){
-                  // データが変更したことを知らせる（画面を更新する）
-                  setState(() {
-                    // データを変更
-                    _imi = value;
-                  });
-                },
+            TextField(
+              decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey.shade200,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  )
               ),
+              onChanged: (String value){
+                // データが変更したことを知らせる（画面を更新する）
+                setState(() {
+                  // データを変更
+                  _imi = value;
+                });
+              },
             ),
             const SizedBox(height: 30),
             Container(

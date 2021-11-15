@@ -4,7 +4,7 @@ import 'my_colle_add.dart';
 import 'my_list_page.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-
+//　【My】1.コレクション一覧画面
 class MyBookPage extends StatefulWidget {
 
   @override
@@ -12,6 +12,7 @@ class MyBookPage extends StatefulWidget {
 }
 
 class _MyBookPageState extends State<MyBookPage> {
+  String colletitle = '花';
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +25,10 @@ class _MyBookPageState extends State<MyBookPage> {
           fontSize: 18,
         ),
         ),
+        //　□　コレクション追加画面へ遷移
         actions: [
           IconButton(icon: Icon(Icons.add,),
               onPressed: (){
-                //コレクション追加ページへ遷移
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => ColleAddPage()),
@@ -35,70 +36,49 @@ class _MyBookPageState extends State<MyBookPage> {
           })
         ],
       ),
-      body: Container(
-            child: Row(
-              children: [
-                GestureDetector(
-                  onTap: (){
-                    //コレクションアイテム一覧ページへ遷移
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MyListPage()),
-                    );
-                  },
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children:[
-                      Container(
+      body: GridView.count(
+        crossAxisCount: 2,
+        crossAxisSpacing: 10.0, // 縦
+        mainAxisSpacing: 10.0, // 横
+        shrinkWrap: true,
+        padding: EdgeInsets.all(10),
+        children: List.generate(3, (index) {
+          return Column(
+            children: [
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyListPage()),
+                  );
+                },
+                child: Stack(
+                  alignment: Alignment.center,
+                  children:[
+                    Container(
                       child: Image.asset('assets/image/IMG_6426.JPG',
                         height: 170,
                         width: 170,
                         fit: BoxFit.cover,
-                      ), 
-                      padding: EdgeInsets.all(15),
+                      ),
                     ),
-                          Text('語彙',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              letterSpacing: 3,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                    ],
-                  ),
-                ),
-                GestureDetector(
-                  onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MyListPage()),
-                    );
-                  },
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children:[
-                      Container(
-                        child: Image.asset('assets/image/okoge.jpeg',
-                          height: 170,
-                          width: 170,
-                          fit: BoxFit.cover,
-                        ),
+                    Text(colletitle,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        letterSpacing: 3,
+                        fontWeight: FontWeight.bold,
+                        backgroundColor: Color.fromRGBO(0, 0, 0, 0.3),
                       ),
-                      Text('にゃん',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          letterSpacing: 3,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
+              ),
             ],
-            ),
-          ),
+          );
+        }),
+      ),
     );
   }
 }

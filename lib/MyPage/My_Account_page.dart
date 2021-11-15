@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'Mypage_Google_login.dart';
+
 // import 'list_add_page.dart';
 
 class MyAccountPage extends StatefulWidget {
@@ -25,13 +27,45 @@ class _MyAccountPageState extends State<MyAccountPage> {
 
       ),
       body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('マイページ')
-          ],
+        padding: EdgeInsets.all(10),
+        child: Center(
+          child: Column(
+            children: [
+              ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => GoogleLoginPage()),
+                    );
+                  },
+                  child: Text('Googleでサインイン',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: (){},
+                child: Text('Twitterでサインイン',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: (){},
+                child: Text('LINEでサインイン',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }

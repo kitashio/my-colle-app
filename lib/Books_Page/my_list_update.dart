@@ -34,6 +34,13 @@ class _ListUpdatePageState extends State<ListUpdatePage> {
         padding: EdgeInsets.all(25),
         child: Column(
           children: <Widget>[
+            Container(
+              child: Image.asset('assets/image/IMG_6426.JPG',
+                height: 200,
+                width: 200,
+                fit: BoxFit.cover,
+              ),
+            ),
             const SizedBox(height: 8),
             // テキスト入力
             Container(

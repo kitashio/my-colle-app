@@ -40,37 +40,26 @@ class _MyListPageState extends State<MyListPage> {
         shrinkWrap: true,
         padding: EdgeInsets.all(10),
         children: List.generate(20, (index) {
-          return Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                // new BoxShadow(
-                //   color: Colors.grey,
-                //   blurRadius: 10,
-                // ),
-              ],
-            ),
-            child: Column(
-              children: [
-                GestureDetector(
-                  onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ListDetailPage(itemtitle)),
-                    );
-                  },
-                  child: Image.asset('assets/image/IMG_6426.JPG',
-                  height: 170,
-                  width: 170,
-                  fit: BoxFit.cover,
-                  ),
+          return Column(
+            children: [
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ListDetailPage(itemtitle)),
+                  );
+                },
+                child: Image.asset('assets/image/IMG_6426.JPG',
+                height: 170,
+                width: 170,
+                fit: BoxFit.cover,
                 ),
-                Container(
-                  margin: EdgeInsets.all(8),
-                  child: Text(itemtitle),//●タイトルが長過ぎた時の改行せずに・・・にする
-                ),
-              ],
-            ),
+              ),
+              Container(
+                margin: EdgeInsets.all(8),
+                child: Text(itemtitle),//●タイトルが長過ぎた時の改行せずに・・・にする
+              ),
+            ],
           );
         }),
       ),

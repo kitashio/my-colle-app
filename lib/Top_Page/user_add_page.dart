@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:myfirstapp/Top_Page/user_login_page.dart';
 import '../Bottom_Tab_page.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -53,10 +52,10 @@ class RegisterPage extends StatelessWidget {
               const SizedBox(height: 15),
               TextButton(
                   onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => GoogleLoginPage()),
+                    // );
                     },
                   child: Text('アカウントをお持ちの方はこちらからログイン',
                   style: TextStyle(
