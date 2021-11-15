@@ -76,7 +76,7 @@ class _ListDetailPageState extends State<ListDetailPage> {
           if (choice == 0) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => ListUpdatePage()),
+              MaterialPageRoute(builder: (context) => ListUpdatePage(_itemtitle)),
             );
         } else
           if (choice == 1) {
