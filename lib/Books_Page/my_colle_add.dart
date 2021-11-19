@@ -32,6 +32,8 @@ class _ColleAddPageState extends State<ColleAddPage> {
         padding: EdgeInsets.all(25),
         child: Column(
           children: <Widget>[
+            Text('サムネイル画像'),
+            const SizedBox(height: 8),
             Container(
             child: Image.asset('assets/image/IMG_6426.JPG',
               height: 200,
