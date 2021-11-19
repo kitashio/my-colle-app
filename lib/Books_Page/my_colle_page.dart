@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'my_colle_add.dart';
 import 'my_list_page.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 //　【My】1.コレクション一覧画面
 class MyBookPage extends StatefulWidget {
