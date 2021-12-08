@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ListUpdatePage extends StatefulWidget {
@@ -13,7 +12,6 @@ class _ListUpdatePageState extends State<ListUpdatePage> {
 
   _ListUpdatePageState(this.__itemtitle);
   String __itemtitle;
-
   String midashi = '';
   String imi = '';
 
