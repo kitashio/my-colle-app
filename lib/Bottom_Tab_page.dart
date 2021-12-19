@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'Books_Page/my_colle_page.dart';
 import 'MyPage/My_Account_page.dart';
@@ -15,7 +14,7 @@ class _BottomTabPageState extends State<BottomTabPage> {
 
   int _currentIndex = 0;
   final _pageWidgets = [
-    MyBookPage(),
+    CollectionPage(),
     MyHomePage(),
     MyAccountPage(),
   ];

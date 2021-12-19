@@ -1,21 +1,20 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'my_colle_add.dart';
+import 'my_colle_page_model.dart';
 import 'my_list_page.dart';
+import 'package:provider/provider.dart';
+
 
 //　【My】1.コレクション一覧画面
-class MyBookPage extends StatefulWidget {
+class CollectionPage extends StatelessWidget {
 
-  @override
-  _MyBookPageState createState() => _MyBookPageState();
-}
-
-class _MyBookPageState extends State<MyBookPage> {
   String colletitle = '花';
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ChangeNotifierProvider(
+        create: (BuildContext context) => CollectionPageModel(),
+    child: Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor:Color.fromRGBO(150, 186, 255, 100),
@@ -35,7 +34,8 @@ class _MyBookPageState extends State<MyBookPage> {
           })
         ],
       ),
-      body: GridView.count(
+      body: Consumer<CollectionPageModel>(builder: (context, model,child) {
+        return GridView.count(
         crossAxisCount: 2,
         crossAxisSpacing: 10.0, // 縦
         mainAxisSpacing: 10.0, // 横
@@ -77,7 +77,10 @@ class _MyBookPageState extends State<MyBookPage> {
             ],
           );
         }),
-      ),
+      );
+    },
+    ),
+    ),
     );
   }
 }
