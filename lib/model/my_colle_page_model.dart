@@ -18,7 +18,8 @@ class CollectionPageModel with ChangeNotifier {
       Map<String, dynamic> data = document.data() as Map<String, dynamic>;
       final String title = data['title'];
       final String describe = data['describe'];
-      return Items(title, describe);
+      final String imgURL = data['imgURL'];
+      return Items(title, describe, imgURL);
     }).toList();
 
     this.items = items;

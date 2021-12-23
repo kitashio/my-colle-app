@@ -6,11 +6,11 @@ class CollectionAddModel with ChangeNotifier {
   String describe;
 
   Future addItem () async {
-    if (title == null) {
+    if (title == null||title.isEmpty) {
       throw 'タイトルが入力されていません。';
     }
 
-    if (describe == null) {
+    if (describe == null||describe.isEmpty) {
       throw '説明文が入力されていません。';
     }
 
