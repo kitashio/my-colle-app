@@ -23,22 +23,27 @@ class ColleAddPage extends StatelessWidget {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: <Widget>[
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Image.asset('assets/image/IMG_6426.JPG',
-                      height: 200,
-                      width: 200,
-                      fit: BoxFit.cover,
-                    ),
-                    IconButton(
-                        onPressed: (){},
-                        icon: Icon(Icons.add_circle,
-                        size: 35,
-                        color: Colors.white,
-                        )
-                    ),
-                  ],
+                GestureDetector(
+                  onTap: () async {
+                    await model.pickImage();
+                  },
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      SizedBox(
+                        height: 200,
+                        width: 200,
+                        child: model.imageFile != null
+                        ? Image.file(model.imageFile, fit: BoxFit.cover,)
+                       : Container(color: Colors.grey,),
+                      ),
+                      IconButton(icon: Icon(Icons.add_circle,
+                          size: 35,
+                          color: Colors.white,
+                          )
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 20),
                 // タイトル入力

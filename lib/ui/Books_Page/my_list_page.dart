@@ -3,13 +3,7 @@ import 'package:flutter/material.dart';
 import 'list_add_page.dart';
 import 'my_list_detail.dart';
 
-class MyListPage extends StatefulWidget {
-
-  @override
-  _MyListPageState createState() => _MyListPageState();
-}
-
-class _MyListPageState extends State<MyListPage> {
+class ListPage extends StatelessWidget {
   String itemtitle = "僕";
 
   @override

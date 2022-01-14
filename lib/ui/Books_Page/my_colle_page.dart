@@ -3,7 +3,6 @@ import 'package:myfirstapp/model/my_colle_page_model.dart';
 import '../../Items.dart';
 import 'my_colle_add.dart';
 import 'package:provider/provider.dart';
-
 import 'my_list_page.dart';
 
 //　【My】1.コレクション一覧画面
@@ -60,25 +59,25 @@ class CollectionPage extends StatelessWidget {
                   onTap: () async {
                     await Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => MyListPage()),
+                      MaterialPageRoute(builder: (context) => ListPage()),
                     );
                   },
                   child: Stack(
                     alignment: Alignment.center,
                     children:[
-                      Image.asset(items.imgURL??'',
-                        height: 170,
-                        width: 170,
-                        fit: BoxFit.cover,
-                      ),
+                      items.imgURL != null
+                      ? Image.network(items.imgURL,
+                      height: 170,
+                      width: 170,
+                        fit: BoxFit.cover,)
+                      : null,
                       Text(items.title??'title',
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
-                          letterSpacing: 3,
+                          letterSpacing: 2,
                           fontWeight: FontWeight.bold,
-                          backgroundColor: Color.fromRGBO(0, 0, 0, 0.3),
                         ),
                       )
                     ],
