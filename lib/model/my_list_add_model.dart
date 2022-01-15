@@ -4,7 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class CollectionAddModel with ChangeNotifier {
+class ListAddModel with ChangeNotifier {
   String title;
   String describe;
   File imageFile;
@@ -20,13 +20,17 @@ class CollectionAddModel with ChangeNotifier {
       throw '説明文が入力されていません。';
     }
 
-    final doc = FirebaseFirestore.instance.collection('collection').doc();
+    final doc = FirebaseFirestore.instance
+        .collection('collection')
+        .doc('wIWA9jDdrDu2Iljs69gB')
+        .collection('a')
+        .doc();
 
     String imgURL;
     if (imageFile != null) {
-    //  storageにアップロード
+      //  storageにアップロード
       final task = await FirebaseStorage.instance
-          .ref('collection/${doc.id}')
+          .ref('collection/wIWA9jDdrDu2Iljs69gB/a/${doc.id}')
           .putFile(imageFile);
       imgURL = await task.ref.getDownloadURL();
 
@@ -41,8 +45,8 @@ class CollectionAddModel with ChangeNotifier {
 
   Future pickImage() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-      imageFile = File(pickedFile.path);
-      notifyListeners();
+    imageFile = File(pickedFile.path);
+    notifyListeners();
   }
 
 }

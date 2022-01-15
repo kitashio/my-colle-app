@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:myfirstapp/model/my_list_add_model.dart';
+import 'package:provider/provider.dart';
 
-class ListAddPage extends StatefulWidget {
+class ListAddPage extends StatelessWidget {
 
-  @override
-  _ListAddPageState createState() => _ListAddPageState();
-}
-
-class _ListAddPageState extends State<ListAddPage> {
   String _midashi = '';
   String _yomi = '';
   String _imi = '';
 
-
   @override
   Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+        create: (BuildContext context) => ListAddModel(),
+    child: Consumer<ListAddModel>(builder: (context, model, child)  {
     return Scaffold(
       appBar: AppBar(
         title: Text('New Item',
@@ -28,12 +27,26 @@ class _ListAddPageState extends State<ListAddPage> {
         padding: EdgeInsets.all(25),
         child: Column(
           children: <Widget>[
-            const SizedBox(height: 8),
-            Container(
-              child: Image.asset('assets/image/IMG_6426.JPG',
-                height: 200,
-                width: 200,
-                fit: BoxFit.cover,
+            GestureDetector(
+              onTap: () async {
+                await model.pickImage();
+              },
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  SizedBox(
+                    height: 200,
+                    width: 200,
+                    child: model.imageFile != null
+                        ? Image.file(model.imageFile, fit: BoxFit.cover,)
+                        : Container(color: Colors.grey,),
+                  ),
+                  IconButton(icon: Icon(Icons.add_circle,
+                    size: 35,
+                    color: Colors.white,
+                  )
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 8),
@@ -56,12 +69,8 @@ class _ListAddPageState extends State<ListAddPage> {
                   borderSide: BorderSide.none,
                 )
               ),
-              onChanged: (String value){
-                // データが変更したことを知らせる（画面を更新する）
-                setState(() {
-                  // データを変更
-                  _midashi = value;
-                });
+              onChanged: (text){
+                model.title = text;
               },
             ),
             const SizedBox(height: 8),
@@ -85,12 +94,8 @@ class _ListAddPageState extends State<ListAddPage> {
                       borderSide: BorderSide.none,
                     )
                 ),
-                onChanged: (String value){
-                  // データが変更したことを知らせる（画面を更新する）
-                  setState(() {
-                    // データを変更
-                    _imi = value;
-                  });
+                onChanged: (text){
+                  model.describe = text;
                 },
               ),
             ),
@@ -103,7 +108,18 @@ class _ListAddPageState extends State<ListAddPage> {
                 style: ElevatedButton.styleFrom(
                   primary: Color.fromRGBO(150, 186, 255, 100),//ボタンの背景色
                 ),
-                onPressed: () {},
+                onPressed: () async {
+                  try {
+                    await model.addItem();
+                    Navigator.of(context).pop(true);
+                  } catch (e) {
+                    final snackBar = SnackBar(
+                      backgroundColor: Colors.red,
+                      content: Text(e.toString()),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
+                },
                 child: Text('登録'),
               ),
             ),
@@ -127,6 +143,9 @@ class _ListAddPageState extends State<ListAddPage> {
           ],
         ),
       ),
+    );
+    }
+    ),
     );
   }
 }
