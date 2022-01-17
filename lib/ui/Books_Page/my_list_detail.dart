@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'my_list_update.dart';
 
 class ListDetailPage extends StatefulWidget {
-
-  ListDetailPage(this._itemtitle);
   String _itemtitle;
 
   @override
