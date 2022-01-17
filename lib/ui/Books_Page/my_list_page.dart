@@ -10,7 +10,7 @@ class ListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (BuildContext context) => ListPageModel(),
+        create: (BuildContext context) => ListPageModel()..fetchData(),
     child: Scaffold(
           appBar: AppBar(
             title: Consumer<ListPageModel>(builder: (context, model, child)  {

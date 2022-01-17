@@ -25,7 +25,6 @@ class ListPageModel with ChangeNotifier {
     }).toList();
 
     this.items = items;
-
     notifyListeners();
   }
 
