@@ -11,13 +11,15 @@ class ListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
         create: (BuildContext context) => ListPageModel(),
-    child: Consumer<ListPageModel>(builder: (context, model, child)  {
-        return Scaffold(
+    child: Scaffold(
           appBar: AppBar(
-            title: Text('a',
-            style: TextStyle(
-              fontSize: 18,
-            ),
+            title: Consumer<ListPageModel>(builder: (context, model, child)  {
+                return Text('a',
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+                );
+              }
             ),
             backgroundColor:Color.fromRGBO(150, 186, 255, 100),
             actions: [
@@ -29,31 +31,34 @@ class ListPage extends StatelessWidget {
               ),
             ],
           ),
-          body: GridView.count(
-            crossAxisCount: 2,
-            crossAxisSpacing: 10.0, // 縦
-            mainAxisSpacing: 10.0, // 横
-            childAspectRatio: 0.86, // 高さ
-            shrinkWrap: true,
-            padding: EdgeInsets.all(10),
-            children: List.generate(20, (index) {
-              return Column(
-                children: [
-                  GestureDetector(
-                    onTap: (){},
-                    child: Image.asset('assets/image/IMG_6426.JPG',
-                      height: 170,
-                      width: 170,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(8),
-                    child: Text(model.itemtitle),//●タイトルが長過ぎた時の改行せずに・・・にする
-                  ),
-                ],
+          body: Consumer<ListPageModel>(builder: (context, model, child)  {
+                return GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10.0, // 縦
+                mainAxisSpacing: 10.0, // 横
+                childAspectRatio: 0.86, // 高さ
+                shrinkWrap: true,
+                padding: EdgeInsets.all(10),
+                children: List.generate(20, (index) {
+                  return Column(
+                    children: [
+                      GestureDetector(
+                        onTap: (){},
+                        child: Image.asset('assets/image/IMG_6426.JPG',
+                          height: 170,
+                          width: 170,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.all(8),
+                        child: Text(model.itemtitle),//●タイトルが長過ぎた時の改行せずに・・・にする
+                      ),
+                    ],
+                  );
+                }),
               );
-            }),
+            }
           ),
           floatingActionButton: FloatingActionButton(
             backgroundColor: Color.fromRGBO(150, 186, 255, 100),
