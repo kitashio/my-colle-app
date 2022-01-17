@@ -32,32 +32,49 @@ class ListPage extends StatelessWidget {
             ],
           ),
           body: Consumer<ListPageModel>(builder: (context, model, child)  {
-                return GridView.count(
-                crossAxisCount: 2,
-                crossAxisSpacing: 10.0, // 縦
-                mainAxisSpacing: 10.0, // 横
-                childAspectRatio: 0.86, // 高さ
-                shrinkWrap: true,
-                padding: EdgeInsets.all(10),
-                children: List.generate(20, (index) {
-                  return Column(
-                    children: [
-                      GestureDetector(
-                        onTap: (){},
-                        child: Image.asset('assets/image/IMG_6426.JPG',
-                          height: 170,
-                          width: 170,
-                          fit: BoxFit.cover,
+            final List<Items> items = model.items;
+
+            if (items == null) {
+              return const CircularProgressIndicator();
+            }
+
+            final List<Widget> widgets = items
+                .map((items) =>
+                GestureDetector(
+                  onTap: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ListPage()),
+                    );
+                  },
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children:[
+                      items.imgURL != null
+                          ? Image.network(items.imgURL,
+                        height: 170,
+                        width: 170,
+                        fit: BoxFit.cover,)
+                          : null,
+                      Text(items.title??'title',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          letterSpacing: 2,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.all(8),
-                        child: Text(model.itemtitle),//●タイトルが長過ぎた時の改行せずに・・・にする
-                      ),
+                      )
                     ],
-                  );
-                }),
-              );
+                  ),
+                ),
+            ).toList();
+            return GridView.count(
+                crossAxisCount: 2,
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(9),
+                children: widgets
+            );
             }
           ),
           floatingActionButton: FloatingActionButton(
@@ -71,9 +88,34 @@ class ListPage extends StatelessWidget {
             },
             child: Icon(Icons.add),
           ),
-        );
-      }
-    ),
+        ),
     );
   }
 }
+
+return GridView.count(
+crossAxisCount: 2,
+crossAxisSpacing: 10.0, // 縦
+mainAxisSpacing: 10.0, // 横
+childAspectRatio: 0.86, // 高さ
+shrinkWrap: true,
+padding: EdgeInsets.all(10),
+children: List.generate(20, (index) {
+return Column(
+children: [
+GestureDetector(
+onTap: (){},
+child: Image.asset('assets/image/IMG_6426.JPG',
+height: 170,
+width: 170,
+fit: BoxFit.cover,
+),
+),
+Container(
+margin: EdgeInsets.all(8),
+child: Text(model.itemtitle),//●タイトルが長過ぎた時の改行せずに・・・にする
+),
+],
+);
+}),
+);
