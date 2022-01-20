@@ -40,50 +40,60 @@ class ListPage extends StatelessWidget {
 
             final List<Widget> widgets = items
                 .map((items) =>
-                Column(
-                  children: [
-                    GestureDetector(
-                      onTap: ()  {
-                        // await Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => ListDetailPage()),
-                        // );
-                      },
-                      child: items.imgURL != null
-                          ? Image.network(items.imgURL,
-                        height: 170,
-                        width: 170,
-                        fit: BoxFit.cover,)
-                          : null,
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(8),
-                      child: Text(items.title??'title',),//●タイトルが長過ぎた時の改行せずに・・・にする
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10,16,10,0),
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () async {
+                           await Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ListDetailPage()),
+                          );
+                        },
+                        child: items.imgURL != null
+                            ? Image.network(items.imgURL,
+                          height: 170,
+                          width: 170,
+                          fit: BoxFit.cover,)
+                            : null,
+                      ),
+                      Container(
+                        margin: EdgeInsets.all(8),
+                        child: Text(items.title??'title',),//●タイトルが長過ぎた時の改行せずに・・・にする
+                      ),
+                    ],
+                  ),
                 ),
             ).toList();
             return GridView.count(
                 crossAxisCount: 2,
-                crossAxisSpacing: 10.0, // 縦
-                mainAxisSpacing: 10.0, // 横
-                childAspectRatio: 0.86, // 高さ
+                childAspectRatio: 0.85, // 高さ
                 shrinkWrap: true,
-                padding: EdgeInsets.all(10),
                 children: widgets
             );
             }
           ),
-          floatingActionButton: FloatingActionButton(
-            backgroundColor: Color.fromRGBO(150, 186, 255, 100),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ListAddPage(),
-                  fullscreenDialog: true,),
+          floatingActionButton: Consumer<ListPageModel>(builder: (context, model, child)  {
+              return FloatingActionButton(
+                // backgroundColor: Color.fromRGBO(150, 186, 255, 100),
+                child: Icon(Icons.add),
+                onPressed: () async {
+                  final bool added = await Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ListAddPage()),
+                  );
+                  if (added != null && added) {
+                    final snackBar = SnackBar(
+                      backgroundColor: Colors.blue,
+                      content: Text('コレクションを追加しました'),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
+                  await model.fetchData();
+                }
               );
-            },
-            child: Icon(Icons.add),
+            }
           ),
         ),
     );

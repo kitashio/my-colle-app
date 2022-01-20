@@ -15,7 +15,7 @@ class CollectionPage extends StatelessWidget {
     child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            backgroundColor:Color.fromRGBO(150, 186, 255, 100),
+            // backgroundColor:Color.fromRGBO(150, 186, 255, 100),
             title: Text('My Collection',
             style: TextStyle(
               fontSize: 18,
@@ -24,24 +24,23 @@ class CollectionPage extends StatelessWidget {
             //　□　コレクション追加画面へ遷移
             actions: [
               Consumer<CollectionPageModel>(builder: (context, model, child)  {
-                  return IconButton(icon: Icon(Icons.add,
-                  size: 30,
-                  ),
-                      onPressed: () async {
-                        final bool added = await Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => ColleAddPage()),
-                        );
+                  return IconButton(icon: Icon(Icons.add, size: 30,),
+                  onPressed: () async {
+                    final bool added = await Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ColleAddPage()),
+                    );
 
-                        if (added != null && added) {
-                          final snackBar = SnackBar(
-                            backgroundColor: Colors.blue,
-                            content: Text('コレクションを追加しました'),
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        }
-                        await model.fetchData();
-                  });
+                    if (added != null && added) {
+                      final snackBar = SnackBar(
+                        backgroundColor: Colors.blue,
+                        content: Text('コレクションを追加しました'),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
+                    await model.fetchData();
+                   }
+                  );
                 }
               )
             ],

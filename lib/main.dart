@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'MyCOLLE',
       theme: ThemeData(
-        primarySwatch: Colors.indigo,
-    ),
+        primaryColor: Color(0xFF96baff),
+      ),
       home: TopUserPage(),
     );
   }
