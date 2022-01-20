@@ -15,7 +15,7 @@ class CollectionPage extends StatelessWidget {
     child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            // backgroundColor:Color.fromRGBO(150, 186, 255, 100),
+            backgroundColor:Color.fromRGBO(150, 186, 255, 100),
             title: Text('My Collection',
             style: TextStyle(
               fontSize: 18,

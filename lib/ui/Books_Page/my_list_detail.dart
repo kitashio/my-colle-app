@@ -1,18 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'my_list_update.dart';
 
 class ListDetailPage extends StatefulWidget {
-  String _itemtitle;
 
   @override
-  _ListDetailPageState createState() => _ListDetailPageState(_itemtitle);
+  _ListDetailPageState createState() => _ListDetailPageState();
 }
 
 class _ListDetailPageState extends State<ListDetailPage> {
-
-  _ListDetailPageState(this._itemtitle);
-  String _itemtitle;
 
   String _label = '';
 
@@ -74,7 +69,7 @@ class _ListDetailPageState extends State<ListDetailPage> {
           if (choice == 0) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => ListUpdatePage(_itemtitle)),
+              MaterialPageRoute(builder: (context) => ListUpdatePage()),
             );
         } else
           if (choice == 1) {
@@ -95,7 +90,7 @@ class _ListDetailPageState extends State<ListDetailPage> {
             fit: BoxFit.cover,
               ),
               const SizedBox(height: 20),
-              Text(_itemtitle,
+              Text('a',
               style: TextStyle(
               fontSize: 20,
               ),

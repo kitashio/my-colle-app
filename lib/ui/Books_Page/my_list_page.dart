@@ -41,7 +41,7 @@ class ListPage extends StatelessWidget {
             final List<Widget> widgets = items
                 .map((items) =>
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(10,16,10,0),
+                  padding: const EdgeInsets.fromLTRB(10,15,10,0),
                   child: Column(
                     children: [
                       GestureDetector(

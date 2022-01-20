@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ListUpdatePage extends StatefulWidget {
-  ListUpdatePage(this.__itemtitle);
-  String __itemtitle;
 
   @override
-  _ListUpdatePageState createState() => _ListUpdatePageState(__itemtitle);
+  _ListUpdatePageState createState() => _ListUpdatePageState();
 }
 
 class _ListUpdatePageState extends State<ListUpdatePage> {
 
-  _ListUpdatePageState(this.__itemtitle);
-  String __itemtitle;
   String midashi = '';
   String imi = '';
 
@@ -52,7 +48,7 @@ class _ListUpdatePageState extends State<ListUpdatePage> {
             ),
             TextField(
               decoration: InputDecoration(
-                  hintText: __itemtitle,
+                  hintText: 'a',
                   filled: true,
                   fillColor: Colors.grey.shade200,
                   border: OutlineInputBorder(
