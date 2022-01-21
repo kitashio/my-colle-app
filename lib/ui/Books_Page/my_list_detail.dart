@@ -4,47 +4,12 @@ import 'package:provider/provider.dart';
 import 'my_list_update.dart';
 
 class ListDetailPage extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
     String _label = '';
-
-    _useCamera(BuildContext context, bool b) {
-      setState(() {
-        _label = '削除しますか？' + (b ? 'はい' : 'いいえ');
-      });
-      Navigator.pop(context);
-    }
-
-    Future _showAlertDialog(BuildContext context) async {
-      return showDialog<void>(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return AlertDialog(
-              title: Text('削除'),
-              content: Text('本当に削除しますか？'),
-              actions: <Widget>[
-                ElevatedButton(
-                  child: Text('いいえ'),
-                  onPressed: () => _useCamera(context, false),
-                ),
-                ElevatedButton(
-                  child: Text('はい'),
-                  onPressed: () => _useCamera(context, true),
-                ),
-              ]
-          );
-        },
-      );
-    }
 
     @override
     Widget build(BuildContext context) {
       return ChangeNotifierProvider(
-        create: (BuildContext context) =>
-        ListDetailPageModel()
-          ..fetchData(),
+        create: (BuildContext context) => ListDetailPageModel()..fetchData(),
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Color.fromRGBO(150, 186, 255, 100),
