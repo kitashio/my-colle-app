@@ -51,17 +51,21 @@ class ListPage extends StatelessWidget {
                             MaterialPageRoute(builder: (context) => ListDetailPage()),
                           );
                         },
-                        child: items.imgURL != null
-                            ? Image.network(items.imgURL,
-                          height: 170,
-                          width: 170,
-                          fit: BoxFit.cover,)
-                            : null,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: items.imgURL != null
+                              ? Image.network(items.imgURL,
+                            height: 170,
+                            width: 170,
+                            fit: BoxFit.cover,
+                          )
+                              : null,
+                        ),
                       ),
                       Container(
-                        margin: EdgeInsets.all(8),
                         child: Text(items.title??'title',),//●タイトルが長過ぎた時の改行せずに・・・にする
                       ),
+
                     ],
                   ),
                 ),

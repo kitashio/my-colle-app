@@ -64,12 +64,15 @@ class CollectionPage extends StatelessWidget {
                   child: Stack(
                     alignment: Alignment.center,
                     children:[
-                      items.imgURL != null
-                      ? Image.network(items.imgURL,
-                      height: 170,
-                      width: 170,
-                        fit: BoxFit.cover,)
-                      : null,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: items.imgURL != null
+                        ? Image.network(items.imgURL,
+                        height: 170,
+                        width: 170,
+                          fit: BoxFit.cover,)
+                        : null,
+                      ),
                       Text(items.title??'title',
                         textAlign: TextAlign.center,
                         style: const TextStyle(

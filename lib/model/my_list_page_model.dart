@@ -6,7 +6,6 @@ import '../Items.dart';
 class ListPageModel with ChangeNotifier {
   String itemtitle = '僕';
 
-
   List<Items> items;
 
   Future fetchData () async {

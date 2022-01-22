@@ -40,9 +40,10 @@ class ListDetailPage extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) => ListUpdatePage()),
                       );
-                    } else if (choice == 1) {
-                      _showAlertDialog(context);
                     }
+                    // else if (choice == 1) {
+                    //   _showAlertDialog(context);
+                    // }
                   }),
             ],
           ),
@@ -85,4 +86,3 @@ class ListDetailPage extends StatelessWidget {
       );
     }
   }
-}
