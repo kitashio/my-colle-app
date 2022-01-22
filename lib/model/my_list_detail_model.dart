@@ -34,7 +34,9 @@ class ListDetailPageModel with ChangeNotifier {
       notifyListeners();
       Navigator.pop(context);
   }
-  Future _showAlertDialog (BuildContext context) async {
+
+  Future showAlertDialog (BuildContext context) {
+
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -55,6 +57,7 @@ class ListDetailPageModel with ChangeNotifier {
         );
       },
     );
-  }
+
+  }//_showAlertDialog
 
 }

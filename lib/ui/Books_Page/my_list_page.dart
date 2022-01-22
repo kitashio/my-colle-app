@@ -63,6 +63,7 @@ class ListPage extends StatelessWidget {
                         ),
                       ),
                       Container(
+                        padding: EdgeInsets.all(10),
                         child: Text(items.title??'title',),//●タイトルが長過ぎた時の改行せずに・・・にする
                       ),
 

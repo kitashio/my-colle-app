@@ -9,7 +9,7 @@ class ListDetailPage extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
       return ChangeNotifierProvider(
-        create: (BuildContext context) => ListDetailPageModel()..fetchData(),
+        create: (BuildContext context) => ListDetailPageModel()..fetchData()..showAlertDialog(context),
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Color.fromRGBO(150, 186, 255, 100),
@@ -20,31 +20,34 @@ class ListDetailPage extends StatelessWidget {
             ),
             actions: [
               //右上のポップアップメニュー
-              PopupMenuButton<int>(
-                  icon: Icon(Icons.more_horiz),
-                  itemBuilder: (context) =>
-                  [
-                    PopupMenuItem(
-                      child: Text("編集"),
-                      value: 0,
-                    ),
-                    PopupMenuItem(
-                      child: Text("削除"),
-                      value: 1,
-                    ),
-                  ],
-                  onSelected: (choice) {
-                    if (choice == 0) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ListUpdatePage()),
-                      );
-                    }
-                    // else if (choice == 1) {
-                    //   _showAlertDialog(context);
-                    // }
-                  }),
+              Consumer<ListDetailPageModel>(builder: (context, model, child)  {
+                  return PopupMenuButton<int>(
+                      icon: Icon(Icons.more_horiz),
+                      itemBuilder: (context) =>
+                      [
+                        PopupMenuItem(
+                          child: Text("編集"),
+                          value: 0,
+                        ),
+                        PopupMenuItem(
+                          child: Text("削除"),
+                          value: 1,
+                        ),
+                      ],
+                      onSelected: (choice) {
+                        if (choice == 0) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListUpdatePage()),
+                          );
+                        }
+                        else if (choice == 1) {
+                          model.showAlertDialog(context);
+                        }
+                      });
+                }
+              ),
             ],
           ),
           body: Container(
