@@ -15,7 +15,9 @@ class ListDetailPageModel with ChangeNotifier {
         .doc('9zGOnqL1pGP6Xgi4obV4')
         .get();
 
-    final String imgURL = document['imgURL'];
+    Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+    final String imgURL = data['imgURL'];
+    this.imgURL = imgURL;
 
 
     notifyListeners();
