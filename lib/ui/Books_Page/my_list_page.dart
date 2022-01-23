@@ -26,7 +26,7 @@ class ListPage extends StatelessWidget {
               Container(
                 // color: Colors.white,
                 padding: EdgeInsets.fromLTRB(0, 20, 10, 0),
-                  child: Text('(20)',
+                  child: Text('(2)',
                   ),
               ),
             ],
@@ -41,7 +41,7 @@ class ListPage extends StatelessWidget {
             final List<Widget> widgets = items
                 .map((items) =>
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(10,15,10,0),
+                  padding: const EdgeInsets.fromLTRB(5,15,5,0),
                   child: Column(
                     children: [
                       GestureDetector(
@@ -55,8 +55,8 @@ class ListPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           child: items.imgURL != null
                               ? Image.network(items.imgURL,
-                            height: 170,
-                            width: 170,
+                            height: 180,
+                            width: 180,
                             fit: BoxFit.cover,
                           )
                               : null,
@@ -73,7 +73,7 @@ class ListPage extends StatelessWidget {
             ).toList();
             return GridView.count(
                 crossAxisCount: 2,
-                childAspectRatio: 0.85, // 高さ
+                childAspectRatio: 0.82, // 高さ
                 shrinkWrap: true,
                 children: widgets
             );

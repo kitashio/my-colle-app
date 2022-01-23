@@ -4,12 +4,11 @@ import 'package:provider/provider.dart';
 import 'my_list_update.dart';
 
 class ListDetailPage extends StatelessWidget {
-    String _label = '';
 
     @override
     Widget build(BuildContext context) {
       return ChangeNotifierProvider(
-        create: (BuildContext context) => ListDetailPageModel()..fetchData()..showAlertDialog(context),
+        create: (BuildContext context) => ListDetailPageModel()..fetchData(),
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Color.fromRGBO(150, 186, 255, 100),
@@ -50,40 +49,48 @@ class ListDetailPage extends StatelessWidget {
               ),
             ],
           ),
-          body: Container(
-            // 余白を付ける
-            padding: EdgeInsets.all(30),
-            child: Center(
-              child: Column(
-                children: [
-                  Image.asset('assets/image/IMG_6426.JPG',
-                    height: 300,
-                    width: 300,
-                    fit: BoxFit.cover,
-                  ),
-                  const SizedBox(height: 20),
-                  Text('a',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Divider(
-                    thickness: 1,
-                    color: Colors.grey,
-                  ),
-                  const SizedBox(height: 20),
-                  Text('汚れた環境下でも影響されず、清らかな魅力を保っていること。',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16,
+          body: Consumer<ListDetailPageModel>(builder: (context, model, child)  {
+              return Container(
+                // 余白を付ける
+                padding: EdgeInsets.all(30),
+                child: Center(
+                  child: Column(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: model.imgURL != null
+                            ? Image.network(model.imgURL,
+                          height: 180,
+                          width: 180,
+                          fit: BoxFit.cover,
+                        )
+                            : null,
+                      ),
+                      const SizedBox(height: 20),
+                      Text('a',
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Divider(
+                        thickness: 1,
+                        color: Colors.grey,
+                      ),
+                      const SizedBox(height: 20),
+                      Text('汚れた環境下でも影響されず、清らかな魅力を保っていること。',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16,
 
-                    ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-          ), // This trailing comma makes auto-formatting nicer for build methods.
+                ),
+              );
+            }
+          ),
         ),
 
       );

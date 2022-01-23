@@ -4,30 +4,24 @@ import 'package:flutter/material.dart';
 import '../Items.dart';
 
 class ListDetailPageModel with ChangeNotifier {
-  String itemtitle = "僕";
-  String _label;
-
-  List<Items> items;
+  String imgURL;
 
   Future fetchData () async {
     //コレクションを取得
-    final QuerySnapshot snapshot =  await FirebaseFirestore.instance
+    final DocumentSnapshot document =  await FirebaseFirestore.instance
         .collection('collection')
         .doc('wIWA9jDdrDu2Iljs69gB')
         .collection('a')
+        .doc('9zGOnqL1pGP6Xgi4obV4')
         .get();
 
-    final List<Items> items = snapshot.docs.map((DocumentSnapshot document) {
-      Map<String, dynamic> data = document.data() as Map<String, dynamic>;
-      final String title = data['title'];
-      final String describe = data['describe'];
-      final String imgURL = data['imgURL'];
-      return Items(title, describe, imgURL);
-    }).toList();
+    final String imgURL = document['imgURL'];
 
-    this.items = items;
+
     notifyListeners();
   }
+
+  String _label;
 
   _useCamera (BuildContext context, bool b) {
       _label = '削除しますか？' + (b ? 'はい' : 'いいえ');

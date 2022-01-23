@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../Items.dart';
 
 class ListPageModel with ChangeNotifier {
-  String itemtitle = '僕';
+  String itemtitle = 'タイトル1';
 
   List<Items> items;
 
@@ -12,7 +12,7 @@ class ListPageModel with ChangeNotifier {
     //コレクションを取得
     final QuerySnapshot snapshot =  await FirebaseFirestore.instance
         .collection('collection')
-        .doc('wIWA9jDdrDu2Iljs69gB')
+        .doc('wqL1aNlgsTCpHJbXF0qm')
         .collection('a')
         .get();
 
