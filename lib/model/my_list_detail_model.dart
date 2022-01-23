@@ -19,7 +19,6 @@ class ListDetailPageModel with ChangeNotifier {
     final String imgURL = data['imgURL'];
     this.imgURL = imgURL;
 
-
     notifyListeners();
   }
 
