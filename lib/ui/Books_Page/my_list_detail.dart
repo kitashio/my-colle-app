@@ -8,7 +8,6 @@ class ListDetailPage extends StatelessWidget {
   final String title;
   final String discribe;
 
-
   const ListDetailPage({
     Key key,
     this.imgURL,
@@ -70,8 +69,8 @@ class ListDetailPage extends StatelessWidget {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child:model.imgURL  != null
-                            ? Image.network(model.imgURL,
+                        child:imgURL  != null
+                            ? Image.network(imgURL,
                           height: 180,
                           width: 180,
                           fit: BoxFit.cover,
@@ -79,7 +78,7 @@ class ListDetailPage extends StatelessWidget {
                             : null,
                       ),
                       const SizedBox(height: 20),
-                      Text('a',
+                      Text(title,
                         style: TextStyle(
                           fontSize: 20,
                         ),
@@ -90,7 +89,7 @@ class ListDetailPage extends StatelessWidget {
                         color: Colors.grey,
                       ),
                       const SizedBox(height: 20),
-                      Text('汚れた環境下でも影響されず、清らかな魅力を保っていること。',
+                      Text(discribe,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
