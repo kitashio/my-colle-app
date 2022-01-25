@@ -8,18 +8,16 @@ class ListDetailPageModel with ChangeNotifier {
 
   Future fetchData () async {
     //コレクションを取得
-    final DocumentSnapshot document =  await FirebaseFirestore.instance
+    final DocumentSnapshot snapshot =  await FirebaseFirestore.instance
         .collection('collection')
         .doc('wIWA9jDdrDu2Iljs69gB')
         .collection('a')
         .doc('9zGOnqL1pGP6Xgi4obV4')
         .get();
 
-    Map<String, dynamic> data = document.data() as Map<String, dynamic>;
-    final String imgURL = data['imgURL'];
-    this.imgURL = imgURL;
-
     notifyListeners();
+
+
   }
 
   String _label;
