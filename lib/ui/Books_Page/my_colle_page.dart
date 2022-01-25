@@ -12,7 +12,7 @@ class CollectionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
         create: (BuildContext context) => CollectionPageModel()..fetchData(),
-    child: Scaffold(
+        child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
             backgroundColor:Color.fromRGBO(150, 186, 255, 100),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Books_Page/my_colle_page.dart';
 import 'MyPage/My_Account_page.dart';
-import 'Home_Page/home_page.dart';
+import 'Home_Page/others_colle_page.dart';
 
 class BottomTabPage extends StatefulWidget {
   @override
@@ -15,7 +15,7 @@ class _BottomTabPageState extends State<BottomTabPage> {
   int _currentIndex = 0;
   final _pageWidgets = [
     CollectionPage(),
-    MyHomePage(),
+    OthersCollectionPage(),
     MyAccountPage(),
   ];
 
