@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../Items.dart';
 
 class ListPageModel with ChangeNotifier {
-  String itemtitle = 'タイトル1';
 
   List<Items> items;
 

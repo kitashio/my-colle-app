@@ -68,11 +68,11 @@ class ListDetailPage extends StatelessWidget {
                   child: Column(
                     children: [
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(5),
                         child:imgURL  != null
                             ? Image.network(imgURL,
-                          height: 180,
-                          width: 180,
+                          height: 250,
+                          width: 250,
                           fit: BoxFit.cover,
                         )
                             : null,

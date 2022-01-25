@@ -56,16 +56,19 @@ class CollectionPage extends StatelessWidget {
                 .map((items) =>
                 GestureDetector(
                   onTap: () async {
+                    final String _imgURL = items.imgURL;
+                    final String _title = items.title;
+                    final String _describe = items.describe;
                     await Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ListPage()),
+                      MaterialPageRoute(builder: (context) => ListPage(collectionImgURL: _imgURL,collectionTitle: _title,collectionDiscribe: _describe,)),
                     );
                   },
                   child: Stack(
                     alignment: Alignment.center,
                     children:[
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(5),
                         child: items.imgURL != null
                         ? Image.network(items.imgURL,
                         height: 170,
@@ -89,7 +92,7 @@ class CollectionPage extends StatelessWidget {
             return GridView.count(
                 crossAxisCount: 2,
                 shrinkWrap: true,
-                padding: const EdgeInsets.all(9),
+                padding: const EdgeInsets.all(0),
                 children: widgets
             );
           }

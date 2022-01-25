@@ -7,6 +7,17 @@ import 'my_list_detail.dart';
 
 class ListPage extends StatelessWidget {
 
+  final String collectionImgURL;
+  final String collectionTitle;
+  final String collectionDiscribe;
+
+  const ListPage({
+    Key key,
+    this.collectionImgURL,
+    this.collectionTitle,
+    this.collectionDiscribe,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -14,7 +25,7 @@ class ListPage extends StatelessWidget {
     child: Scaffold(
           appBar: AppBar(
             title: Consumer<ListPageModel>(builder: (context, model, child)  {
-                return Text(model.itemtitle,
+                return Text(collectionTitle,
                 style: TextStyle(
                   fontSize: 18,
                 ),
@@ -40,17 +51,17 @@ class ListPage extends StatelessWidget {
 
             final List<Widget> widgets = items
                 .map((items) =>
-                Padding(
+                Container(
                   padding: const EdgeInsets.fromLTRB(5,15,5,0),
                   child: Column(
                     children: [
                       GestureDetector(
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(5),
                           child: items.imgURL != null
                               ? Image.network(items.imgURL,
-                            height: 180,
-                            width: 180,
+                            height: 170,
+                            width: 170,
                             fit: BoxFit.cover,
                           )
                               : null,
@@ -73,11 +84,21 @@ class ListPage extends StatelessWidget {
                   ),
                 ),
             ).toList();
-            return GridView.count(
-                crossAxisCount: 2,
-                childAspectRatio: 0.82, // 高さ
-                shrinkWrap: true,
-                children: widgets
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  children: [
+                    Text(collectionDiscribe,),
+                    GridView.count(
+                        crossAxisCount: 2,
+                        childAspectRatio: 0.82, // 高さ
+                        shrinkWrap: true,
+                        children: widgets
+                    ),
+                  ],
+                ),
+              ),
             );
             }
           ),
