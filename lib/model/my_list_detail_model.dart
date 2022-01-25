@@ -15,10 +15,19 @@ class ListDetailPageModel with ChangeNotifier {
         .doc('9zGOnqL1pGP6Xgi4obV4')
         .get();
 
-    notifyListeners();
+    Map<String, dynamic> record = snapshot.data()as Map<String, dynamic>;
 
+    if (record['imgURL'] != null) {
+      return record['imgURL'];
+    } else {
+      print ('だめ');
+    }
 
+    // print('取得できました');
+    //
+    // notifyListeners();
   }
+
 
   String _label;
 

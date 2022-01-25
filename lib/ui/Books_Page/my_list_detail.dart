@@ -56,16 +56,16 @@ class ListDetailPage extends StatelessWidget {
                 child: Center(
                   child: Column(
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: model.imgURL != null
-                            ? Image.network(model.imgURL,
-                          height: 180,
-                          width: 180,
-                          fit: BoxFit.cover,
-                        )
-                            : null,
-                      ),
+                      // ClipRRect(
+                      //   borderRadius: BorderRadius.circular(10),
+                      //   child: model.imgURL != null
+                      //       ? Image.network(model.imgURL,
+                      //     height: 180,
+                      //     width: 180,
+                      //     fit: BoxFit.cover,
+                      //   )
+                      //       : null,
+                      // ),
                       const SizedBox(height: 20),
                       Text('a',
                         style: TextStyle(
