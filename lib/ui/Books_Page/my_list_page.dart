@@ -45,12 +45,6 @@ class ListPage extends StatelessWidget {
                   child: Column(
                     children: [
                       GestureDetector(
-                        onTap: () async {
-                           await Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => ListDetailPage()),
-                          );
-                        },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: items.imgURL != null
@@ -61,12 +55,20 @@ class ListPage extends StatelessWidget {
                           )
                               : null,
                         ),
+                        onTap: () async {
+                          final String _imgURL = items.imgURL;
+                          final String _title = items.title;
+                          final String _describe = items.describe;
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ListDetailPage(imgURL: _imgURL,title: _title,discribe: _describe,)),
+                          );
+                        },
                       ),
                       Container(
                         padding: EdgeInsets.all(10),
                         child: Text(items.title??'title',),//●タイトルが長過ぎた時の改行せずに・・・にする
                       ),
-
                     ],
                   ),
                 ),

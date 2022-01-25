@@ -4,6 +4,18 @@ import 'package:provider/provider.dart';
 import 'my_list_update.dart';
 
 class ListDetailPage extends StatelessWidget {
+  final String imgURL;
+  final String title;
+  final String discribe;
+
+
+  const ListDetailPage({
+    Key key,
+    this.imgURL,
+    this.title,
+    this.discribe,
+  }) : super(key: key);
+
 
     @override
     Widget build(BuildContext context) {

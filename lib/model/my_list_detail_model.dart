@@ -11,31 +11,29 @@ class ListDetailPageModel with ChangeNotifier {
   Future fetchData () async {
 
     //コレクションを取得
-    // final DocumentSnapshot snapshot =  await FirebaseFirestore.instance
-    //     .collection('collection')
-    //     .doc('wIWA9jDdrDu2Iljs69gB')
-    //     .collection('a')
-    //     .doc('9zGOnqL1pGP6Xgi4obV4')
-    //     .get();
-
-    final Stream<QuerySnapshot<Map<String, dynamic>>> snapshot =  await FirebaseFirestore.instance
+    final DocumentSnapshot snapshot =  await FirebaseFirestore.instance
         .collection('collection')
         .doc('wIWA9jDdrDu2Iljs69gB')
         .collection('a')
-        .orderBy('imgURL')
-        .snapshots();
+        .doc('9zGOnqL1pGP6Xgi4obV4')
+        .get();
 
-    final docRef = FirebaseFirestore.instance.collection('collection')
-        .doc('wIWA9jDdrDu2Iljs69gB')
-        .collection('a').doc('9zGOnqL1pGP6Xgi4obV4');
-    print('できた１');// DocumentReference
-    final docSnapshot = await docRef.get(); // DocumentSnapshot
-    print(docSnapshot);// DocumentReference
-    final data = docSnapshot.exists ? docSnapshot.data() : null; // `data()`で中身を取り出す
-    print('できた３'); // DocumentReference
+    // final Stream<QuerySnapshot<Map<String, dynamic>>> snapshot =  await FirebaseFirestore.instance
+    //     .collection('collection')
+    //     .doc('wIWA9jDdrDu2Iljs69gB')
+    //     .collection('a')
+    //     .orderBy('imgURL')
+    //     .snapshots();
 
-    print(data);
-
+    // final docRef = FirebaseFirestore.instance.collection('collection')
+    //     .doc('wIWA9jDdrDu2Iljs69gB')
+    //     .collection('a')
+    //     .doc('9zGOnqL1pGP6Xgi4obV4');
+    // print('できた１');// DocumentReference
+    // final docSnapshot = await docRef.get(); // DocumentSnapshot
+    // print(docSnapshot);// DocumentReference
+    // final data = docSnapshot.exists ? docSnapshot.data() : null; // `data()`で中身を取り出す
+    // print('できた３'); // DocumentReference
 
     notifyListeners();
   }
