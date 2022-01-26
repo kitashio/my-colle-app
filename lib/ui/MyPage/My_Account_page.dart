@@ -19,6 +19,11 @@ class _MyAccountPageState extends State<MyAccountPage> {
     'https://www.googleapis.com/auth/contacts.readonly',
   ]);
 
+  void _showDialog (){
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
