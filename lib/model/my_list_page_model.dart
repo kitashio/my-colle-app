@@ -5,13 +5,22 @@ import '../Items.dart';
 
 class ListPageModel with ChangeNotifier {
 
+  final String _docID;
+
+  const ListPageModel({
+    Key key,
+    this._docID,
+  }) : super(key: key);
+
+
   List<Items> items;
 
   Future fetchData () async {
+
     //コレクションを取得
     final QuerySnapshot snapshot =  await FirebaseFirestore.instance
         .collection('collection')
-        .doc('wqL1aNlgsTCpHJbXF0qm')
+        .doc(${_docID})
         .collection('a')
         .get();
 

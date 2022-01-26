@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:myfirstapp/model/my_colle_page_model.dart';
 import '../../Items.dart';
@@ -56,11 +57,13 @@ class CollectionPage extends StatelessWidget {
                 .map((items) =>
                 GestureDetector(
                   onTap: () async {
+                    final doc = FirebaseFirestore.instance.collection('collection').doc();
+                    final String _docID = doc.id;
                     final String _title = items.title;
                     final String _describe = items.describe;
                     await Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ListPage(collectionTitle: _title,collectionDiscribe: _describe,)),
+                      MaterialPageRoute(builder: (context) => ListPage(collectionTitle: _title,collectionDiscribe: _describe,docID: _docID,)),
                     );
                   },
                   child: Stack(

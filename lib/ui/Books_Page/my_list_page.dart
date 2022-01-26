@@ -9,17 +9,19 @@ class ListPage extends StatelessWidget {
 
   final String collectionTitle;
   final String collectionDiscribe;
+  final String docID;
 
   const ListPage({
     Key key,
     this.collectionTitle,
     this.collectionDiscribe,
+    this.docID,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (BuildContext context) => ListPageModel()..fetchData(),
+        create: (BuildContext context) => ListPageModel(_docID: docID)..fetchData(),
     child: Scaffold(
           appBar: AppBar(
             title: Consumer<ListPageModel>(builder: (context, model, child)  {
