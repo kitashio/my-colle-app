@@ -14,7 +14,7 @@ class ListPageModel with ChangeNotifier {
     final QuerySnapshot snapshot =  await FirebaseFirestore.instance
         .collection('collection')
         .doc(docId)
-        .collection('a')
+        .collection('items')
         .get();
 
     final List<Items> items = snapshot.docs.map((DocumentSnapshot document) {

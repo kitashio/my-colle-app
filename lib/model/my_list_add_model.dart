@@ -24,7 +24,7 @@ class ListAddModel with ChangeNotifier {
       final doc = FirebaseFirestore.instance
           .collection('collection')
           .doc(docId)
-          .collection('aaaaa')
+          .collection('items')
           .doc();
 
 
@@ -32,7 +32,7 @@ class ListAddModel with ChangeNotifier {
     if (imageFile != null) {
       //  storageにアップロード
       final task = await FirebaseStorage.instance
-          .ref('collection/${docId}/a/${doc.id}')
+          .ref('collection/${docId}/items/${doc.id}')
           .putFile(imageFile);
       imgURL = await task.ref.getDownloadURL();
 
