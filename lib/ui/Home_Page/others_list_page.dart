@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myfirstapp/model/Others/others_list_page_model.dart';
 import 'package:myfirstapp/model/my_list_page_model.dart';
+import 'package:myfirstapp/ui/Home_Page/others_list_detail_page.dart';
 import 'package:provider/provider.dart';
 import '../../Items.dart';
 
@@ -65,15 +66,15 @@ class OthersListPage extends StatelessWidget {
                         )
                             : null,
                       ),
-                      // onTap: () async {
-                      //   final String _imgURL = items.imgURL;
-                      //   final String _title = items.title;
-                      //   final String _describe = items.describe;
-                      //   await Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(builder: (context) => ListDetailPage(imgURL: _imgURL,title: _title,discribe: _describe,)),
-                      //   );
-                      // },
+                      onTap: () async {
+                        final String _imgURL = items.imgURL;
+                        final String _title = items.title;
+                        final String _describe = items.describe;
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => OthersListDetailPage(imgURL: _imgURL,title: _title,discribe: _describe,)),
+                        );
+                      },
                     ),
                     Container(
                       padding: EdgeInsets.all(10),

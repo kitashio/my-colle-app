@@ -7,13 +7,11 @@ import 'my_list_detail.dart';
 
 class ListPage extends StatelessWidget {
 
-  final String collectionImgURL;
   final String collectionTitle;
   final String collectionDiscribe;
 
   const ListPage({
     Key key,
-    this.collectionImgURL,
     this.collectionTitle,
     this.collectionDiscribe,
   }) : super(key: key);

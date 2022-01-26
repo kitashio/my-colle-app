@@ -56,12 +56,11 @@ class CollectionPage extends StatelessWidget {
                 .map((items) =>
                 GestureDetector(
                   onTap: () async {
-                    final String _imgURL = items.imgURL;
                     final String _title = items.title;
                     final String _describe = items.describe;
                     await Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ListPage(collectionImgURL: _imgURL,collectionTitle: _title,collectionDiscribe: _describe,)),
+                      MaterialPageRoute(builder: (context) => ListPage(collectionTitle: _title,collectionDiscribe: _describe,)),
                     );
                   },
                   child: Stack(
