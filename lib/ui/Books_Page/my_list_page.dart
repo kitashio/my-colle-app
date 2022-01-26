@@ -25,7 +25,7 @@ class ListPage extends StatelessWidget {
     child: Scaffold(
           appBar: AppBar(
             title: Consumer<ListPageModel>(builder: (context, model, child)  {
-                return Text(collectionTitle,
+                return Text(collectionTitle+' (2)',
                 style: TextStyle(
                   fontSize: 18,
                 ),
@@ -34,12 +34,29 @@ class ListPage extends StatelessWidget {
             ),
             backgroundColor:Color.fromRGBO(150, 186, 255, 100),
             actions: [
-              Container(
-                // color: Colors.white,
-                padding: EdgeInsets.fromLTRB(0, 20, 10, 0),
-                  child: Text('(2)',
+              Consumer<ListPageModel>(builder: (context, model, child)  {
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                  child: IconButton(icon: Icon(Icons.add_box_outlined, size: 35,),
+                      onPressed: () async {
+                        final _docId = docId;
+                        final bool added = await Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ListAddPage(docId: _docId,)),
+                        );
+                        if (added != null && added) {
+                          final snackBar = SnackBar(
+                            backgroundColor: Colors.blue,
+                            content: Text('コレクションを追加しました'),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        }
+                        await model.fetchData(docId);
+                      }
                   ),
-              ),
+                );
+              }
+              )
             ],
           ),
           body: Consumer<ListPageModel>(builder: (context, model, child)  {
@@ -100,28 +117,6 @@ class ListPage extends StatelessWidget {
                 ),
               ),
             );
-            }
-          ),
-          floatingActionButton: Consumer<ListPageModel>(builder: (context, model, child)  {
-              return FloatingActionButton(
-                // backgroundColor: Color.fromRGBO(150, 186, 255, 100),
-                child: Icon(Icons.add),
-                onPressed: () async {
-                  final _docId = docId;
-                  final bool added = await Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ListAddPage(docId: _docId,)),
-                  );
-                  if (added != null && added) {
-                    final snackBar = SnackBar(
-                      backgroundColor: Colors.blue,
-                      content: Text('コレクションを追加しました'),
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  }
-                  await model.fetchData(docId);
-                }
-              );
             }
           ),
         ),

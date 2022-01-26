@@ -64,24 +64,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
                 },
               ),
               ),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: (){},
-                child: Text('他',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: (){},
-                child: Text('LINEでサインイン',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-              ),
+
             ],
           ),
         ),

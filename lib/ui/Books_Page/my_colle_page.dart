@@ -25,22 +25,25 @@ class CollectionPage extends StatelessWidget {
             //　□　コレクション追加画面へ遷移
             actions: [
               Consumer<CollectionPageModel>(builder: (context, model, child)  {
-                  return IconButton(icon: Icon(Icons.add, size: 30,),
-                  onPressed: () async {
-                    final bool added = await Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ColleAddPage()),
-                    );
-
-                    if (added != null && added) {
-                      final snackBar = SnackBar(
-                        backgroundColor: Colors.blue,
-                        content: Text('コレクションを追加しました'),
+                  return Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                    child: IconButton(icon: Icon(Icons.add_box_outlined, size: 35,),
+                    onPressed: () async {
+                      final bool added = await Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ColleAddPage()),
                       );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    }
-                    await model.fetchData();
-                   }
+
+                      if (added != null && added) {
+                        final snackBar = SnackBar(
+                          backgroundColor: Colors.blue,
+                          content: Text('コレクションを追加しました'),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      }
+                      await model.fetchData();
+                     }
+                    ),
                   );
                 }
               )
