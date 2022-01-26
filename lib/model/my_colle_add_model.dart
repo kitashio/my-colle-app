@@ -33,6 +33,7 @@ class CollectionAddModel with ChangeNotifier {
     }
 
     await doc.set({
+      'docId': doc.id,
       'title': title,
       'describe': describe,
       'imgURL': imgURL,

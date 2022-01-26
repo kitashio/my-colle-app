@@ -1,17 +1,10 @@
+
 import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../Items.dart';
 
 class ListPageModel with ChangeNotifier {
-
-  final String _docID;
-
-  const ListPageModel({
-    Key key,
-    this._docID,
-  }) : super(key: key);
-
 
   List<Items> items;
 
@@ -20,7 +13,7 @@ class ListPageModel with ChangeNotifier {
     //コレクションを取得
     final QuerySnapshot snapshot =  await FirebaseFirestore.instance
         .collection('collection')
-        .doc(${_docID})
+        .doc()
         .collection('a')
         .get();
 
@@ -29,7 +22,8 @@ class ListPageModel with ChangeNotifier {
       final String title = data['title'];
       final String describe = data['describe'];
       final String imgURL = data['imgURL'];
-      return Items(title, describe, imgURL);
+      final String docId = data['docId'];
+      return Items(title, describe, imgURL, docId);
     }).toList();
 
     this.items = items;

@@ -57,13 +57,12 @@ class CollectionPage extends StatelessWidget {
                 .map((items) =>
                 GestureDetector(
                   onTap: () async {
-                    final doc = FirebaseFirestore.instance.collection('collection').doc();
-                    final String _docID = doc.id;
+                    final String _docId = items.docId;
                     final String _title = items.title;
                     final String _describe = items.describe;
                     await Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ListPage(collectionTitle: _title,collectionDiscribe: _describe,docID: _docID,)),
+                      MaterialPageRoute(builder: (context) => ListPage(collectionTitle: _title,collectionDiscribe: _describe,docId: _docId)),
                     );
                   },
                   child: Stack(

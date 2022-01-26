@@ -20,7 +20,8 @@ class OthersListPageModel with ChangeNotifier {
       final String title = data['title'];
       final String describe = data['describe'];
       final String imgURL = data['imgURL'];
-      return Items(title, describe, imgURL);
+      final String docId = data['docId'];
+      return Items(title, describe, imgURL, docId);
     }).toList();
 
     this.items = items;
