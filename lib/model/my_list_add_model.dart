@@ -7,11 +7,12 @@ import 'package:image_picker/image_picker.dart';
 class ListAddModel with ChangeNotifier {
   String title;
   String describe;
+  String docId;
   File imageFile;
 
   final picker = ImagePicker();
 
-  Future addItem () async {
+  Future addItem (String docId) async {
     if (title == null||title.isEmpty) {
       throw 'タイトルが入力されていません。';
     }
@@ -20,17 +21,18 @@ class ListAddModel with ChangeNotifier {
       throw '説明文が入力されていません。';
     }
 
-    final doc = FirebaseFirestore.instance
-        .collection('collection')
-        .doc('wqL1aNlgsTCpHJbXF0qm')
-        .collection('a')
-        .doc();
+      final doc = FirebaseFirestore.instance
+          .collection('collection')
+          .doc(docId)
+          .collection('aaaaa')
+          .doc();
+
 
     String imgURL;
     if (imageFile != null) {
       //  storageにアップロード
       final task = await FirebaseStorage.instance
-          .ref('collection/wqL1aNlgsTCpHJbXF0qm/a/${doc.id}')
+          .ref('collection/${docId}/a/${doc.id}')
           .putFile(imageFile);
       imgURL = await task.ref.getDownloadURL();
 

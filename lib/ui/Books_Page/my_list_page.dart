@@ -21,7 +21,7 @@ class ListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (BuildContext context) => ListPageModel()..fetchData(),
+        create: (BuildContext context) => ListPageModel()..fetchData(docId),
     child: Scaffold(
           appBar: AppBar(
             title: Consumer<ListPageModel>(builder: (context, model, child)  {
@@ -107,9 +107,10 @@ class ListPage extends StatelessWidget {
                 // backgroundColor: Color.fromRGBO(150, 186, 255, 100),
                 child: Icon(Icons.add),
                 onPressed: () async {
+                  final _docId = docId;
                   final bool added = await Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ListAddPage()),
+                    MaterialPageRoute(builder: (context) => ListAddPage(docId: _docId,)),
                   );
                   if (added != null && added) {
                     final snackBar = SnackBar(
@@ -118,7 +119,7 @@ class ListPage extends StatelessWidget {
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }
-                  await model.fetchData();
+                  await model.fetchData(docId);
                 }
               );
             }

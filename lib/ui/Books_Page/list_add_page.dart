@@ -4,9 +4,13 @@ import 'package:provider/provider.dart';
 
 class ListAddPage extends StatelessWidget {
 
-  String _midashi = '';
-  String _yomi = '';
-  String _imi = '';
+  final String docId;
+
+  const ListAddPage({
+    Key key,
+    this.docId,
+  }) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +114,7 @@ class ListAddPage extends StatelessWidget {
                 ),
                 onPressed: () async {
                   try {
-                    await model.addItem();
+                    await model.addItem(docId);
                     Navigator.of(context).pop(true);
                   } catch (e) {
                     final snackBar = SnackBar(

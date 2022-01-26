@@ -60,6 +60,8 @@ class CollectionPage extends StatelessWidget {
                     final String _docId = items.docId;
                     final String _title = items.title;
                     final String _describe = items.describe;
+
+                    print(_docId);
                     await Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => ListPage(collectionTitle: _title,collectionDiscribe: _describe,docId: _docId)),
