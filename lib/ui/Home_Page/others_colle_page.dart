@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:myfirstapp/Items.dart';
 import 'package:myfirstapp/model/Others/others_colle_page_model.dart';
+import 'package:myfirstapp/ui/Home_Page/others_list_page.dart';
 import 'package:provider/provider.dart';
 
 class OthersCollectionPage extends StatelessWidget {
@@ -29,12 +30,15 @@ class OthersCollectionPage extends StatelessWidget {
         final List<Widget> widgets = items
             .map((items) =>
             GestureDetector(
-              // onTap: () async {
-              //   await Navigator.push(
-              //     context,
-              //     MaterialPageRoute(builder: (context) => ListPage()),
-              //   );
-              // },
+              onTap: () async {
+                final String _imgURL = items.imgURL;
+                final String _title = items.title;
+                final String _describe = items.describe;
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => OthersListPage(collectionImgURL: _imgURL,collectionTitle: _title,collectionDiscribe: _describe,)),
+                );
+              },
               child: Stack(
                 alignment: Alignment.center,
                 children:[
@@ -60,11 +64,13 @@ class OthersCollectionPage extends StatelessWidget {
               ),
             ),
         ).toList();
-        return GridView.count(
-            crossAxisCount: 2,
-            shrinkWrap: true,
-            padding: const EdgeInsets.all(9),
-            children: widgets
+        return SingleChildScrollView(
+          child: GridView.count(
+              crossAxisCount: 2,
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(9),
+              children: widgets
+          ),
         );
       }
       ),

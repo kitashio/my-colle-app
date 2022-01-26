@@ -89,11 +89,13 @@ class CollectionPage extends StatelessWidget {
                   ),
                 ),
             ).toList();
-            return GridView.count(
-                crossAxisCount: 2,
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(0),
-                children: widgets
+            return SingleChildScrollView(
+              child: GridView.count(
+                  crossAxisCount: 2,
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.all(0),
+                  children: widgets
+              ),
             );
           }
           ),
