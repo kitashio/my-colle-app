@@ -19,7 +19,7 @@ class ListDetailPage extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
       return ChangeNotifierProvider(
-        create: (BuildContext context) => ListDetailPageModel()..fetchData(),
+        create: (BuildContext context) => ListDetailPageModel(),
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Color.fromRGBO(150, 186, 255, 100),
