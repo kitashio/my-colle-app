@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:myfirstapp/model/my_list_page_model.dart';
 import 'package:provider/provider.dart';
@@ -21,11 +22,12 @@ class ListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (BuildContext context) => ListPageModel()..fetchData(docId),
+        create: (BuildContext context) => ListPageModel(docId: docId)..fetchData(),
     child: Scaffold(
           appBar: AppBar(
             title: Consumer<ListPageModel>(builder: (context, model, child)  {
-                return Text(collectionTitle+' (2)',
+                model.countDocuments();
+                return Text(collectionTitle+' (${model.docC})',
                 style: TextStyle(
                   fontSize: 18,
                 ),
@@ -51,7 +53,7 @@ class ListPage extends StatelessWidget {
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
-                        await model.fetchData(docId);
+                        await model.fetchData();
                       }
                   ),
                 );

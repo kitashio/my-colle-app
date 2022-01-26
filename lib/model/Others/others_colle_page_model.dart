@@ -26,4 +26,5 @@ class OthersCollectionPageModel with ChangeNotifier {
     notifyListeners();
   }
 
+
 }

@@ -26,10 +26,4 @@ class CollectionPageModel with ChangeNotifier {
     notifyListeners();
   }
 
-  // Future<String> getDocId () async {
-  //   final doc = FirebaseFirestore.instance.collection('collection').doc();
-  //   print(doc.id);
-  //   final _docID = doc.id;
-  // }
-
 }

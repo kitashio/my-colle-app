@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:myfirstapp/model/Others/others_list_page_model.dart';
-import 'package:myfirstapp/model/my_list_page_model.dart';
 import 'package:myfirstapp/ui/Home_Page/others_list_detail_page.dart';
 import 'package:provider/provider.dart';
 import '../../Items.dart';
 
 class OthersListPage extends StatelessWidget {
 
-  final String collectionImgURL;
   final String collectionTitle;
   final String collectionDiscribe;
+  final String docId;
 
   const OthersListPage({
     Key key,
-    this.collectionImgURL,
     this.collectionTitle,
     this.collectionDiscribe,
+    this.docId,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (BuildContext context) => OthersListPageModel()..fetchData(),
+      create: (BuildContext context) => OthersListPageModel(docId: docId)..fetchData(),
       child: Scaffold(
         appBar: AppBar(
           title: Consumer<OthersListPageModel>(builder: (context, model, child)  {
-            return Text(collectionTitle,
+            return Text(collectionTitle+' (2)',
               style: TextStyle(
                 fontSize: 18,
               ),
@@ -33,14 +32,6 @@ class OthersListPage extends StatelessWidget {
           }
           ),
           backgroundColor:Color.fromRGBO(150, 186, 255, 100),
-          actions: [
-            Container(
-              // color: Colors.white,
-              padding: EdgeInsets.fromLTRB(0, 20, 10, 0),
-              child: Text('(2)',
-              ),
-            ),
-          ],
         ),
         body: Consumer<OthersListPageModel>(builder: (context, model, child)  {
           final List<Items> items = model.items;
