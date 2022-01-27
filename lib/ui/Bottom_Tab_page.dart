@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myfirstapp/ui/MyPage/Mypage_page.dart';
+import 'package:myfirstapp/ui/MyPage/mypage.dart';
 import 'Books_Page/my_colle_page.dart';
 import 'MyPage/My_Account_page.dart';
 import 'Home_Page/others_colle_page.dart';
@@ -17,7 +18,7 @@ class _BottomTabPageState extends State<BottomTabPage> {
   final _pageWidgets = [
     CollectionPage(),
     OthersCollectionPage(),
-    MyAccountPage(),
+    MyPage(),
   ];
 
   @override

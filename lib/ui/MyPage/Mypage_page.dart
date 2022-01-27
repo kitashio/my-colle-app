@@ -3,11 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:myfirstapp/model/Mypage/Mypage_model.dart';
+import 'package:provider/provider.dart';
 
-class MyPage extends StatelessWidget {
+class MyPagee extends StatelessWidget {
   //Google初期化
   User user;
-  MyPage(this.user);
+  MyPagee(this.user);
   static final googleLogin = GoogleSignIn(scopes: [
     'email',
     'https://www.googleapis.com/auth/contacts.readonly',
@@ -15,7 +17,9 @@ class MyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ChangeNotifierProvider(
+        create: (BuildContext context) => MypageModel(),
+    child:  Scaffold(
       appBar: AppBar(
         title: Text('MyPage',
         style: TextStyle(
@@ -80,7 +84,7 @@ class MyPage extends StatelessWidget {
                             if (user != null) {
                               await Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(builder: (context) {
-                                  return MyPage(user);
+                                  return MyPagee(user);
                                 }),
                               );
                             }
@@ -95,6 +99,7 @@ class MyPage extends StatelessWidget {
             ),
           ),
         ),
+    ),
     );
   }
 }

@@ -4,16 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 import 'Mypage_page.dart';
 
 
-class MyAccountPage extends StatefulWidget {
+class MyAccountPage extends StatelessWidget {
 
-  @override
-  _MyAccountPageState createState() => _MyAccountPageState();
-}
-
-class _MyAccountPageState extends State<MyAccountPage> {
   static final googleLogin = GoogleSignIn(scopes: [
     'email',
     'https://www.googleapis.com/auth/contacts.readonly',
@@ -38,42 +34,46 @@ class _MyAccountPageState extends State<MyAccountPage> {
 
       ),
       body: Container(
-        padding: EdgeInsets.all(10),
-        child: Center(
-          child: Column(
-            children: [
-              Container(
-                child: SignInButton(
-                Buttons.Google,
-                text: 'Sign up with Google',
-                onPressed: () async {
-                  GoogleSignInAccount signinAccount = await googleLogin.signIn();
-                  if (signinAccount == null) return;
+            padding: EdgeInsets.all(10),
+            child: Center(
+              child: Column(
+                children: [
+                  Container(
+                    child: SignInButton(
+                    Buttons.Google,
+                    text: 'Sign up with Google',
+                    onPressed: () async {
+                      GoogleSignInAccount signinAccount = await googleLogin.signIn();
+                      if (signinAccount == null) return;
 
-                  GoogleSignInAuthentication auth = await signinAccount.authentication;
-                  final GoogleAuthCredential credential =
-                  GoogleAuthProvider.credential(
-                    idToken: auth.idToken,
-                    accessToken: auth.accessToken,
-                  );
-                  User user =
-                      (await FirebaseAuth.instance.signInWithCredential(credential))
-                          .user;
-                  if (user != null) {
-                    await Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) {
-                        return MyPage(user);
-                      }),
-                    );
-                  }
-                },
+                      GoogleSignInAuthentication auth = await signinAccount.authentication;
+                      final GoogleAuthCredential credential =
+                      GoogleAuthProvider.credential(
+                        idToken: auth.idToken,
+                        accessToken: auth.accessToken,
+                      );
+                      User user =
+                          (await FirebaseAuth.instance.signInWithCredential(credential))
+                              .user;
+                      if (user != null) {
+                        await Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) {
+                            return MyPagee(user);
+                          }),
+                        );
+                      }
+                    },
+                  ),
+                  ),
+                  ElevatedButton(
+                      onPressed: (){
+                      },
+                      child: Text('お'),
+                  ),
+                ],
               ),
-              ),
-
-            ],
+            ),
           ),
-        ),
-      ),
     );
   }
 }
