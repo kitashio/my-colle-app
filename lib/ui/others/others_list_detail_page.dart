@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myfirstapp/model/Others/others_list_detail_model.dart';
-import 'package:myfirstapp/model/my_list_detail_model.dart';
+import 'package:myfirstapp/model/my/my_list_detail_model.dart';
 import 'package:provider/provider.dart';
 
 class OthersListDetailPage extends StatelessWidget {

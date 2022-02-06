@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:myfirstapp/model/my_colle_page_model.dart';
+import 'package:myfirstapp/model/my/my_colle_page_model.dart';
 import '../../Items.dart';
 import 'my_colle_add.dart';
 import 'package:provider/provider.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myfirstapp/model/my_list_detail_model.dart';
+import 'package:myfirstapp/model/my/my_list_detail_model.dart';
 import 'package:provider/provider.dart';
 import 'my_list_update.dart';
 

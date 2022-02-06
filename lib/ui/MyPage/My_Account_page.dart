@@ -38,33 +38,7 @@ class MyAccountPage extends StatelessWidget {
             child: Center(
               child: Column(
                 children: [
-                  Container(
-                    child: SignInButton(
-                    Buttons.Google,
-                    text: 'Sign up with Google',
-                    onPressed: () async {
-                      GoogleSignInAccount signinAccount = await googleLogin.signIn();
-                      if (signinAccount == null) return;
 
-                      GoogleSignInAuthentication auth = await signinAccount.authentication;
-                      final GoogleAuthCredential credential =
-                      GoogleAuthProvider.credential(
-                        idToken: auth.idToken,
-                        accessToken: auth.accessToken,
-                      );
-                      User user =
-                          (await FirebaseAuth.instance.signInWithCredential(credential))
-                              .user;
-                      if (user != null) {
-                        await Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) {
-                            return MyPagee(user);
-                          }),
-                        );
-                      }
-                    },
-                  ),
-                  ),
                   ElevatedButton(
                       onPressed: (){
                       },

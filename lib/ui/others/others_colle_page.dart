@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:myfirstapp/model/Others/others_colle_page_model.dart';
-import 'package:myfirstapp/model/my_colle_page_model.dart';
-import 'package:myfirstapp/ui/Home_Page/others_list_page.dart';
+import 'package:myfirstapp/model/my/my_colle_page_model.dart';
+import 'package:myfirstapp/ui/others/others_list_page.dart';
 import '../../Items.dart';
 import 'package:provider/provider.dart';
 

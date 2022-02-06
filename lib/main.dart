@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'ui/Top_Page/top_user_page.dart';
+import 'ui/top_user_page.dart';
 
 
 Future<void> main() async {

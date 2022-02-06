@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myfirstapp/model/Others/others_list_page_model.dart';
-import 'package:myfirstapp/ui/Home_Page/others_list_detail_page.dart';
+import 'package:myfirstapp/ui/others/others_list_detail_page.dart';
 import 'package:provider/provider.dart';
 import '../../Items.dart';
 

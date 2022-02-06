@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../model/my_colle_add_model.dart';
+import '../../model/my/my_colle_add_model.dart';
 
 //　【My】2.コレクション追加画面
 class ColleAddPage extends StatelessWidget {

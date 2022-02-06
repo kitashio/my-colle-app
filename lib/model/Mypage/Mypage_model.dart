@@ -1,29 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-class MypageModel with ChangeNotifier {
-
-  void showAlertDialog (BuildContext context) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return SimpleDialog(
-          title: Text("This is the title"),
-          children: [
-            SimpleDialogOption(
-              onPressed: () => Navigator.pop(context),
-              child: Text("first item"),
-            ),
-            ElevatedButton(
-              child: Text('CANCEL'),
-              onPressed: () async {
-                await Navigator.of(context).pop(true);
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+class MypageModel extends ChangeNotifier {
 
 }

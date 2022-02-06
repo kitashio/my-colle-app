@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:myfirstapp/model/my_list_page_model.dart';
+import 'package:myfirstapp/model/my/my_list_page_model.dart';
 import 'package:provider/provider.dart';
 import '../../Items.dart';
-import 'list_add_page.dart';
+import 'my_list_add.dart';
 import 'my_list_detail.dart';
 
 class ListPage extends StatelessWidget {

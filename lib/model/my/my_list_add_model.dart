@@ -45,6 +45,7 @@ class ListAddModel with ChangeNotifier {
     });
   }
 
+  //画像選択処理
   Future pickImage() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     imageFile = File(pickedFile.path);
