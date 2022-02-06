@@ -7,12 +7,14 @@ class CollectionPageModel with ChangeNotifier {
 
   List<Items> items;
 
+  //コレクションデータを全て取得
   Future fetchData () async {
     //コレクションを取得
     final QuerySnapshot snapshot =  await FirebaseFirestore.instance
         .collection('collection')
         .get();
 
+    //コレクションのデータをリスト型にする
     final List<Items> items = snapshot.docs.map((DocumentSnapshot document) {
       Map<String, dynamic> data = document.data() as Map<String, dynamic>;
       final String title = data['title'];
