@@ -1,8 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:myfirstapp/model/Mypage/Mypage_model.dart';
 import 'package:provider/provider.dart';
 
@@ -22,8 +20,17 @@ class MyPage extends StatelessWidget {
             ),
           ),
         ),
-        body:Column(
+        body: Consumer<MypageModel>(builder: (context, model, child)  {
+            return Container(
+              padding: EdgeInsets.all(10),
+              alignment: Alignment.center,
+              child: Column(
+                children: [
 
+                ],
+              ),
+            );
+          }
         ),
       ),
     );
