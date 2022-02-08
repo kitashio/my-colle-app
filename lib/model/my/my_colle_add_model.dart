@@ -14,6 +14,10 @@ class CollectionAddModel with ChangeNotifier {
 
   Future addItem (User user) async {
     //入力されているかの確認
+    if (imageFile == null) {
+      throw '画像が選択されていません。';
+    }
+
     if (title == null||title.isEmpty) {
       throw 'タイトルが入力されていません。';
     }
@@ -32,6 +36,7 @@ class CollectionAddModel with ChangeNotifier {
 
     //画像処理
     String imgURL;
+
     if (imageFile != null) {
     //  storageにアップロード
       final task = await FirebaseStorage.instance
@@ -39,7 +44,6 @@ class CollectionAddModel with ChangeNotifier {
           .putFile(imageFile);
       imgURL = await task.ref.getDownloadURL();
     }
-
     //ドキュメントのフィールドを設定
     await doc.set({
       'docId': doc.id,
@@ -54,6 +58,9 @@ class CollectionAddModel with ChangeNotifier {
   Future pickImage() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
       imageFile = File(pickedFile.path);
+    if (imageFile == null) {
+      print('NoImage');
+    }
       notifyListeners();
   }
 

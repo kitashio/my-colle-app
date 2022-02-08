@@ -5,6 +5,7 @@ import '../../model/my/my_colle_add_model.dart';
 
 //　【My】2.コレクション追加画面
 class ColleAddPage extends StatelessWidget {
+  //collectionページからユーザ情報を受け取る
   User user;
   ColleAddPage(this.user);
 
@@ -15,9 +16,7 @@ class ColleAddPage extends StatelessWidget {
     child: Scaffold(
       appBar: AppBar(
         title: Text('New Collection',
-        style: TextStyle(
-        fontSize: 18,
-        ),
+        style: TextStyle(fontSize: 18,),
         ),
         backgroundColor:Color.fromRGBO(150, 186, 255, 100),
       ),
@@ -26,9 +25,12 @@ class ColleAddPage extends StatelessWidget {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: <Widget>[
+                //画像選択フィールド
                 GestureDetector(
                   onTap: () async {
+                    //画像選択処理
                     await model.pickImage();
+
                   },
                   child: Stack(
                     alignment: Alignment.center,
@@ -49,7 +51,7 @@ class ColleAddPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                // タイトル入力
+                // タイトル入力フィールド
                 TextField(
                   decoration: InputDecoration(
                       labelText: 'コレクションタイトル',
@@ -65,7 +67,7 @@ class ColleAddPage extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: 25),
-                // 説明文入力
+                // 説明文入力フィールド
                 TextField(
                   maxLines: 6,
                   keyboardType: TextInputType.multiline,
@@ -84,7 +86,6 @@ class ColleAddPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 Container(
-                  // 横幅いっぱいに広げる
                   width: 100,
                   // リスト追加ボタン
                   child: ElevatedButton(
@@ -93,10 +94,13 @@ class ColleAddPage extends StatelessWidget {
                     ),
                     onPressed: () async {
                       try {
+                        //コレクションデータをFiretoreへ保存
                         await model.addItem(user);
+                        //前画面（コレクションページ）へ戻る
                         Navigator.of(context).pop(true);
                       } catch (e) {
                         print(e.toString());
+                        //処理完了後スナックバー表示する
                         final snackBar = SnackBar(
                           backgroundColor: Colors.red,
                           content: Text(e.toString()),
@@ -107,20 +111,7 @@ class ColleAddPage extends StatelessWidget {
                     child: Text('登録'),
                   ),
                 ),
-                const SizedBox(height: 8),
-                Container(
-                  // 横幅いっぱいに広げる
-                  width: double.infinity,
-                  // キャンセルボタン
-                  child: TextButton(
-                    // ボタンをクリックした時の処理
-                    onPressed: () {
-                      // "pop"で前の画面に戻る
-                      Navigator.of(context).pop();
-                    },
-                    child: Text('キャンセル'),
-                  ),
-                ),
+
               ],
             ),
           );
