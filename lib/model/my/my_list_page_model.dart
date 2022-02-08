@@ -30,7 +30,8 @@ class ListPageModel with ChangeNotifier {
       final String describe = data['describe'];
       final String imgURL = data['imgURL'];
       final String docId = data['docId'];
-      return Items(title, describe, imgURL, docId);
+      final String uid = data['uid'];
+      return Items(title, describe, imgURL, docId, uid);
     }).toList();
 
     this.items = items;

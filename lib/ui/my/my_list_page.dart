@@ -11,12 +11,14 @@ class ListPage extends StatelessWidget {
   final String collectionTitle;
   final String collectionDiscribe;
   final String docId;
+  final String uid;
 
   const ListPage({
     Key key,
     this.collectionTitle,
     this.collectionDiscribe,
     this.docId,
+    this.uid,
   }) : super(key: key);
 
   @override
@@ -108,6 +110,7 @@ class ListPage extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 child: Column(
                   children: [
+                    Text('uid:  '+ uid),
                     Text(collectionDiscribe,),
                     GridView.count(
                         crossAxisCount: 2,

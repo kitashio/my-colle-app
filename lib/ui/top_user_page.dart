@@ -13,7 +13,8 @@ class TopUserPage extends StatelessWidget {
         create: (BuildContext context) => TopUserModel(),
     child: Scaffold(
       body: Consumer<TopUserModel>(builder: (context, model, child)  {
-          return Padding(
+          return Container(
+            alignment: Alignment.center,
             padding: const EdgeInsets.fromLTRB(30,300,30,0),
             child: Column(
               children: [
@@ -63,8 +64,17 @@ class TopUserPage extends StatelessWidget {
                 SignInButton(
                   Buttons.Google,
                   text: 'Sign up with Google',
-                  onPressed: () {
-                    model.googleSignin(context);
+                  onPressed: () async {
+                    try {
+                      await model.googleSignin(context);
+                    } catch (e) {
+                      print(e.toString());
+                      final snackBar = SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text(e.toString()),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
                   },
                 ),
               ],

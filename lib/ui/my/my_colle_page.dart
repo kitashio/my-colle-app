@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:myfirstapp/model/my/my_colle_page_model.dart';
 import '../../Items.dart';
@@ -6,11 +7,13 @@ import 'package:provider/provider.dart';
 import 'my_list_page.dart';
 
 class CollectionPage extends StatelessWidget {
+  User user;
+  CollectionPage(this.user);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (BuildContext context) => CollectionPageModel()..fetchData(),
+        create: (BuildContext context) => CollectionPageModel()..fetchData(user),
         child: Scaffold(
 
           appBar: AppBar(
@@ -32,7 +35,7 @@ class CollectionPage extends StatelessWidget {
                       //追加されてもされてなくても返ってくる
                       final bool added = await Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ColleAddPage()),
+                        MaterialPageRoute(builder: (context) => ColleAddPage(user)),
                       );
                       //もしコレクションがあったら（追加されていたら）スナックバー表示
                       if (added != null && added) {
@@ -43,7 +46,7 @@ class CollectionPage extends StatelessWidget {
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       }
                       //コレクション更新
-                      await model.fetchData();
+                      await model.fetchData(user);
                      }
                     ),
                   );
@@ -70,10 +73,11 @@ class CollectionPage extends StatelessWidget {
                     final String _docId = items.docId;
                     final String _title = items.title;
                     final String _describe = items.describe;
+                    final String _uid = items.uid;
                     //タップしたら画面遷移＋データも渡す
                     await Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ListPage(collectionTitle: _title,collectionDiscribe: _describe,docId: _docId)),
+                      MaterialPageRoute(builder: (context) => ListPage(collectionTitle: _title,collectionDiscribe: _describe,docId: _docId,uid: _uid,)),
                     );
                   },
                   child: Stack(

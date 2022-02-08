@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:myfirstapp/ui/MyPage/Mypage_page.dart';
+import 'package:myfirstapp/ui/MyPage/mypage.dart';
 import 'package:myfirstapp/ui/my/my_colle_page.dart';
 import 'package:myfirstapp/ui/others/others_colle_page.dart';
 
@@ -24,9 +24,9 @@ class _BottomTabPageState extends State<BottomTabPage>{
   Widget build(BuildContext context) {
 
     final _pageWidgets = [
-      CollectionPage(),
+      CollectionPage(user),
       OthersCollectionPage(),
-      MyPagee(user),
+      MyPage(user),
     ];
 
     return Scaffold(

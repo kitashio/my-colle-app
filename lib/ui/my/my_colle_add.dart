@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../model/my/my_colle_add_model.dart';
 
 //　【My】2.コレクション追加画面
 class ColleAddPage extends StatelessWidget {
+  User user;
+  ColleAddPage(this.user);
 
   @override
   Widget build(BuildContext context) {
@@ -90,9 +93,10 @@ class ColleAddPage extends StatelessWidget {
                     ),
                     onPressed: () async {
                       try {
-                        await model.addItem();
+                        await model.addItem(user);
                         Navigator.of(context).pop(true);
                       } catch (e) {
+                        print(e.toString());
                         final snackBar = SnackBar(
                           backgroundColor: Colors.red,
                           content: Text(e.toString()),
