@@ -4,7 +4,7 @@ import 'package:myfirstapp/model/Mypage/Mypage_model.dart';
 import 'package:provider/provider.dart';
 
 class MyPagee extends StatelessWidget {
-  //Google初期化
+  // //Google初期化
   User user;
   MyPagee(this.user);
 

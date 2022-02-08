@@ -39,27 +39,27 @@ class TopUserPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 250),
-                ElevatedButton(
-                  child: Text('スタート',
-                    style: GoogleFonts.raleway(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1,
-                    ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    primary: Color.fromRGBO(97, 102, 179, 100),
-                    shape: const StadiumBorder(),
-                    padding: EdgeInsets.fromLTRB(80, 10, 80, 10),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => BottomTabPage()),
-                    );
-                  },
-                ),
+                // ElevatedButton(
+                //   child: Text('スタート',
+                //     style: GoogleFonts.raleway(
+                //       color: Colors.white,
+                //       fontSize: 16,
+                //       fontWeight: FontWeight.bold,
+                //       letterSpacing: 1,
+                //     ),
+                //   ),
+                //   style: ElevatedButton.styleFrom(
+                //     primary: Color.fromRGBO(97, 102, 179, 100),
+                //     shape: const StadiumBorder(),
+                //     padding: EdgeInsets.fromLTRB(80, 10, 80, 10),
+                //   ),
+                //   onPressed: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(builder: (context) => BottomTabPage()),
+                //     );
+                //   },
+                // ),
                 SignInButton(
                   Buttons.Google,
                   text: 'Sign up with Google',

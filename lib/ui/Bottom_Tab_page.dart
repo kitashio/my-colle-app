@@ -1,32 +1,35 @@
-import 'dart:js';
-
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:myfirstapp/model/bottom_tab_model.dart';
 import 'package:myfirstapp/ui/MyPage/Mypage_page.dart';
 import 'package:myfirstapp/ui/my/my_colle_page.dart';
 import 'package:myfirstapp/ui/others/others_colle_page.dart';
-import 'package:provider/provider.dart';
 
-class BottomTabPage extends StatelessWidget {
-
+class BottomTabPage extends StatefulWidget {
   final User user;
   BottomTabPage(this.user);
 
+  @override
+  _BottomTabPageState createState() => _BottomTabPageState(this.user);
+
+}
+
+class _BottomTabPageState extends State<BottomTabPage>{
+  User user;
+  _BottomTabPageState(this.user);
+
   int _currentIndex = 0;
-  final _pageWidgets = [
-    CollectionPage(),
-    OthersCollectionPage(),
-    MyPagee(user),
-  ];
+  void _onItemTapped (int index) => setState(() => _currentIndex = index );
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => BottomTabModel(),
-      child: Consumer<BottomTabModel>(builder: (context, model, child) {
-        return Scaffold(
+
+    final _pageWidgets = [
+      CollectionPage(),
+      OthersCollectionPage(),
+      MyPagee(user),
+    ];
+
+    return Scaffold(
           body: _pageWidgets.elementAt(_currentIndex),
           bottomNavigationBar: BottomNavigationBar(
             items: <BottomNavigationBarItem>[
@@ -44,17 +47,6 @@ class BottomTabPage extends StatelessWidget {
             type: BottomNavigationBarType.fixed,
           ),
         );
-      }
-      ),
-    );
   }
-  void _onItemTapped (int index) =>  _currentIndex = index;
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<User>('user', user));
-    properties.add(DiagnosticsProperty<User>('user', user));
-    properties.add(DiagnosticsProperty<User>('user', user));
-    properties.add(DiagnosticsProperty<User>('user', user));
-  }
+
 }
