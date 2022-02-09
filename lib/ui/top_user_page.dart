@@ -3,7 +3,6 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myfirstapp/model/top_user_model.dart';
 import 'package:provider/provider.dart';
-import 'Bottom_Tab_page.dart';
 
 class TopUserPage extends StatelessWidget {
 
@@ -12,8 +11,7 @@ class TopUserPage extends StatelessWidget {
     return ChangeNotifierProvider(
         create: (BuildContext context) => TopUserModel(),
     child: Scaffold(
-      body: Consumer<TopUserModel>(builder: (context, model, child)  {
-          return Container(
+      body: Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.fromLTRB(30,300,30,0),
             child: Column(
@@ -62,28 +60,29 @@ class TopUserPage extends StatelessWidget {
                 //     );
                 //   },
                 // ),
-                SignInButton(
-                  Buttons.Google,
-                  text: 'Sign up with Google',
-                  onPressed: () async {
-                    try {
-                      await model.googleSignin(context);
-                    } catch (e) {
-                      print(e.toString());
-                      final snackBar = SnackBar(
-                        backgroundColor: Colors.red,
-                        content: Text(e.toString()),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    }
-                  },
+                Consumer<TopUserModel>(builder: (context, model, child)  {
+                    return SignInButton(
+                      Buttons.Google,
+                      text: 'Sign up with Google',
+                      onPressed: () async {
+                        try {
+                          model.googleSignin(context);
+                        } catch (e) {
+                          print(e.toString());
+                          final snackBar = SnackBar(
+                            backgroundColor: Colors.red,
+                            content: Text(e.toString()),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        }
+                      },
+                    );
+                  }
                 ),
               ],
             ),
-          );
-        }
+          ),
       ),
-    ),
     );
   }
 }
