@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:myfirstapp/model/Others/others_colle_page_model.dart';
-import 'package:myfirstapp/model/my/my_colle_page_model.dart';
 import 'package:myfirstapp/ui/others/others_list_page.dart';
 import '../../Items.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +21,17 @@ class OthersCollectionPage extends StatelessWidget {
             ),
           ),
           //　□　コレクション追加画面へ遷移
+          actions: [
+            Consumer<OthersCollectionPageModel>(builder: (context, model, child)  {
+              return Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                child: IconButton(icon: Icon(Icons.search, size: 30),
+                  onPressed: (){},
+                ),
+              );
+            }
+            )
+          ],
         ),
         body: Consumer<OthersCollectionPageModel>(builder: (context, model, child)  {
           final List<Items> items = model.items;
@@ -43,40 +52,65 @@ class OthersCollectionPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => OthersListPage(collectionTitle: _title,collectionDiscribe: _describe,docId: _docId)),
                   );
                 },
-                child: Stack(
-                  alignment: Alignment.center,
-                  children:[
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(5),
-                      child: items.imgURL != null
-                          ? Image.network(items.imgURL,
-                        height: 170,
-                        width: 170,
-                        fit: BoxFit.cover,)
-                          : null,
+                child: Column(
+                  children: [
+                    Stack(
+                      alignment: Alignment.center,
+                      children:[
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: items.imgURL != null
+                              ? Image.network(items.imgURL,
+                            height: 170,
+                            width: 170,
+                            fit: BoxFit.cover,)
+                              : null,
+                        ),
+                        Text(items.title??'title',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            letterSpacing: 2,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Positioned(
+                          left: 100.0,
+                          top: 100.0,
+                          width: 100.0,
+                          height: 100.0,
+                          child: IconButton(
+                            padding: EdgeInsets.all(0),
+                            onPressed: () {
+
+                            },
+                            icon: Icon(Icons.favorite_border,
+                              size: 25,
+                            color: Colors.white,),),
+                        ),
+                      ],
                     ),
-                    Text(items.title??'title',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        letterSpacing: 2,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('user'),
+                      ],
+                    ),
                   ],
                 ),
               ),
           ).toList();
           return SingleChildScrollView(
+            padding: const EdgeInsets.all(8),
             child: GridView.count(
                 crossAxisCount: 2,
+                mainAxisSpacing: 10,
                 shrinkWrap: true,
-                padding: const EdgeInsets.all(0),
                 children: widgets
             ),
           );
-        }
+         }
         ),
       ),
     );

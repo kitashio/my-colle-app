@@ -21,41 +21,48 @@ class MyPage extends StatelessWidget {
               fontSize: 18,
             ),
           ),
+          actions: [
+            Consumer<MypageModel>(builder: (context, model, child)  {
+                return IconButton(
+                    onPressed: () async {
+                          model.googleSignout();
+                          await Navigator.pop(context);
+
+                    },
+                    icon: Icon(Icons.logout, size: 25),);
+              }
+            ),
+          ],
         ),
         body: Consumer<MypageModel>(builder: (context, model, child)  {
             return Container(
-              padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
-              child: Center(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      height: 170,
-                      width: 170,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage('assets/image/IMG_6426.JPG'),
-                        ),
+              height: 330,
+              alignment: Alignment.center,
+              color: Color.fromRGBO(150, 186, 255, 100),
+              padding: EdgeInsets.all(30),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    height: 170,
+                    width: 170,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: AssetImage('assets/image/IMG_6426.JPG'),
                       ),
                     ),
-                    SizedBox(height: 20),
-                    Text(user.displayName,
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
+                  ),
+                  SizedBox(height: 20),
+                  Text(user.displayName,
+                    style: TextStyle(
+                      fontSize: 20,
                     ),
-                    SizedBox(height: 20),
-                    Text('Email : ${user.email}'),
-                    TextButton(
-                      onPressed: () async {
-                        model.googleSignout();
-                        await Navigator.pop(context);
-                      },
-                      child: Text('Logout'),
-                    ),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: 20),
+                  Text('Email : ${user.email}'),
+
+                ],
               ),
             );
           }

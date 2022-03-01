@@ -15,7 +15,6 @@ class ListDetailPage extends StatelessWidget {
     this.discribe,
   }) : super(key: key);
 
-
     @override
     Widget build(BuildContext context) {
       return ChangeNotifierProvider(
@@ -89,7 +88,6 @@ class ListDetailPage extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
-
                         ),
                       ),
                     ],
@@ -99,7 +97,6 @@ class ListDetailPage extends StatelessWidget {
             }
           ),
         ),
-
       );
     }
   }

@@ -15,9 +15,7 @@ class CollectionPage extends StatelessWidget {
     return ChangeNotifierProvider(
         create: (BuildContext context) => CollectionPageModel()..fetchData(user),
         child: Scaffold(
-
           appBar: AppBar(
-            //ボトムタブから遷移した時の左上の戻るボタン非表示
             automaticallyImplyLeading: false,
             backgroundColor:Color.fromRGBO(150, 186, 255, 100),
             title: Text('My Collection',
@@ -28,8 +26,8 @@ class CollectionPage extends StatelessWidget {
             actions: [
               Consumer<CollectionPageModel>(builder: (context, model, child)  {
                   return Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                    child: IconButton(icon: Icon(Icons.add_box_outlined, size: 35),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+                    child: IconButton(icon: Icon(Icons.add, size: 33),
                     onPressed: () async {
                       //タップしてコレクション追加画面へ遷移
                       //追加されてもされてなくても返ってくる

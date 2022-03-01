@@ -41,7 +41,7 @@ class ListPage extends StatelessWidget {
               Consumer<ListPageModel>(builder: (context, model, child)  {
                 return Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                  child: IconButton(icon: Icon(Icons.add_box_outlined, size: 35,),
+                  child: IconButton(icon: Icon(Icons.add, size: 35,),
                       onPressed: () async {
                         final _docId = docId;
                         final bool added = await Navigator.push(
