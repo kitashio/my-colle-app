@@ -1,20 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfirstapp/model/my/my_colle_page_model.dart';
 import '../../Items.dart';
 import 'my_colle_add.dart';
-import 'package:provider/provider.dart';
 import 'my_list_page.dart';
 
-class CollectionPage extends StatelessWidget {
+class CollectionPage extends ConsumerWidget {
+
   User user;
   CollectionPage(this.user);
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (BuildContext context) => CollectionPageModel()..fetchData(user),
-        child: Scaffold(
+  Widget build(BuildContext context,WidgetRef ref) {
+    return Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
             backgroundColor:Color.fromRGBO(150, 186, 255, 100),
@@ -24,8 +23,7 @@ class CollectionPage extends StatelessWidget {
             //★
             //コレクション追加画面へ遷移するボタン
             actions: [
-              Consumer<CollectionPageModel>(builder: (context, model, child)  {
-                  return Padding(
+                  Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
                     child: IconButton(icon: Icon(Icons.add, size: 33),
                     onPressed: () async {
@@ -44,18 +42,15 @@ class CollectionPage extends StatelessWidget {
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       }
                       //コレクション更新
-                      await model.fetchData(user);
+                      await ref.read(CollectionPageProvider).fetchData(user);
                      }
                     ),
-                  );
-                }
-              )
+                  ),
             ],
           ),
+          body: Consumer(builder: (context, ref, child)  {
 
-          body: Consumer<CollectionPageModel>(builder: (context, model, child)  {
-
-            final List<Items> items = model.items;
+            final List<Items> items = ref.read(CollectionPageProvider).items;
 
             //もしコレクションのデータがなければ（取得中も含む）
             //ぐるぐるを表示
@@ -68,14 +63,10 @@ class CollectionPage extends StatelessWidget {
                 GestureDetector(
                   onTap: () async {
                     //それぞれデータを定義
-                    final String _docId = items.docId;
-                    final String _title = items.title;
-                    final String _describe = items.describe;
-                    final String _uid = items.uid;
                     //タップしたら画面遷移＋データも渡す
                     await Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ListPage(collectionTitle: _title,collectionDiscribe: _describe,docId: _docId,uid: _uid,)),
+                      MaterialPageRoute(builder: (context) => ListPage(items)),
                     );
                   },
                   child: Stack(
@@ -87,7 +78,7 @@ class CollectionPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                         child: items.imgURL != null
                         ? Image.network(items.imgURL,
-                        height: 170, width: 170, fit: BoxFit.cover,)
+                        height: 180, width: 180, fit: BoxFit.cover,)
                         : null,
                       ),
                       //コレクションのタイトル表示
@@ -104,19 +95,17 @@ class CollectionPage extends StatelessWidget {
                   ),
                 ),
             ).toList(); //リスト型へ
-
             //グリッドの画面オーバーエラーを防ぐためのスクロールビュー
             return SingleChildScrollView(
               child: GridView.count(
-                  crossAxisCount: 2,//2列
+                  padding: EdgeInsets.all(8),
+                  crossAxisCount: 2,
                   shrinkWrap: true,
-                  padding: const EdgeInsets.all(0),
                   children: widgets
               ),
             );
           }
           ),
-        ),
     );
   }
 }

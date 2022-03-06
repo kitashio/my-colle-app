@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfirstapp/model/my/my_list_add_model.dart';
-import 'package:provider/provider.dart';
 
-class ListAddPage extends StatelessWidget {
+class ListAddPage extends ConsumerWidget {
 
   final String docId;
 
@@ -14,10 +14,7 @@ class ListAddPage extends StatelessWidget {
 
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (BuildContext context) => ListAddModel(),
-    child: Consumer<ListAddModel>(builder: (context, model, child)  {
+  Widget build(BuildContext context, WidgetRef ref) {
 
     return Scaffold(
 
@@ -36,15 +33,15 @@ class ListAddPage extends StatelessWidget {
             GestureDetector(
               onTap: () async {
                 //タップして画像選択
-                await model.pickImage();
+                await ref.read(ItemListAddProvider).pickImage();
               },
               child: Stack(
                 alignment: Alignment.center,
                 children: [
                   SizedBox(
                     height: 200, width: 200,
-                    child: model.imageFile != null
-                        ? Image.file(model.imageFile, fit: BoxFit.cover,)
+                    child: ref.read(ItemListAddProvider).imageFile != null
+                        ? Image.file(ref.read(ItemListAddProvider).imageFile, fit: BoxFit.cover,)
                         : Container(color: Colors.grey,),
                   ),
                   IconButton(icon: Icon(Icons.add_circle,
@@ -75,7 +72,7 @@ class ListAddPage extends StatelessWidget {
               ),
               onChanged: (text){
                 //入力されたテキストを代入
-                model.title = text;
+                ref.read(ItemListAddProvider).title = text;
               },
             ),
             const SizedBox(height: 8),
@@ -99,7 +96,7 @@ class ListAddPage extends StatelessWidget {
               ),
               onChanged: (text){
                 //入力されたテキストを代入
-                model.describe = text;
+                ref.read(ItemListAddProvider).describe = text;
               },
             ),
             const SizedBox(height: 30),
@@ -114,7 +111,7 @@ class ListAddPage extends StatelessWidget {
                 onPressed: () async {
                   try {
                     //Firestoreにdoc追加
-                    await model.addItem(docId);
+                    await ref.read(ItemListAddProvider).addItem(docId);
                     //前画面に戻る
                     Navigator.of(context).pop(true);
                   } catch (e) {
@@ -144,9 +141,6 @@ class ListAddPage extends StatelessWidget {
           ],
         ),
       ),
-    );
-    }
-    ),
     );
   }
 }

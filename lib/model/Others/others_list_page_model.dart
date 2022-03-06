@@ -2,7 +2,14 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfirstapp/Items.dart';
+
+final OthersListPageProvider = ChangeNotifierProvider<OthersListPageModel>(
+      (ref) {
+    return OthersListPageModel();
+  },
+);
 
 class OthersListPageModel with ChangeNotifier {
 
@@ -13,7 +20,7 @@ class OthersListPageModel with ChangeNotifier {
     this.docId,
   });
 
-  List<Items> items;
+  List<Items> othersListItems;
 
   Future fetchData () async {
 
@@ -34,10 +41,7 @@ class OthersListPageModel with ChangeNotifier {
       return Items(title, describe, imgURL, docId, uid);
     }).toList();
 
-    this.items = items;
+    this.othersListItems = items;
     notifyListeners();
   }
-
-
-
 }

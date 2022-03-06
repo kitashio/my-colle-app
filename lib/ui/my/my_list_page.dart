@@ -1,49 +1,31 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfirstapp/model/my/my_list_page_model.dart';
-import 'package:provider/provider.dart';
 import '../../Items.dart';
 import 'my_list_add.dart';
 import 'my_list_detail.dart';
 
-class ListPage extends StatelessWidget {
+class ListPage extends ConsumerWidget {
 
-  final String collectionTitle;
-  final String collectionDiscribe;
-  final String docId;
-  final String uid;
-
-  const ListPage({
-    Key key,
-    this.collectionTitle,
-    this.collectionDiscribe,
-    this.docId,
-    this.uid,
-  }) : super(key: key);
+  final Items collectionitem;
+  ListPage(this.collectionitem);
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (BuildContext context) => ListPageModel(docId: docId)..fetchData(),
-    child: Scaffold(
+  Widget build(BuildContext context,WidgetRef ref) {
+    return Scaffold(
           appBar: AppBar(
-            title: Consumer<ListPageModel>(builder: (context, model, child)  {
-                model.countDocuments();
-                return Text(collectionTitle+' (${model.docC})',
+            title: Text(collectionitem.title + ' (${ref.read(ItemListPageProvider).doclength})',
                 style: TextStyle(
                   fontSize: 18,
                 ),
-                );
-              }
-            ),
+                ),
             backgroundColor:Color.fromRGBO(150, 186, 255, 100),
             actions: [
-              Consumer<ListPageModel>(builder: (context, model, child)  {
-                return Padding(
+              Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
                   child: IconButton(icon: Icon(Icons.add, size: 35,),
                       onPressed: () async {
-                        final _docId = docId;
+                        final _docId = ref.read(ItemListPageProvider).docId;
                         final bool added = await Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => ListAddPage(docId: _docId,)),
@@ -55,76 +37,62 @@ class ListPage extends StatelessWidget {
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
-                        await model.fetchData();
+                        await ref.read(ItemListPageProvider).fetchData();
                       }
                   ),
-                );
-              }
-              )
+                ),
             ],
           ),
-          body: Consumer<ListPageModel>(builder: (context, model, child)  {
-            final List<Items> items = model.items;
+          body: Consumer(builder: (context, ref, child)  {
+            final List<Items> listitems = ref.read(ItemListPageProvider).listitems;
 
-            if (items == null) {
+            if (listitems == null) {
               return const CircularProgressIndicator();
             }
 
-            final List<Widget> widgets = items
-                .map((items) =>
-                Container(
-                  padding: const EdgeInsets.fromLTRB(5,15,5,0),
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
-                          child: items.imgURL != null
-                              ? Image.network(items.imgURL,
-                            height: 170,
-                            width: 170,
-                            fit: BoxFit.cover,
-                          )
-                              : null,
-                        ),
-                        onTap: () async {
-                          final String _imgURL = items.imgURL;
-                          final String _title = items.title;
-                          final String _describe = items.describe;
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => ListDetailPage(imgURL: _imgURL,title: _title,discribe: _describe,)),
-                          );
-                        },
+            final List<Widget> widgets = listitems
+                .map((listitems) =>
+                Column(
+                  children: [
+                    GestureDetector(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(5),
+                        child: listitems.imgURL != null
+                            ? Image.network(listitems.imgURL,
+                          height: 180,
+                          width: 180,
+                          fit: BoxFit.cover,
+                        )
+                            : null,
                       ),
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        child: Text(items.title??'title',),//●タイトルが長過ぎた時の改行せずに・・・にする
-                      ),
-                    ],
-                  ),
+                      onTap: () async {
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ListDetailPage(listitem: listitems,)),
+                        );
+                      },
+                    ),
+                    Text(listitems.title??'title',),
+                  ],
                 ),
             ).toList();
             return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: Column(
-                  children: [
-                    Text('uid:  '+ uid),
-                    Text(collectionDiscribe,),
-                    GridView.count(
-                        crossAxisCount: 2,
-                        childAspectRatio: 0.82, // 高さ
-                        shrinkWrap: true,
-                        children: widgets
-                    ),
-                  ],
-                ),
+              child: Column(
+                children: [
+                  Text('uid:  '+ ref.read(ItemListPageProvider).docId),
+                  Text(collectionitem.describe,),
+                  GridView.count(
+                      padding: EdgeInsets.all(8),
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.88, // 高さ
+                      shrinkWrap: true,
+                      children: widgets
+                  ),
+                ],
               ),
             );
             }
           ),
-        ),
     );
   }
 }

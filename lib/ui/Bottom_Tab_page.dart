@@ -9,13 +9,11 @@ class BottomTabPage extends StatefulWidget {
   BottomTabPage(this.user);
 
   @override
-  _BottomTabPageState createState() => _BottomTabPageState(this.user);
+  _BottomTabPageState createState() => _BottomTabPageState();
 
 }
 
 class _BottomTabPageState extends State<BottomTabPage>{
-  User user;
-  _BottomTabPageState(this.user);
 
   int _currentIndex = 0;
   void _onItemTapped (int index) => setState(() => _currentIndex = index );
@@ -24,9 +22,9 @@ class _BottomTabPageState extends State<BottomTabPage>{
   Widget build(BuildContext context) {
 
     final _pageWidgets = [
-      CollectionPage(user),
+      CollectionPage(widget.user),
       OthersCollectionPage(),
-      MyPage(user),
+      MyPage(widget.user),
     ];
 
     return Scaffold(
@@ -42,7 +40,7 @@ class _BottomTabPageState extends State<BottomTabPage>{
                 icon: Icon(Icons.account_circle_outlined), label: 'Mypage',),
             ],
             currentIndex: _currentIndex,
-            fixedColor: Colors.indigo,
+            fixedColor: Colors.brown,
             onTap: _onItemTapped,
             type: BottomNavigationBarType.fixed,
           ),

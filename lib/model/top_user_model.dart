@@ -1,9 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:myfirstapp/ui/Bottom_Tab_page.dart';
 
-class TopUserModel extends ChangeNotifier {
+final UserSigininProvider = ChangeNotifierProvider<UserSigninController>(
+      (ref) {
+    return UserSigninController();
+  },
+);
+
+class UserSigninController extends ChangeNotifier {
 
   static final googleLogin = GoogleSignIn(scopes: [
     'email',
@@ -11,7 +18,6 @@ class TopUserModel extends ChangeNotifier {
   ]);
 
   void googleSignin (context) async {
-
     GoogleSignInAccount signinAccount = await googleLogin.signIn();
     if (signinAccount == null) return;
 
@@ -29,8 +35,13 @@ class TopUserModel extends ChangeNotifier {
         context,
         MaterialPageRoute(builder: (context) => BottomTabPage(user)),
       );
+    } else {
+      final snackBar = SnackBar(
+        backgroundColor: Colors.red,
+        content: Text('ログインできませんでした'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      notifyListeners();
     }
-
   }
-
 }

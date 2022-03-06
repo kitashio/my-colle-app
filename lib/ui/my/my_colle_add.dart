@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../model/my/my_colle_add_model.dart';
 
 //　【My】2.コレクション追加画面
@@ -11,8 +11,6 @@ class ColleAddPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (BuildContext context) => CollectionAddModel(),
     child: Scaffold(
       appBar: AppBar(
         title: Text('New Collection',
@@ -20,7 +18,7 @@ class ColleAddPage extends StatelessWidget {
         ),
         backgroundColor:Color.fromRGBO(150, 186, 255, 100),
       ),
-      body: Consumer<CollectionAddModel>(builder: (context, model,child) {
+      body: Consumer(builder: (context, ref,child) {
           return Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
@@ -29,7 +27,7 @@ class ColleAddPage extends StatelessWidget {
                 GestureDetector(
                   onTap: () async {
                     //画像選択処理
-                    await model.pickImage();
+                    await ref.read(CollectionAddPageProvider).pickImage();
 
                   },
                   child: Stack(
@@ -38,8 +36,8 @@ class ColleAddPage extends StatelessWidget {
                       SizedBox(
                         height: 200,
                         width: 200,
-                        child: model.imageFile != null
-                        ? Image.file(model.imageFile, fit: BoxFit.cover,)
+                        child: ref.read(CollectionAddPageProvider).imageFile != null
+                        ? Image.file(ref.read(CollectionAddPageProvider).imageFile, fit: BoxFit.cover,)
                        : Container(color: Colors.grey,),
                       ),
                       IconButton(icon: Icon(Icons.add_circle,
@@ -63,7 +61,7 @@ class ColleAddPage extends StatelessWidget {
                       )
                   ),
                   onChanged: (text){
-                    model.title = text;
+                    ref.read(CollectionAddPageProvider).title = text;
                   },
                 ),
                 const SizedBox(height: 25),
@@ -81,7 +79,7 @@ class ColleAddPage extends StatelessWidget {
                       )
                   ),
                   onChanged: (text){
-                    model.describe = text;
+                    ref.read(CollectionAddPageProvider).describe = text;
                   },
                 ),
                 const SizedBox(height: 30),
@@ -95,7 +93,7 @@ class ColleAddPage extends StatelessWidget {
                     onPressed: () async {
                       try {
                         //コレクションデータをFiretoreへ保存
-                        await model.addItem(user);
+                        await ref.read(CollectionAddPageProvider).addItem(user);
                         //前画面（コレクションページ）へ戻る
                         Navigator.of(context).pop(true);
                       } catch (e) {
@@ -117,7 +115,6 @@ class ColleAddPage extends StatelessWidget {
           );
         }
       ),
-    ),
     );
   }
 }

@@ -2,7 +2,14 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../Items.dart';
+
+final ItemListPageProvider = ChangeNotifierProvider<ListPageModel>(
+      (ref) {
+    return ListPageModel();
+  },
+);
 
 class ListPageModel with ChangeNotifier {
 
@@ -13,7 +20,7 @@ class ListPageModel with ChangeNotifier {
     this.docId,
   });
 
-  List<Items> items;
+  List<Items> listitems;
 
   Future fetchData () async {
 
@@ -34,11 +41,11 @@ class ListPageModel with ChangeNotifier {
       return Items(title, describe, imgURL, docId, uid);
     }).toList();
 
-    this.items = items;
+    this.listitems = items;
     notifyListeners();
   }
 
-  int docC = 0;
+  int doclength = 0;
 
   Future countDocuments() async {
     QuerySnapshot _myDoc = await FirebaseFirestore.instance
@@ -47,8 +54,8 @@ class ListPageModel with ChangeNotifier {
         .collection('items')
         .get();
     List<DocumentSnapshot> _myDocCount = _myDoc.docs;
-    docC = _myDocCount.length;
-    return docC;
+    doclength = _myDocCount.length;
+    return doclength;
   }
 
 

@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfirstapp/model/Others/others_colle_page_model.dart';
 import 'package:myfirstapp/ui/others/others_list_page.dart';
 import '../../Items.dart';
-import 'package:provider/provider.dart';
 
-//　【My】1.コレクション一覧画面
-class OthersCollectionPage extends StatelessWidget {
+//　【Others】1.Othersコレクション一覧画面
+class OthersCollectionPage extends ConsumerWidget {
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => OthersCollectionPageModel()..fetchData(),
-      child: Scaffold(
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor:Color.fromRGBO(150, 186, 255, 100),
@@ -22,34 +20,29 @@ class OthersCollectionPage extends StatelessWidget {
           ),
           //　□　コレクション追加画面へ遷移
           actions: [
-            Consumer<OthersCollectionPageModel>(builder: (context, model, child)  {
-              return Padding(
+            Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
                 child: IconButton(icon: Icon(Icons.search, size: 30),
                   onPressed: (){},
                 ),
-              );
-            }
-            )
+              ),
           ],
         ),
-        body: Consumer<OthersCollectionPageModel>(builder: (context, model, child)  {
-          final List<Items> items = model.items;
+        body: Consumer(builder: (context, ref, child)  {
+          final List<Items> othersItems = ref.read(OthersCollectionPageProvider).othersitems;
 
-          if (items == null) {
+          if (othersItems == null) {
             return const CircularProgressIndicator();
           }
 
-          final List<Widget> widgets = items
-              .map((items) =>
+          final List<Widget> widgets = othersItems
+              .map((othersItems) =>
               GestureDetector(
                 onTap: () async {
-                  final String _docId = items.docId;
-                  final String _title = items.title;
-                  final String _describe = items.describe;
+
                   await Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => OthersListPage(collectionTitle: _title,collectionDiscribe: _describe,docId: _docId)),
+                    MaterialPageRoute(builder: (context) => OthersListPage(othersItems)),
                   );
                 },
                 child: Column(
@@ -59,14 +52,14 @@ class OthersCollectionPage extends StatelessWidget {
                       children:[
                         ClipRRect(
                           borderRadius: BorderRadius.circular(5),
-                          child: items.imgURL != null
-                              ? Image.network(items.imgURL,
-                            height: 170,
-                            width: 170,
+                          child: othersItems.imgURL != null
+                              ? Image.network(othersItems.imgURL,
+                            height: 180,
+                            width: 180,
                             fit: BoxFit.cover,)
                               : null,
                         ),
-                        Text(items.title??'title',
+                        Text(othersItems.title??'title',
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             color: Colors.white,
@@ -75,44 +68,54 @@ class OthersCollectionPage extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Positioned(
-                          left: 100.0,
-                          top: 100.0,
-                          width: 100.0,
-                          height: 100.0,
-                          child: IconButton(
-                            padding: EdgeInsets.all(0),
-                            onPressed: () {
-
-                            },
-                            icon: Icon(Icons.favorite_border,
-                              size: 25,
-                            color: Colors.white,),),
-                        ),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('user'),
-                      ],
-                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 3, 0, 0),
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 23,
+                            width: 23,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image: AssetImage('assets/image/IMG_6426.JPG'),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 25.0,
+                            width: 25.0,
+                            child: IconButton(
+                                onPressed: () {
+                                },
+                                padding: EdgeInsets.fromLTRB(5,0,0,0),
+                                icon: Icon(Icons.favorite_border,
+                                  size: 25,
+                                  color: Colors.brown,),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
           ).toList();
           return SingleChildScrollView(
-            padding: const EdgeInsets.all(8),
+            // padding: const EdgeInsets.all(1),
             child: GridView.count(
+                padding: EdgeInsets.all(8),
                 crossAxisCount: 2,
-                mainAxisSpacing: 10,
                 shrinkWrap: true,
+                childAspectRatio: 0.87,
                 children: widgets
             ),
           );
          }
         ),
-      ),
     );
   }
 }

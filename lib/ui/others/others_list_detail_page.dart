@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:myfirstapp/Items.dart';
 import 'package:myfirstapp/model/Others/others_list_detail_model.dart';
 import 'package:myfirstapp/model/my/my_list_detail_model.dart';
-import 'package:provider/provider.dart';
 
-class OthersListDetailPage extends StatelessWidget {
-  final String imgURL;
-  final String title;
-  final String discribe;
+class OthersListDetailPage extends ConsumerWidget {
 
-  const OthersListDetailPage({
-    Key key,
-    this.imgURL,
-    this.title,
-    this.discribe,
-  }) : super(key: key);
+  final Items othersListItem;
+
+  const OthersListDetailPage(this.othersListItem);
 
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => OthersListDetailPageModel(),
-      child: Scaffold(
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(150, 186, 255, 100),
           title: Text('1/20',
@@ -30,7 +23,7 @@ class OthersListDetailPage extends StatelessWidget {
           ),
 
         ),
-        body: Consumer<OthersListDetailPageModel>(builder: (context, model, child)  {
+        body: Consumer(builder: (context, ref, child)  {
           return Container(
             // 余白を付ける
             padding: EdgeInsets.all(30),
@@ -39,16 +32,13 @@ class OthersListDetailPage extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(5),
-                    child:imgURL  != null
-                        ? Image.network(imgURL,
-                      height: 250,
-                      width: 250,
-                      fit: BoxFit.cover,
+                    child:othersListItem.imgURL  != null
+                        ? Image.network(othersListItem.imgURL,
                     )
                         : null,
                   ),
                   const SizedBox(height: 20),
-                  Text(title,
+                  Text(othersListItem.title,
                     style: TextStyle(
                       fontSize: 20,
                     ),
@@ -59,7 +49,7 @@ class OthersListDetailPage extends StatelessWidget {
                     color: Colors.grey,
                   ),
                   const SizedBox(height: 20),
-                  Text(discribe,
+                  Text(othersListItem.describe,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16,
@@ -72,7 +62,6 @@ class OthersListDetailPage extends StatelessWidget {
           );
         }
         ),
-      ),
 
     );
   }

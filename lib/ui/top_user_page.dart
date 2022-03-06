@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myfirstapp/model/top_user_model.dart';
-import 'package:provider/provider.dart';
 
 class TopUserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (BuildContext context) => TopUserModel(),
-    child: Scaffold(
+
+    return Scaffold(
       body: Container(
             alignment: Alignment.center,
-            padding: const EdgeInsets.fromLTRB(30,300,30,0),
+            padding: const EdgeInsets.fromLTRB(30,220,30,0),
             child: Column(
               children: [
+                Image.asset('assets/image/mycolleapp_icon.transparent.png',
+                height: 200,),
+                const SizedBox(height: 30),
                 RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
@@ -28,7 +30,7 @@ class TopUserPage extends StatelessWidget {
                         text: 'Welcome  To  ',
                       ),
                       TextSpan(
-                        text: 'My COLLE',
+                        text: 'My Collection',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Color.fromRGBO(61, 86, 178, 100),
@@ -37,52 +39,21 @@ class TopUserPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 250),
-                // ElevatedButton(
-                //   child: Text('スタート',
-                //     style: GoogleFonts.raleway(
-                //       color: Colors.white,
-                //       fontSize: 16,
-                //       fontWeight: FontWeight.bold,
-                //       letterSpacing: 1,
-                //     ),
-                //   ),
-                //   style: ElevatedButton.styleFrom(
-                //     primary: Color.fromRGBO(97, 102, 179, 100),
-                //     shape: const StadiumBorder(),
-                //     padding: EdgeInsets.fromLTRB(80, 10, 80, 10),
-                //   ),
-                //   onPressed: () {
-                //
-                //     Navigator.push(
-                //       context,
-                //       MaterialPageRoute(builder: (context) => BottomTabPage()),
-                //     );
-                //   },
-                // ),
-                Consumer<TopUserModel>(builder: (context, model, child)  {
-                    return SignInButton(
-                      Buttons.Google,
-                      text: 'Sign up with Google',
-                      onPressed: () async {
-                        try {
-                          model.googleSignin(context);
-                        } catch (e) {
-                          print(e.toString());
-                          final snackBar = SnackBar(
-                            backgroundColor: Colors.red,
-                            content: Text(e.toString()),
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        }
-                      },
-                    );
-                  }
+                const SizedBox(height: 150),
+                Consumer(
+                    builder: (context, ref, child) {
+                      return SignInButton(
+                          Buttons.Google,
+                          text: 'Sign up with Google',
+                          onPressed: () {
+                            ref.read(UserSigininProvider).googleSignin(context);
+                          }
+                      );
+                    }
                 ),
               ],
             ),
           ),
-      ),
-    );
+      );
   }
 }

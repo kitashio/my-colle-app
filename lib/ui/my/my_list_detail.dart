@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:myfirstapp/Items.dart';
 import 'package:myfirstapp/model/my/my_list_detail_model.dart';
-import 'package:provider/provider.dart';
 import 'my_list_update.dart';
 
-class ListDetailPage extends StatelessWidget {
-  final String imgURL;
-  final String title;
-  final String discribe;
+class ListDetailPage extends ConsumerWidget {
+
+  final Items listitem;
 
   const ListDetailPage({
     Key key,
-    this.imgURL,
-    this.title,
-    this.discribe,
+    this.listitem
   }) : super(key: key);
 
     @override
-    Widget build(BuildContext context) {
-      return ChangeNotifierProvider(
-        create: (BuildContext context) => ListDetailPageModel(),
-        child: Scaffold(
+    Widget build(BuildContext context, WidgetRef ref) {
+      return Scaffold(
           appBar: AppBar(
             backgroundColor: Color.fromRGBO(150, 186, 255, 100),
             title: Text('1/20',
@@ -29,8 +25,7 @@ class ListDetailPage extends StatelessWidget {
             ),
             actions: [
               //右上のポップアップメニュー
-              Consumer<ListDetailPageModel>(builder: (context, model, child)  {
-                  return PopupMenuButton<int>(
+              PopupMenuButton<int>(
                       icon: Icon(Icons.more_horiz),
                       itemBuilder: (context) =>
                       [
@@ -52,15 +47,12 @@ class ListDetailPage extends StatelessWidget {
                           );
                         }
                         else if (choice == 1) {
-                          model.showAlertDialog(context);
+                          ref.read(ItemListDetailPageProvider).showAlertDialog(context);
                         }
-                      });
-                }
-              ),
+                      }),
             ],
           ),
-          body: Consumer<ListDetailPageModel>(builder: (context, model, child)  {
-              return Container(
+          body: Container(
                 // 余白を付ける
                 padding: EdgeInsets.all(30),
                 child: Center(
@@ -68,12 +60,12 @@ class ListDetailPage extends StatelessWidget {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(5),
-                        child:imgURL  != null
-                            ? Image.network(imgURL)
+                        child:listitem.imgURL  != null
+                            ? Image.network(listitem.imgURL)
                             : null,
                       ),
                       const SizedBox(height: 20),
-                      Text(title,
+                      Text(listitem.title,
                         style: TextStyle(
                           fontSize: 20,
                         ),
@@ -84,7 +76,7 @@ class ListDetailPage extends StatelessWidget {
                         color: Colors.grey,
                       ),
                       const SizedBox(height: 20),
-                      Text(discribe,
+                      Text(listitem.describe,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
@@ -93,10 +85,7 @@ class ListDetailPage extends StatelessWidget {
                     ],
                   ),
                 ),
-              );
-            }
-          ),
-        ),
+              ),
       );
     }
   }

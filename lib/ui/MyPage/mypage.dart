@@ -1,18 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfirstapp/model/Mypage/Mypage_model.dart';
-import 'package:provider/provider.dart';
 
-class MyPage extends StatelessWidget {
+class MyPage extends ConsumerWidget {
 
   User user;
   MyPage(this.user);
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => MypageModel(),
-      child:  Scaffold(
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor:Color.fromRGBO(150, 186, 255, 100),
@@ -22,10 +20,10 @@ class MyPage extends StatelessWidget {
             ),
           ),
           actions: [
-            Consumer<MypageModel>(builder: (context, model, child)  {
+            Consumer(builder: (context, ref, child)  {
                 return IconButton(
                     onPressed: () async {
-                          model.googleSignout();
+                      ref.read(MyPageProvider).googleSignout();
                           await Navigator.pop(context);
 
                     },
@@ -34,7 +32,7 @@ class MyPage extends StatelessWidget {
             ),
           ],
         ),
-        body: Consumer<MypageModel>(builder: (context, model, child)  {
+        body: Consumer(builder: (context, ref, child)  {
             return Container(
               height: 330,
               alignment: Alignment.center,
@@ -56,7 +54,9 @@ class MyPage extends StatelessWidget {
                   SizedBox(height: 20),
                   Text(user.displayName,
                     style: TextStyle(
+                      color: Colors.white,
                       fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(height: 20),
@@ -67,7 +67,6 @@ class MyPage extends StatelessWidget {
             );
           }
         ),
-      ),
     );
   }
 }

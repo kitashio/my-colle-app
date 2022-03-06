@@ -1,78 +1,69 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfirstapp/model/Others/others_list_page_model.dart';
 import 'package:myfirstapp/ui/others/others_list_detail_page.dart';
-import 'package:provider/provider.dart';
 import '../../Items.dart';
 
-class OthersListPage extends StatelessWidget {
+class OthersListPage extends ConsumerWidget {
 
-  final String collectionTitle;
-  final String collectionDiscribe;
-  final String docId;
+  final Items othersCollectionItem;
 
-  const OthersListPage({
-    Key key,
-    this.collectionTitle,
-    this.collectionDiscribe,
-    this.docId,
-  }) : super(key: key);
+  const OthersListPage(
+    this.othersCollectionItem) ;
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => OthersListPageModel(docId: docId)..fetchData(),
-      child: Scaffold(
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Scaffold(
         appBar: AppBar(
-          title: Consumer<OthersListPageModel>(builder: (context, model, child)  {
-            return Text(collectionTitle+' (2)',
+          title: Text(othersCollectionItem.title + ' (2)',
               style: TextStyle(
                 fontSize: 18,
               ),
-            );
-          }
-          ),
+            ),
           backgroundColor:Color.fromRGBO(150, 186, 255, 100),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+              child: IconButton(
+                  onPressed: (){},
+                  icon: Icon(Icons.favorite_border,size: 25,),),
+            ),
+          ],
         ),
-        body: Consumer<OthersListPageModel>(builder: (context, model, child)  {
-          final List<Items> items = model.items;
+        body: Consumer(builder: (context, ref, child)  {
+          final List<Items> othersListItems = ref.read(OthersListPageProvider).othersListItems;
 
-          if (items == null) {
+          if (othersListItems == null) {
             return const CircularProgressIndicator();
           }
 
-          final List<Widget> widgets = items
-              .map((items) =>
-              Container(
-                padding: const EdgeInsets.fromLTRB(5,15,5,0),
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(5),
-                        child: items.imgURL != null
-                            ? Image.network(items.imgURL,
-                          height: 170,
-                          width: 170,
-                          fit: BoxFit.cover,
-                        )
-                            : null,
-                      ),
-                      onTap: () async {
-                        final String _imgURL = items.imgURL;
-                        final String _title = items.title;
-                        final String _describe = items.describe;
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => OthersListDetailPage(imgURL: _imgURL,title: _title,discribe: _describe,)),
-                        );
-                      },
+          final List<Widget> widgets = othersListItems
+              .map((othersListItems) =>
+              Column(
+                children: [
+                  GestureDetector(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: othersListItems.imgURL != null
+                          ? Image.network(othersListItems.imgURL,
+                        height: 180,
+                        width: 180,
+                        fit: BoxFit.cover,
+                      )
+                          : null,
                     ),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      child: Text(items.title??'title',),//●タイトルが長過ぎた時の改行せずに・・・にする
-                    ),
-                  ],
-                ),
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => OthersListDetailPage(othersListItems)),
+                      );
+                    },
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: Text(othersListItems.title??'title',),//●タイトルが長過ぎた時の改行せずに・・・にする
+                  ),
+                ],
               ),
           ).toList();
           return SingleChildScrollView(
@@ -80,7 +71,7 @@ class OthersListPage extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               child: Column(
                 children: [
-                  Text(collectionDiscribe,),
+                  Text(othersCollectionItem.describe,),
                   GridView.count(
                       crossAxisCount: 2,
                       childAspectRatio: 0.82, // 高さ
@@ -93,7 +84,6 @@ class OthersListPage extends StatelessWidget {
           );
         }
         ),
-      ),
     );
   }
 }
