@@ -7,15 +7,16 @@ import 'my_list_add.dart';
 import 'my_list_detail.dart';
 
 class ListPage extends ConsumerWidget {
-
-  final Items collectionitem;
   ListPage(this.collectionitem);
+  final Items collectionitem;
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
+    final String collectionDocId = collectionitem.docId;
+
     return Scaffold(
           appBar: AppBar(
-            title: Text(collectionitem.title + ' (${ref.read(ItemListPageProvider).doclength})',
+            title: Text(collectionitem.title + ' (${ref.read(ItemListPageProvider).listDocLength})',
                 style: TextStyle(
                   fontSize: 18,
                 ),
@@ -25,11 +26,10 @@ class ListPage extends ConsumerWidget {
               Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
                   child: IconButton(icon: Icon(Icons.add, size: 35,),
-                      onPressed: () async {
-                        final _docId = ref.read(ItemListPageProvider).docId;
+                  onPressed: () async {
                         final bool added = await Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ListAddPage(docId: _docId,)),
+                          MaterialPageRoute(builder: (context) => ListAddPage(collectionDocId)),
                         );
                         if (added != null && added) {
                           final snackBar = SnackBar(
@@ -38,15 +38,15 @@ class ListPage extends ConsumerWidget {
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
-                        await ref.read(ItemListPageProvider).fetchData(collectionitem.docId);
+                        await ref.read(ItemListPageProvider).fetchData(collectionDocId);
                       }
                   ),
                 ),
             ],
           ),
-          body: Consumer(builder: (context, ref, child)  {
-
-            ref.read(ItemListPageProvider).fetchData(collectionitem.docId);
+          body: FutureBuilder(
+              future: ref.read(ItemListPageProvider).fetchData(collectionDocId),
+              builder: (BuildContext context, snapshot,) {
 
             final List<Items> listitems = ref.read(ItemListPageProvider).listitems;
 
@@ -83,7 +83,7 @@ class ListPage extends ConsumerWidget {
             return SingleChildScrollView(
               child: Column(
                 children: [
-                  Text('uid:  '+ ref.read(ItemListPageProvider).docId),
+                  Text('uid:  '+ collectionitem.uid),
                   Text(collectionitem.describe,),
                   GridView.count(
                       padding: EdgeInsets.all(8),

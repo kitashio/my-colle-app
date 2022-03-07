@@ -30,7 +30,10 @@ class OthersListPage extends ConsumerWidget {
             ),
           ],
         ),
-        body: Consumer(builder: (context, ref, child)  {
+        body: FutureBuilder(
+            future: ref.read(OthersListPageProvider).fetchData(),
+            builder: (BuildContext context, snapshot,) {
+
           final List<Items> othersListItems = ref.read(OthersListPageProvider).othersListItems;
 
           if (othersListItems == null) {

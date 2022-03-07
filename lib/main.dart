@@ -20,9 +20,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'MyCollection',
-      theme: ThemeData(
-        primaryColor: Color(0xFF96baff),
-      ),
       home: TopUserPage(),
     );
   }

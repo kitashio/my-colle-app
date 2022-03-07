@@ -5,14 +5,9 @@ import 'package:myfirstapp/model/setting_model.dart';
 
 class ListAddPage extends ConsumerWidget {
 
-  final String docId;
-
+  final String collectionDocId;
   //コンストラクタでdocId受け取る
-  const ListAddPage({
-    Key key,
-    this.docId,
-  }) : super(key: key);
-
+  const ListAddPage(this.collectionDocId);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -112,7 +107,7 @@ class ListAddPage extends ConsumerWidget {
                 onPressed: () async {
                   try {
                     //Firestoreにdoc追加
-                    await ref.read(ItemListAddProvider).addItem(docId);
+                    await ref.read(ItemListAddProvider).addItem(collectionDocId);
                     //前画面に戻る
                     Navigator.of(context).pop(true);
                   } catch (e) {

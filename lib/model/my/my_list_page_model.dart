@@ -13,21 +13,14 @@ final ItemListPageProvider = ChangeNotifierProvider<ListPageModel>(
 
 class ListPageModel with ChangeNotifier {
 
-  final String docId;
-
-  ListPageModel({
-    Key key,
-    this.docId,
-  });
-
   List<Items> listitems;
 
-  Future fetchData (String docId) async {
+  Future fetchData (String collectionDocId) async {
 
     //コレクションを取得
     final QuerySnapshot snapshot =  await FirebaseFirestore.instance
         .collection('collection')
-        .doc(docId)
+        .doc(collectionDocId)
         .collection('items')
         .get();
 
@@ -45,18 +38,18 @@ class ListPageModel with ChangeNotifier {
     notifyListeners();
   }
 
-  int doclength = 0;
-
-  Future countDocuments() async {
+  int listDocLength = 0;
+  Future<int> listDocLengthCounter (String docId) async {
     QuerySnapshot _myDoc = await FirebaseFirestore.instance
         .collection('collection')
         .doc(docId)
         .collection('items')
         .get();
     List<DocumentSnapshot> _myDocCount = _myDoc.docs;
-    doclength = _myDocCount.length;
-    return doclength;
+    listDocLength = _myDocCount.length;
+    return listDocLength;
   }
+
 
 
 }

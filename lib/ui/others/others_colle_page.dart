@@ -33,7 +33,6 @@ class OthersCollectionPage extends ConsumerWidget {
             future: ref.read(OthersCollectionPageProvider).fetchData(),
             builder: (BuildContext context, snapshot,) {
 
-
           final List<Items> othersItems = ref.read(OthersCollectionPageProvider).othersitems;
 
           if (othersItems == null) {
