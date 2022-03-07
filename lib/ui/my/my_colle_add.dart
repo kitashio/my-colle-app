@@ -1,25 +1,24 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:myfirstapp/model/setting_model.dart';
 import '../../model/my/my_colle_add_model.dart';
 
-//　【My】2.コレクション追加画面
-class ColleAddPage extends StatelessWidget {
+class ColleAddPage extends ConsumerWidget {
   //collectionページからユーザ情報を受け取る
   User user;
   ColleAddPage(this.user);
 
   @override
-  Widget build(BuildContext context) {
-    child: Scaffold(
+  Widget build(BuildContext context,WidgetRef ref) {
+    return Scaffold(
       appBar: AppBar(
-        title: Text('New Collection',
+        title: Text('NewCollection',
         style: TextStyle(fontSize: 18,),
         ),
-        backgroundColor:Color.fromRGBO(150, 186, 255, 100),
+        backgroundColor: ref.read(colorSetProvider),
       ),
-      body: Consumer(builder: (context, ref,child) {
-          return Padding(
+      body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: <Widget>[
@@ -28,7 +27,6 @@ class ColleAddPage extends StatelessWidget {
                   onTap: () async {
                     //画像選択処理
                     await ref.read(CollectionAddPageProvider).pickImage();
-
                   },
                   child: Stack(
                     alignment: Alignment.center,
@@ -40,10 +38,9 @@ class ColleAddPage extends StatelessWidget {
                         ? Image.file(ref.read(CollectionAddPageProvider).imageFile, fit: BoxFit.cover,)
                        : Container(color: Colors.grey,),
                       ),
-                      IconButton(icon: Icon(Icons.add_circle,
-                          size: 35,
-                          color: Colors.white,
-                          )
+                      Icon(Icons.add_circle,
+                        size: 35,
+                        color: Colors.white,
                       ),
                     ],
                   ),
@@ -90,31 +87,15 @@ class ColleAddPage extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       primary: Color.fromRGBO(150, 186, 255, 100), //ボタンの背景色
                     ),
-                    onPressed: () async {
-                      try {
-                        //コレクションデータをFiretoreへ保存
-                        await ref.read(CollectionAddPageProvider).addItem(user);
-                        //前画面（コレクションページ）へ戻る
-                        Navigator.of(context).pop(true);
-                      } catch (e) {
-                        print(e.toString());
-                        //処理完了後スナックバー表示する
-                        final snackBar = SnackBar(
-                          backgroundColor: Colors.red,
-                          content: Text(e.toString()),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      }
+                    onPressed: () {
+                      ref.read(CollectionAddPageProvider).collectionAdd(context,user);
                     },
                     child: Text('登録'),
                   ),
                 ),
-
               ],
             ),
-          );
-        }
-      ),
+          ),
     );
   }
 }

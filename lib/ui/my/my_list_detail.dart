@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfirstapp/Items.dart';
 import 'package:myfirstapp/model/my/my_list_detail_model.dart';
+import 'package:myfirstapp/model/setting_model.dart';
 import 'my_list_update.dart';
 
 class ListDetailPage extends ConsumerWidget {
@@ -17,7 +18,7 @@ class ListDetailPage extends ConsumerWidget {
     Widget build(BuildContext context, WidgetRef ref) {
       return Scaffold(
           appBar: AppBar(
-            backgroundColor: Color.fromRGBO(150, 186, 255, 100),
+            backgroundColor: ref.read(colorSetProvider),
             title: Text('1/20',
               style: TextStyle(
                 fontSize: 16,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfirstapp/model/Others/others_colle_page_model.dart';
+import 'package:myfirstapp/model/setting_model.dart';
 import 'package:myfirstapp/ui/others/others_list_page.dart';
 import '../../Items.dart';
 
@@ -12,7 +13,7 @@ class OthersCollectionPage extends ConsumerWidget {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor:Color.fromRGBO(150, 186, 255, 100),
+          backgroundColor:ref.read(colorSetProvider),
           title: Text('My Collection',
             style: TextStyle(
               fontSize: 18,
@@ -28,7 +29,11 @@ class OthersCollectionPage extends ConsumerWidget {
               ),
           ],
         ),
-        body: Consumer(builder: (context, ref, child)  {
+        body: FutureBuilder(
+            future: ref.read(OthersCollectionPageProvider).fetchData(),
+            builder: (BuildContext context, snapshot,) {
+
+
           final List<Items> othersItems = ref.read(OthersCollectionPageProvider).othersitems;
 
           if (othersItems == null) {

@@ -16,7 +16,6 @@ class CollectionAddModel extends ChangeNotifier {
   String title;
   String describe;
   File imageFile;
-
   final picker = ImagePicker();
 
   Future addItem (User user) async {
@@ -43,7 +42,6 @@ class CollectionAddModel extends ChangeNotifier {
 
     //画像処理
     String imgURL;
-
     if (imageFile != null) {
     //  storageにアップロード
       final task = await FirebaseStorage.instance
@@ -69,6 +67,22 @@ class CollectionAddModel extends ChangeNotifier {
       print('NoImage');
     }
       notifyListeners();
+  }
+
+  void collectionAdd (context, User user) async {
+    try {
+      //コレクションデータをFiretoreへ保存
+      await addItem(user);
+      //前画面（コレクションページ）へ戻る
+      Navigator.of(context).pop(true);
+    } catch (e) {
+      //処理完了後スナックバー表示する
+      final snackBar = SnackBar(
+        backgroundColor: Colors.red,
+        content: Text(e.toString()),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
   }
 
 }

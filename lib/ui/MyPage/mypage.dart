@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfirstapp/model/Mypage/Mypage_model.dart';
+import 'package:myfirstapp/model/setting_model.dart';
 
 class MyPage extends ConsumerWidget {
 
@@ -13,7 +14,7 @@ class MyPage extends ConsumerWidget {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor:Color.fromRGBO(150, 186, 255, 100),
+          backgroundColor:ref.read(colorSetProvider),
           title: Text('MyPage',
             style: TextStyle(
               fontSize: 18,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfirstapp/model/my/my_list_page_model.dart';
+import 'package:myfirstapp/model/setting_model.dart';
 import '../../Items.dart';
 import 'my_list_add.dart';
 import 'my_list_detail.dart';
@@ -19,7 +20,7 @@ class ListPage extends ConsumerWidget {
                   fontSize: 18,
                 ),
                 ),
-            backgroundColor:Color.fromRGBO(150, 186, 255, 100),
+            backgroundColor: ref.read(colorSetProvider),
             actions: [
               Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
@@ -37,13 +38,16 @@ class ListPage extends ConsumerWidget {
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
-                        await ref.read(ItemListPageProvider).fetchData();
+                        await ref.read(ItemListPageProvider).fetchData(collectionitem.docId);
                       }
                   ),
                 ),
             ],
           ),
           body: Consumer(builder: (context, ref, child)  {
+
+            ref.read(ItemListPageProvider).fetchData(collectionitem.docId);
+
             final List<Items> listitems = ref.read(ItemListPageProvider).listitems;
 
             if (listitems == null) {

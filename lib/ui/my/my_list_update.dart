@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:myfirstapp/model/setting_model.dart';
 
-class ListUpdatePage extends StatefulWidget {
-
-  @override
-  _ListUpdatePageState createState() => _ListUpdatePageState();
-}
-
-class _ListUpdatePageState extends State<ListUpdatePage> {
+class ListUpdatePage extends ConsumerWidget {
 
   String midashi = '';
   String imi = '';
 
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Update',
@@ -21,7 +16,7 @@ class _ListUpdatePageState extends State<ListUpdatePage> {
           fontSize: 18,
         ),
         ),
-        backgroundColor:Color.fromRGBO(150, 186, 255, 100),
+        backgroundColor: ref.read(colorSetProvider),
       ),
       body: Container(
         // 余白を付ける
@@ -58,10 +53,8 @@ class _ListUpdatePageState extends State<ListUpdatePage> {
               ),
               onChanged: (String value){
                 // データが変更したことを知らせる（画面を更新する）
-                setState(() {
                   // データを変更
                   midashi = value;
-                });
               },
             ),
 
@@ -88,10 +81,8 @@ class _ListUpdatePageState extends State<ListUpdatePage> {
                 ),
                 onChanged: (String value){
                   // データが変更したことを知らせる（画面を更新する）
-                  setState(() {
                     // データを変更
                     imi = value;
-                  });
                 },
               ),
             ),

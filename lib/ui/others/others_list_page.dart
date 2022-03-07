@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfirstapp/model/Others/others_list_page_model.dart';
+import 'package:myfirstapp/model/setting_model.dart';
 import 'package:myfirstapp/ui/others/others_list_detail_page.dart';
 import '../../Items.dart';
 
 class OthersListPage extends ConsumerWidget {
 
   final Items othersCollectionItem;
-
   const OthersListPage(
     this.othersCollectionItem) ;
 
@@ -20,7 +20,7 @@ class OthersListPage extends ConsumerWidget {
                 fontSize: 18,
               ),
             ),
-          backgroundColor:Color.fromRGBO(150, 186, 255, 100),
+          backgroundColor:ref.read(colorSetProvider),
           actions: [
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),

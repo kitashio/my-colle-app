@@ -22,7 +22,7 @@ class ListPageModel with ChangeNotifier {
 
   List<Items> listitems;
 
-  Future fetchData () async {
+  Future fetchData (String docId) async {
 
     //コレクションを取得
     final QuerySnapshot snapshot =  await FirebaseFirestore.instance
