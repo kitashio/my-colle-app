@@ -13,17 +13,17 @@ final CollectionAddPageProvider = ChangeNotifierProvider<CollectionAddModel>(
 );
 
 class CollectionAddModel extends ChangeNotifier {
-  String title;
-  String describe;
+  String title  = '';
+  String describe = '';
   File imageFile;
   final picker = ImagePicker();
+
 
   Future addItem (User user) async {
     //入力されているかの確認
     if (imageFile == null) {
       throw '画像が選択されていません。';
     }
-
     if (title == null||title.isEmpty) {
       throw 'タイトルが入力されていません。';
     }
@@ -33,7 +33,7 @@ class CollectionAddModel extends ChangeNotifier {
 
     //ユーザ処理
     if (user == null) {
-      throw 'uidError';
+      throw 'ユーザが取得できませんでした。';
     }
     final uid = user.uid;
 
@@ -61,7 +61,7 @@ class CollectionAddModel extends ChangeNotifier {
 
   //画像選択処理
   Future pickImage() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery,imageQuality: 70);
       imageFile = File(pickedFile.path);
     if (imageFile == null) {
       print('NoImage');

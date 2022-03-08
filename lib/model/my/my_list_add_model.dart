@@ -38,7 +38,6 @@ class ListAddModel with ChangeNotifier {
         .doc();
 
     String imgURL;
-
     //もしFileがあれば
     if (imageFile != null) {
       //  storageにアップロード
@@ -59,7 +58,7 @@ class ListAddModel with ChangeNotifier {
   //画像選択処理
   Future pickImage() async {
     //ライブラリを開いて選択
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery,imageQuality: 70);
     //選択した画像ファイルを代入
     imageFile = File(pickedFile.path);
     notifyListeners();

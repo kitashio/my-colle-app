@@ -24,7 +24,6 @@ class ListAddPage extends ConsumerWidget {
         padding: EdgeInsets.all(25),
         child: Column(
           children: <Widget>[
-            //★
             //アイテムの画像設定
             GestureDetector(
               onTap: () async {
@@ -36,8 +35,8 @@ class ListAddPage extends ConsumerWidget {
                 children: [
                   SizedBox(
                     height: 200, width: 200,
-                    child: ref.read(ItemListAddProvider).imageFile != null
-                        ? Image.file(ref.read(ItemListAddProvider).imageFile, fit: BoxFit.cover,)
+                    child: ref.watch(ItemListAddProvider).imageFile != null
+                        ? Image.file(ref.watch(ItemListAddProvider).imageFile, fit: BoxFit.cover,)
                         : Container(color: Colors.grey,),
                   ),
                   IconButton(icon: Icon(Icons.add_circle,
@@ -48,23 +47,16 @@ class ListAddPage extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 8),
-            //★
-            //アイテムのタイトル設定
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(5),
-              child: Text('タイトル',
-              style: TextStyle(fontSize: 13,),
-              textAlign: TextAlign.start,),
-            ),
             //タイトルのテキスト入力フォーム
             TextField(
               decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.grey.shade200,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,),
+                  labelText: 'タイトル',
+                  filled: true,
+                  fillColor: Colors.grey.shade200,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  )
               ),
               onChanged: (text){
                 //入力されたテキストを代入
@@ -72,17 +64,12 @@ class ListAddPage extends ConsumerWidget {
               },
             ),
             const SizedBox(height: 8),
-            //★
             // アイテムの説明文設定
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(5),
-              child: Text('説明文',
-                style: TextStyle(fontSize: 13,),
-                textAlign: TextAlign.start,),
-            ),
             TextField(
+              maxLines: 6,
+              keyboardType: TextInputType.multiline,
               decoration: InputDecoration(
+                  labelText: '説明',
                   filled: true,
                   fillColor: Colors.grey.shade200,
                   border: OutlineInputBorder(
@@ -120,18 +107,6 @@ class ListAddPage extends ConsumerWidget {
                   }
                 },
                 child: Text('登録'),
-              ),
-            ),
-            const SizedBox(height: 8),
-            //★
-            //キャンセルボタン
-            TextButton(
-              onPressed: () {
-                // "pop"で前の画面に戻る
-                Navigator.of(context).pop();
-              },
-              child: Text('キャンセル',
-                style: TextStyle(color: Colors.black38),
               ),
             ),
           ],

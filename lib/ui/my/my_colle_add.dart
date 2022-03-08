@@ -34,8 +34,8 @@ class ColleAddPage extends ConsumerWidget {
                       SizedBox(
                         height: 200,
                         width: 200,
-                        child: ref.read(CollectionAddPageProvider).imageFile != null
-                        ? Image.file(ref.read(CollectionAddPageProvider).imageFile, fit: BoxFit.cover,)
+                        child: ref.watch(CollectionAddPageProvider).imageFile != null
+                        ? Image.file(ref.watch(CollectionAddPageProvider).imageFile, fit: BoxFit.cover,)
                        : Container(color: Colors.grey,),
                       ),
                       Icon(Icons.add_circle,

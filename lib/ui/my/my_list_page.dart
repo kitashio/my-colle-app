@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:myfirstapp/model/my/my_list_add_model.dart';
 import 'package:myfirstapp/model/my/my_list_page_model.dart';
 import 'package:myfirstapp/model/setting_model.dart';
 import '../../Items.dart';
@@ -14,9 +15,12 @@ class ListPage extends ConsumerWidget {
   Widget build(BuildContext context,WidgetRef ref) {
     final String collectionDocId = collectionitem.docId;
 
+    ref.watch(ItemListPageProvider).listDocLengthCounter(collectionDocId);
+    final int docCount = ref.read(ItemListPageProvider).listDocLength;
+
     return Scaffold(
           appBar: AppBar(
-            title: Text(collectionitem.title + ' (${ref.read(ItemListPageProvider).listDocLength})',
+            title: Text(collectionitem.title + ' ($docCount)',
                 style: TextStyle(
                   fontSize: 18,
                 ),
@@ -31,9 +35,10 @@ class ListPage extends ConsumerWidget {
                           context,
                           MaterialPageRoute(builder: (context) => ListAddPage(collectionDocId)),
                         );
+                        ref.watch(ItemListAddProvider).imageFile = null;
                         if (added != null && added) {
                           final snackBar = SnackBar(
-                            backgroundColor: Colors.blue,
+                            backgroundColor: ref.read(colorSetProvider),
                             content: Text('コレクションを追加しました'),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -45,7 +50,7 @@ class ListPage extends ConsumerWidget {
             ],
           ),
           body: FutureBuilder(
-              future: ref.read(ItemListPageProvider).fetchData(collectionDocId),
+              future: ref.watch(ItemListPageProvider).fetchData(collectionDocId),
               builder: (BuildContext context, snapshot,) {
 
             final List<Items> listitems = ref.read(ItemListPageProvider).listitems;
@@ -80,20 +85,18 @@ class ListPage extends ConsumerWidget {
                   ],
                 ),
             ).toList();
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  Text('uid:  '+ collectionitem.uid),
-                  Text(collectionitem.describe,),
-                  GridView.count(
-                      padding: EdgeInsets.all(8),
-                      crossAxisCount: 2,
-                      childAspectRatio: 0.88, // 高さ
-                      shrinkWrap: true,
-                      children: widgets
-                  ),
-                ],
-              ),
+            return Column(
+              children: [
+                Text('uid:  '+ collectionitem.uid),
+                Text(collectionitem.describe,),
+                GridView.count(
+                    padding: EdgeInsets.all(8),
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.88, // 高さ
+                    shrinkWrap: true,
+                    children: widgets
+                ),
+              ],
             );
             }
           ),

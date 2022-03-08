@@ -43,7 +43,6 @@ class OthersCollectionPage extends ConsumerWidget {
               .map((othersItems) =>
               GestureDetector(
                 onTap: () async {
-
                   await Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => OthersListPage(othersItems)),
@@ -108,15 +107,12 @@ class OthersCollectionPage extends ConsumerWidget {
                 ),
               ),
           ).toList();
-          return SingleChildScrollView(
-            // padding: const EdgeInsets.all(1),
-            child: GridView.count(
-                padding: EdgeInsets.all(8),
-                crossAxisCount: 2,
-                shrinkWrap: true,
-                childAspectRatio: 0.87,
-                children: widgets
-            ),
+          return GridView.count(
+              padding: EdgeInsets.all(8),
+              crossAxisCount: 2,
+              shrinkWrap: true,
+              childAspectRatio: 0.87,
+              children: widgets
           );
          }
         ),

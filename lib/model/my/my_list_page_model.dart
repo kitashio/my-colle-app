@@ -39,7 +39,7 @@ class ListPageModel with ChangeNotifier {
   }
 
   int listDocLength = 0;
-  Future<int> listDocLengthCounter (String docId) async {
+  void listDocLengthCounter (String docId) async {
     QuerySnapshot _myDoc = await FirebaseFirestore.instance
         .collection('collection')
         .doc(docId)
@@ -47,7 +47,6 @@ class ListPageModel with ChangeNotifier {
         .get();
     List<DocumentSnapshot> _myDocCount = _myDoc.docs;
     listDocLength = _myDocCount.length;
-    return listDocLength;
   }
 
 

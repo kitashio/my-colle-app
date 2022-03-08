@@ -30,7 +30,7 @@ class TopUserPage extends StatelessWidget {
                         text: 'Welcome  To  ',
                       ),
                       TextSpan(
-                        text: 'My Collection',
+                        text: 'Your Collection',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Color.fromRGBO(61, 86, 178, 100),

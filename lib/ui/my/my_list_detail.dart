@@ -19,11 +19,6 @@ class ListDetailPage extends ConsumerWidget {
       return Scaffold(
           appBar: AppBar(
             backgroundColor: ref.read(colorSetProvider),
-            title: Text('1/20',
-              style: TextStyle(
-                fontSize: 16,
-              ),
-            ),
             actions: [
               //右上のポップアップメニュー
               PopupMenuButton<int>(

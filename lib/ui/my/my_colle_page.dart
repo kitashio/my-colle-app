@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:myfirstapp/model/my/my_colle_add_model.dart';
 import 'package:myfirstapp/model/my/my_colle_page_model.dart';
 import 'package:myfirstapp/model/setting_model.dart';
 import '../../Items.dart';
@@ -33,6 +34,7 @@ class CollectionPage extends ConsumerWidget {
                     context,
                     MaterialPageRoute(builder: (context) => ColleAddPage(user)),
                   );
+                  ref.watch(CollectionAddPageProvider).imageFile = null;
                   //もしコレクションがあったら（追加されていたら）スナックバー表示
                   if (added != null && added) {
                     final snackBar = SnackBar(
@@ -42,7 +44,7 @@ class CollectionPage extends ConsumerWidget {
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }
                   //コレクション更新
-                  await ref.read(CollectionPageProvider).fetchData(user);
+                  await ref.watch(CollectionPageProvider).fetchData(user);
                  }
                 ),
               ),
@@ -95,13 +97,11 @@ class CollectionPage extends ConsumerWidget {
                 ),
             ).toList(); //リスト型へ
             //グリッドの画面オーバーエラーを防ぐためのスクロールビュー
-            return SingleChildScrollView(
-              child: GridView.count(
-                  padding: EdgeInsets.all(8),
-                  crossAxisCount: 2,
-                  shrinkWrap: true,
-                  children: widgets
-              ),
+            return GridView.count(
+                padding: EdgeInsets.all(8),
+                crossAxisCount: 2,
+                shrinkWrap: true,
+                children: widgets
             );
           }
           ),
