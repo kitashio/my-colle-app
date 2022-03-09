@@ -14,7 +14,7 @@ class ColleAddPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('NewCollection',
-        style: TextStyle(fontSize: 18,),
+        style: TextStyle(fontSize: 18),
         ),
         backgroundColor: ref.read(colorSetProvider),
       ),

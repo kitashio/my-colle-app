@@ -37,6 +37,10 @@ class ListAddModel with ChangeNotifier {
         .collection('items')
         .doc();
 
+    //追加した時間を登録する
+    DateTime now = DateTime.now();
+    Timestamp createdAt = Timestamp.fromDate(now);
+
     String imgURL;
     //もしFileがあれば
     if (imageFile != null) {
@@ -52,6 +56,7 @@ class ListAddModel with ChangeNotifier {
       'title': title,
       'describe': describe,
       'imgURL': imgURL,
+      'createdAt': createdAt,
     });
   }
 

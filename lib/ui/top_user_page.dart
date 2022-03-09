@@ -26,14 +26,11 @@ class TopUserPage extends StatelessWidget {
                       fontSize: 23,
                     ),
                     children: <TextSpan>[
-                      TextSpan(
-                        text: 'Welcome  To  ',
-                      ),
-                      TextSpan(
-                        text: 'Your Collection',
+                      TextSpan(text: 'Welcome  To  '),
+                      TextSpan(text: 'Your Collection',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(61, 86, 178, 100),
+                          color: Color.fromRGBO(61, 86, 178, 100)
                         ),
                       ),
                     ],

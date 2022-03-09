@@ -28,7 +28,9 @@ class OthersCollectionPageModel with ChangeNotifier {
       final String imgURL = data['imgURL'];
       final String docId = data['docId'];
       final String uid = data['uid'];
-      return Items(title, describe, imgURL, docId, uid);
+      final Timestamp createdAt = data['createdAt'];
+
+      return Items(title, describe, imgURL, docId, uid, createdAt);
     }).toList();
 
     this.othersitems = items;

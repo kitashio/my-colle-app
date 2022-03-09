@@ -37,6 +37,9 @@ class CollectionAddModel extends ChangeNotifier {
     }
     final uid = user.uid;
 
+    DateTime now = DateTime.now();
+    Timestamp createdAt = Timestamp.fromDate(now);
+
     //空のドキュメントを作成
     final doc = FirebaseFirestore.instance.collection('collection').doc();
 
@@ -49,6 +52,7 @@ class CollectionAddModel extends ChangeNotifier {
           .putFile(imageFile);
       imgURL = await task.ref.getDownloadURL();
     }
+
     //ドキュメントのフィールドを設定
     await doc.set({
       'docId': doc.id,
@@ -56,6 +60,8 @@ class CollectionAddModel extends ChangeNotifier {
       'describe': describe,
       'imgURL': imgURL,
       'uid': uid,
+      'createdAt': createdAt,
+
     });
   }
 

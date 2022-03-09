@@ -26,7 +26,6 @@ class MyPage extends ConsumerWidget {
                     onPressed: () async {
                       ref.read(MyPageProvider).googleSignout();
                           await Navigator.pop(context);
-
                     },
                     icon: Icon(Icons.logout, size: 25),);
               }
@@ -48,7 +47,7 @@ class MyPage extends ConsumerWidget {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: AssetImage('assets/image/IMG_6426.JPG'),
+                        image: NetworkImage('${user.photoURL}'),
                       ),
                     ),
                   ),

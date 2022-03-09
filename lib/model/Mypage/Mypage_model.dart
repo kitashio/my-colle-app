@@ -12,37 +12,8 @@ final MyPageProvider = ChangeNotifierProvider<MypageModel>(
 
 class MypageModel extends ChangeNotifier {
 
-  static final googleLogin = GoogleSignIn(scopes: [
-    'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
-  ]);
-
-  void googleSignin (context) async {
-
-  GoogleSignInAccount signinAccount = await googleLogin.signIn();
-  if (signinAccount == null) return;
-
-  GoogleSignInAuthentication auth = await signinAccount.authentication;
-  final GoogleAuthCredential credential =
-    GoogleAuthProvider.credential(
-      idToken: auth.idToken,
-      accessToken: auth.accessToken,
-    );
-  User user =
-  (await FirebaseAuth.instance.signInWithCredential(credential)).user;
-
-  if (user != null) {
-    await Navigator.of(context).pushReplacement(
-    MaterialPageRoute(builder: (context) {
-    return MyPage(user);
-    }),
-    );
-  }
-  }
-
   void googleSignout () {
     FirebaseAuth.instance.signOut();
-
   }
 
 }

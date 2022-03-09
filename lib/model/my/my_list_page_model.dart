@@ -22,6 +22,7 @@ class ListPageModel with ChangeNotifier {
         .collection('collection')
         .doc(collectionDocId)
         .collection('items')
+        .orderBy("createdAt", descending: true)
         .get();
 
     final List<Items> items = snapshot.docs.map((DocumentSnapshot document) {
@@ -31,7 +32,9 @@ class ListPageModel with ChangeNotifier {
       final String imgURL = data['imgURL'];
       final String docId = data['docId'];
       final String uid = data['uid'];
-      return Items(title, describe, imgURL, docId, uid);
+      final Timestamp createdAt = data['createdAt'];
+
+      return Items(title, describe, imgURL, docId, uid, createdAt);
     }).toList();
 
     this.listitems = items;

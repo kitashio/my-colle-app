@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,7 +31,19 @@ class UserSigninController extends ChangeNotifier {
     User user =
         (await FirebaseAuth.instance.signInWithCredential(credential)).user;
 
+    //ユーザ情報が既に登録されているか確認
+    var userDoc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+
     if (user != null) {
+      //既存ユーザでなければFirestoreに登録
+      if (!userDoc.exists) {
+        final doc = FirebaseFirestore.instance.collection('users').doc(user.uid);
+        await doc.set({
+          'uid': user.uid,
+          'name': user.displayName,
+          'email': user.email,
+        });
+      }
       await Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => BottomTabPage(user)),

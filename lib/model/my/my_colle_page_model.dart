@@ -22,7 +22,7 @@ class CollectionPageModel extends ChangeNotifier {
 
     //コレクションを取得
     final QuerySnapshot snapshot =  await
-    FirebaseFirestore.instance.collection('collection').where("uid", isEqualTo: uid).get();
+    FirebaseFirestore.instance.collection('collection').where("uid", isEqualTo: uid).orderBy("createdAt", descending: true).get();
 
     //コレクションのデータをリスト型にする
     final List<Items> items = snapshot.docs.map((DocumentSnapshot document) {
@@ -32,7 +32,9 @@ class CollectionPageModel extends ChangeNotifier {
       final String imgURL = data['imgURL'];
       final String docId = data['docId'];
       final String uid = data['uid'];
-      return Items(title, describe, imgURL, docId, uid);
+      final Timestamp createdAt = data['createdAt'];
+
+      return Items(title, describe, imgURL, docId, uid, createdAt);
     }).toList();
 
     this.items = items;
