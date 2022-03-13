@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:myfirstapp/model/my/my_list_add_model.dart';
-import 'package:myfirstapp/model/my/my_list_page_model.dart';
 import 'package:myfirstapp/model/setting_model.dart';
-import '../../Items.dart';
+import '../model/Items.dart';
+import 'my/my_list_add_model.dart';
+import 'my/my_list_page_model.dart';
 import 'my_list_add.dart';
 import 'my_list_detail.dart';
 
@@ -20,12 +20,10 @@ class ListPage extends ConsumerWidget {
 
     return Scaffold(
           appBar: AppBar(
-            title: Text(collectionitem.title + ' ($docCount)',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-                ),
-            backgroundColor: ref.read(colorSetProvider),
+            title: ref.read(AppbarProvider).setTitle(collectionitem.title),
+            iconTheme: IconThemeData(color: ref.read(AppbarProvider).setIconcolor(),),
+            backgroundColor: Colors.white,
+            elevation: 0.0,
             actions: [
               Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
@@ -38,7 +36,7 @@ class ListPage extends ConsumerWidget {
                         ref.watch(ItemListAddProvider).imageFile = null;
                         if (added != null && added) {
                           final snackBar = SnackBar(
-                            backgroundColor: ref.read(colorSetProvider),
+                            backgroundColor: ref.read(AppbarBackgroundColorProvider),
                             content: Text('コレクションを追加しました'),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);

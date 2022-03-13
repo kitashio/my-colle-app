@@ -11,12 +11,10 @@ class ListUpdatePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Update',
-        style: TextStyle(
-          fontSize: 18,
-        ),
-        ),
-        backgroundColor: ref.read(colorSetProvider),
+        title: ref.read(AppbarProvider).setTitle('Update'),
+        iconTheme: IconThemeData(color: ref.read(AppbarProvider).setIconcolor(),),
+        backgroundColor: ref.read(AppbarBackgroundColorProvider),
+        elevation: 0.0,
       ),
       body: Container(
         // 余白を付ける

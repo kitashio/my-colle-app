@@ -1,27 +1,25 @@
-import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../Items.dart';
+import 'package:myfirstapp/model/Items.dart';
 
-final ItemListPageProvider = ChangeNotifierProvider<ListPageModel>(
+
+final OthersCollectionPageProvider = ChangeNotifierProvider<OthersCollectionPageModel>(
       (ref) {
-    return ListPageModel();
+    return OthersCollectionPageModel();
   },
 );
 
-class ListPageModel with ChangeNotifier {
+class OthersCollectionPageModel with ChangeNotifier {
 
-  List<Items> listitems;
+  List<Items> othersitems;
 
-  Future fetchData (String collectionDocId) async {
-
+  Future fetchData () async {
     //コレクションを取得
     final QuerySnapshot snapshot =  await FirebaseFirestore.instance
         .collection('collection')
-        .doc(collectionDocId)
-        .collection('items')
         .orderBy("createdAt", descending: true)
         .get();
 
@@ -33,25 +31,22 @@ class ListPageModel with ChangeNotifier {
       final String docId = data['docId'];
       final String uid = data['uid'];
       final Timestamp createdAt = data['createdAt'];
-
       return Items(title, describe, imgURL, docId, uid, createdAt);
     }).toList();
 
-    this.listitems = items;
+    this.othersitems = items;
+
     notifyListeners();
   }
 
-  int listDocLength = 0;
-  void listDocLengthCounter (String docId) async {
-    QuerySnapshot _myDoc = await FirebaseFirestore.instance
-        .collection('collection')
-        .doc(docId)
-        .collection('items')
+  Future<String> getData (String uid) async {
+    final DocumentSnapshot snapshot =  await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
         .get();
-    List<DocumentSnapshot> _myDocCount = _myDoc.docs;
-    listDocLength = _myDocCount.length;
+    Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+    final String imgURL = data['topImgURL'];
+    return imgURL;
   }
-
-
 
 }

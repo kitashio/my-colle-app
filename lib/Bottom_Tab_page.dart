@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:myfirstapp/ui/MyPage/mypage.dart';
-import 'package:myfirstapp/ui/my/my_colle_page.dart';
-import 'package:myfirstapp/ui/others/others_colle_page.dart';
+import 'package:myfirstapp/my_account/mypage.dart';
+import 'package:myfirstapp/my_collection/my_colle_page.dart';
+
+import 'others_collection/others_colle_page.dart';
 
 class BottomTabPage extends StatefulWidget {
   final User user;
@@ -10,8 +11,8 @@ class BottomTabPage extends StatefulWidget {
 
   @override
   _BottomTabPageState createState() => _BottomTabPageState();
-
 }
+
 
 class _BottomTabPageState extends State<BottomTabPage>{
 
@@ -23,7 +24,7 @@ class _BottomTabPageState extends State<BottomTabPage>{
 
     final _pageWidgets = [
       CollectionPage(widget.user),
-      OthersCollectionPage(),
+      OthersCollectionPage(widget.user),
       MyPage(widget.user),
     ];
 
@@ -40,7 +41,7 @@ class _BottomTabPageState extends State<BottomTabPage>{
                 icon: Icon(Icons.account_circle_outlined), label: 'Mypage',),
             ],
             currentIndex: _currentIndex,
-            fixedColor: Colors.brown,
+            fixedColor: Colors.black,
             onTap: _onItemTapped,
             type: BottomNavigationBarType.fixed,
           ),

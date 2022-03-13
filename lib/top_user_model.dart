@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:myfirstapp/ui/Bottom_Tab_page.dart';
+import 'package:myfirstapp/Bottom_Tab_page.dart';
 
 final UserSigininProvider = ChangeNotifierProvider<UserSigninController>(
       (ref) {
@@ -42,7 +42,9 @@ class UserSigninController extends ChangeNotifier {
           'uid': user.uid,
           'name': user.displayName,
           'email': user.email,
+          'topImgURL': user.photoURL,
         });
+
       }
       await Navigator.push(
         context,

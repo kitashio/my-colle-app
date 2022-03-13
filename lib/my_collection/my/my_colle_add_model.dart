@@ -20,16 +20,13 @@ class CollectionAddModel extends ChangeNotifier {
 
 
   Future addItem (User user) async {
-    //入力されているかの確認
-    if (imageFile == null) {
-      throw '画像が選択されていません。';
-    }
+
     if (title == null||title.isEmpty) {
       throw 'タイトルが入力されていません。';
     }
-    if (describe == null||describe.isEmpty) {
-      throw '説明文が入力されていません。';
-    }
+    // if (describe == null||describe.isEmpty) {
+    //   throw '説明文が入力されていません。';
+    // }
 
     //ユーザ処理
     if (user == null) {
@@ -43,36 +40,15 @@ class CollectionAddModel extends ChangeNotifier {
     //空のドキュメントを作成
     final doc = FirebaseFirestore.instance.collection('collection').doc();
 
-    //画像処理
-    String imgURL;
-    if (imageFile != null) {
-    //  storageにアップロード
-      final task = await FirebaseStorage.instance
-          .ref('collection/${doc.id}')
-          .putFile(imageFile);
-      imgURL = await task.ref.getDownloadURL();
-    }
-
     //ドキュメントのフィールドを設定
     await doc.set({
       'docId': doc.id,
       'title': title,
       'describe': describe,
-      'imgURL': imgURL,
       'uid': uid,
       'createdAt': createdAt,
 
     });
-  }
-
-  //画像選択処理
-  Future pickImage() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery,imageQuality: 70);
-      imageFile = File(pickedFile.path);
-    if (imageFile == null) {
-      print('NoImage');
-    }
-      notifyListeners();
   }
 
   void collectionAdd (context, User user) async {

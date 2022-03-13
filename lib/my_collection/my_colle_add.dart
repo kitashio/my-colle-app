@@ -2,7 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfirstapp/model/setting_model.dart';
-import '../../model/my/my_colle_add_model.dart';
+
+import 'my/my_colle_add_model.dart';
 
 class ColleAddPage extends ConsumerWidget {
   //collectionページからユーザ情報を受け取る
@@ -13,39 +14,15 @@ class ColleAddPage extends ConsumerWidget {
   Widget build(BuildContext context,WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('NewCollection',
-        style: TextStyle(fontSize: 18),
-        ),
-        backgroundColor: ref.read(colorSetProvider),
+        title: ref.read(AppbarProvider).setTitle('New collection'),
+        iconTheme: IconThemeData(color: ref.read(AppbarProvider).setIconcolor(),),
+        backgroundColor: ref.read(AppbarBackgroundColorProvider),
+        elevation: 0.0,
       ),
       body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: <Widget>[
-                //画像選択フィールド
-                GestureDetector(
-                  onTap: () async {
-                    //画像選択処理
-                    await ref.read(CollectionAddPageProvider).pickImage();
-                  },
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      SizedBox(
-                        height: 200,
-                        width: 200,
-                        child: ref.watch(CollectionAddPageProvider).imageFile != null
-                        ? Image.file(ref.watch(CollectionAddPageProvider).imageFile, fit: BoxFit.cover,)
-                       : Container(color: Colors.grey,),
-                      ),
-                      Icon(Icons.add_circle,
-                        size: 35,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
                 // タイトル入力フィールド
                 TextField(
                   decoration: InputDecoration(

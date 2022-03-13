@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:myfirstapp/Items.dart';
-import 'package:myfirstapp/model/my/my_list_detail_model.dart';
+import 'package:myfirstapp/model/Items.dart';
 import 'package:myfirstapp/model/setting_model.dart';
+import 'my/my_list_detail_model.dart';
 import 'my_list_update.dart';
 
 class ListDetailPage extends ConsumerWidget {
@@ -18,7 +18,9 @@ class ListDetailPage extends ConsumerWidget {
     Widget build(BuildContext context, WidgetRef ref) {
       return Scaffold(
           appBar: AppBar(
-            backgroundColor: ref.read(colorSetProvider),
+            iconTheme: IconThemeData(color: ref.read(AppbarProvider).setIconcolor(),),
+            backgroundColor: Colors.white,
+            elevation: 0.0,
             actions: [
               //右上のポップアップメニュー
               PopupMenuButton<int>(

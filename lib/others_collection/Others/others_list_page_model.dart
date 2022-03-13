@@ -1,24 +1,27 @@
+import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:myfirstapp/Items.dart';
+import 'package:myfirstapp/model/Items.dart';
 
-
-final OthersCollectionPageProvider = ChangeNotifierProvider<OthersCollectionPageModel>(
+final OthersListPageProvider = ChangeNotifierProvider<OthersListPageModel>(
       (ref) {
-    return OthersCollectionPageModel();
+    return OthersListPageModel();
   },
 );
 
-class OthersCollectionPageModel with ChangeNotifier {
+class OthersListPageModel with ChangeNotifier {
 
-  List<Items> othersitems;
+  List<Items> othersListItems;
 
-  Future fetchData () async {
+  Future fetchData (String collectionDocId) async {
+
     //コレクションを取得
     final QuerySnapshot snapshot =  await FirebaseFirestore.instance
         .collection('collection')
+        .doc(collectionDocId)
+        .collection('items')
         .get();
 
     final List<Items> items = snapshot.docs.map((DocumentSnapshot document) {
@@ -33,9 +36,7 @@ class OthersCollectionPageModel with ChangeNotifier {
       return Items(title, describe, imgURL, docId, uid, createdAt);
     }).toList();
 
-    this.othersitems = items;
+    this.othersListItems = items;
     notifyListeners();
   }
-
-
 }

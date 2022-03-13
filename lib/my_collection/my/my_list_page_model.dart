@@ -3,32 +3,26 @@ import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:myfirstapp/Items.dart';
+import '../../model/Items.dart';
 
-final OthersListPageProvider = ChangeNotifierProvider<OthersListPageModel>(
+final ItemListPageProvider = ChangeNotifierProvider<ListPageModel>(
       (ref) {
-    return OthersListPageModel();
+    return ListPageModel();
   },
 );
 
-class OthersListPageModel with ChangeNotifier {
+class ListPageModel with ChangeNotifier {
 
-  final String docId;
+  List<Items> listitems;
 
-  OthersListPageModel({
-    Key key,
-    this.docId,
-  });
-
-  List<Items> othersListItems;
-
-  Future fetchData () async {
+  Future fetchData (String collectionDocId) async {
 
     //コレクションを取得
     final QuerySnapshot snapshot =  await FirebaseFirestore.instance
         .collection('collection')
-        .doc(docId)
+        .doc(collectionDocId)
         .collection('items')
+        .orderBy("createdAt", descending: true)
         .get();
 
     final List<Items> items = snapshot.docs.map((DocumentSnapshot document) {
@@ -43,7 +37,21 @@ class OthersListPageModel with ChangeNotifier {
       return Items(title, describe, imgURL, docId, uid, createdAt);
     }).toList();
 
-    this.othersListItems = items;
+    this.listitems = items;
     notifyListeners();
   }
+
+  int listDocLength = 0;
+  void listDocLengthCounter (String docId) async {
+    QuerySnapshot _myDoc = await FirebaseFirestore.instance
+        .collection('collection')
+        .doc(docId)
+        .collection('items')
+        .get();
+    List<DocumentSnapshot> _myDocCount = _myDoc.docs;
+    listDocLength = _myDocCount.length;
+  }
+
+
+
 }

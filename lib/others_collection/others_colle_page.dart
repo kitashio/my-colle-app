@@ -1,24 +1,25 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:myfirstapp/model/Others/others_colle_page_model.dart';
 import 'package:myfirstapp/model/setting_model.dart';
-import 'package:myfirstapp/ui/others/others_list_page.dart';
-import '../../Items.dart';
+import '../model/Items.dart';
+import 'Others/others_colle_page_model.dart';
+import 'others_list_page.dart';
 
 //　【Others】1.Othersコレクション一覧画面
 class OthersCollectionPage extends ConsumerWidget {
+  User user;
+  OthersCollectionPage(this.user);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
         appBar: AppBar(
+          title: ref.read(AppbarProvider).setTitle('Others collections'),
+          iconTheme: IconThemeData(color: ref.read(AppbarProvider).setIconcolor(),),
           automaticallyImplyLeading: false,
-          backgroundColor:ref.read(colorSetProvider),
-          title: Text('My Collection',
-            style: TextStyle(
-              fontSize: 18,
-            ),
-          ),
+          backgroundColor:ref.read(AppbarBackgroundColorProvider),
+          elevation: 0.0,
           //　□　コレクション追加画面へ遷移
           actions: [
             Padding(
@@ -33,7 +34,8 @@ class OthersCollectionPage extends ConsumerWidget {
             future: ref.read(OthersCollectionPageProvider).fetchData(),
             builder: (BuildContext context, snapshot,) {
 
-          final List<Items> othersItems = ref.read(OthersCollectionPageProvider).othersitems;
+          final List<Items> othersItems =
+              ref.read(OthersCollectionPageProvider).othersitems;
 
           if (othersItems == null) {
             return const CircularProgressIndicator();
@@ -43,6 +45,10 @@ class OthersCollectionPage extends ConsumerWidget {
               .map((othersItems) =>
               GestureDetector(
                 onTap: () async {
+
+                  final aaa =
+
+
                   await Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => OthersListPage(othersItems)),
@@ -84,7 +90,7 @@ class OthersCollectionPage extends ConsumerWidget {
                               shape: BoxShape.circle,
                               image: DecorationImage(
                                 fit: BoxFit.fill,
-                                image: AssetImage('assets/image/IMG_6426.JPG'),
+                                image: NetworkImage('${ref.read(OthersCollectionPageProvider).getData(othersItems.uid)}'),
                               ),
                             ),
                           ),

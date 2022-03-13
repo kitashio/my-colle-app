@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:myfirstapp/model/my/my_list_add_model.dart';
 import 'package:myfirstapp/model/setting_model.dart';
+
+import 'my/my_list_add_model.dart';
 
 class ListAddPage extends ConsumerWidget {
 
@@ -15,9 +16,10 @@ class ListAddPage extends ConsumerWidget {
     return Scaffold(
 
       appBar: AppBar(
-        title: Text('New Item',
-        style: TextStyle(fontSize: 18),),
-        backgroundColor: ref.read(colorSetProvider),
+        title: ref.read(AppbarProvider).setTitle('New Item'),
+        iconTheme: IconThemeData(color: ref.read(AppbarProvider).setIconcolor(),),
+        backgroundColor: ref.read(AppbarBackgroundColorProvider),
+        elevation: 0.0,
       ),
 
       body: Padding(
@@ -89,7 +91,7 @@ class ListAddPage extends ConsumerWidget {
               width: 100,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Color.fromRGBO(150, 186, 255, 100),//ボタンの背景色
+                  // primary: Color.fromRGBO(150, 186, 255, 100),//ボタンの背景色
                   ),
                 onPressed: () async {
                   try {

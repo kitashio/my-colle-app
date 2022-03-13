@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:myfirstapp/model/Others/others_list_page_model.dart';
-import 'package:myfirstapp/model/my/my_list_page_model.dart';
 import 'package:myfirstapp/model/setting_model.dart';
-import 'package:myfirstapp/ui/others/others_list_detail_page.dart';
-import '../../Items.dart';
+import 'package:myfirstapp/my_collection/my/my_list_page_model.dart';
+import '../model/Items.dart';
+import 'Others/others_list_page_model.dart';
+import 'others_list_detail_page.dart';
 
 class OthersListPage extends ConsumerWidget {
 
@@ -21,12 +21,11 @@ class OthersListPage extends ConsumerWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(othersCollectionItem.title + ' ($docCount)',
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-          backgroundColor:ref.read(colorSetProvider),
+          title: ref.read(AppbarProvider)
+              .setTitle(othersCollectionItem.title + ' ($docCount)'),
+          iconTheme: IconThemeData(color: ref.read(AppbarProvider).setIconcolor(),),
+          elevation: 0.0,
+          backgroundColor:ref.read(AppbarBackgroundColorProvider),
           actions: [
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
@@ -37,7 +36,7 @@ class OthersListPage extends ConsumerWidget {
           ],
         ),
         body: FutureBuilder(
-            future: ref.watch(OthersListPageProvider).fetchData(),
+            future: ref.watch(OthersListPageProvider).fetchData(collectionDocId),
             builder: (BuildContext context, snapshot,) {
 
           final List<Items> othersListItems = ref.read(OthersListPageProvider).othersListItems;

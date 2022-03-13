@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:myfirstapp/model/top_user_model.dart';
+import 'package:myfirstapp/top_user_model.dart';
 
 class TopUserPage extends StatelessWidget {
 

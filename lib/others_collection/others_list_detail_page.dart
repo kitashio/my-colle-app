@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:myfirstapp/Items.dart';
-import 'package:myfirstapp/model/Others/others_list_detail_model.dart';
-import 'package:myfirstapp/model/my/my_list_detail_model.dart';
+import 'package:myfirstapp/model/Items.dart';
 import 'package:myfirstapp/model/setting_model.dart';
 
 class OthersListDetailPage extends ConsumerWidget {
@@ -14,13 +12,9 @@ class OthersListDetailPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: ref.read(colorSetProvider),
-          title: Text('1/20',
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-
+          iconTheme: IconThemeData(color: ref.read(AppbarProvider).setIconcolor(),),
+          backgroundColor: ref.read(AppbarBackgroundColorProvider),
+          elevation: 0.0,
         ),
         body: Consumer(builder: (context, ref, child)  {
           return Container(
