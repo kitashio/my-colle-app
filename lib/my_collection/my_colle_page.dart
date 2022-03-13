@@ -85,10 +85,9 @@ class CollectionPage extends ConsumerWidget {
                     }
                     getItems(AsyncSnapshot<QuerySnapshot> snapshot) {
                       return snapshot.data.docs.map((doc) =>
-                          Image.network(doc["imgURL"]),)
+                          doc["imgURL"])
                           .toList();
                     }
-
                     return GestureDetector(
                       onTap: () async {
                         //それぞれデータを定義
@@ -107,7 +106,7 @@ class CollectionPage extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children:[
                               Row(children: [
-                                Image.network(user.photoURL,height: 170,width: 170,fit: BoxFit.cover,),
+                                Image.network(getItems(snapshot),height: 170,width: 170,fit: BoxFit.cover,),
                                 Column(
                                   children: [
                                     Image.network(user.photoURL,height: 85,width: 170,fit: BoxFit.cover,),
