@@ -17,39 +17,41 @@ class OthersListDetailPage extends ConsumerWidget {
           elevation: 0.0,
         ),
         body: Consumer(builder: (context, ref, child)  {
-          return Container(
-            // 余白を付ける
-            padding: EdgeInsets.all(30),
-            child: Center(
-              child: Column(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
-                    child:othersListItem.imgURL  != null
-                        ? Image.network(othersListItem.imgURL,
-                    )
-                        : null,
-                  ),
-                  const SizedBox(height: 20),
-                  Text(othersListItem.title,
-                    style: TextStyle(
-                      fontSize: 20,
+          return SingleChildScrollView(
+            child: Container(
+              // 余白を付ける
+              padding: EdgeInsets.all(30),
+              child: Center(
+                child: Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child:othersListItem.imgURL  != null
+                          ? Image.network(othersListItem.imgURL,
+                      )
+                          : null,
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  Divider(
-                    thickness: 1,
-                    color: Colors.grey,
-                  ),
-                  const SizedBox(height: 20),
-                  Text(othersListItem.describe,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16,
+                    const SizedBox(height: 20),
+                    Text(othersListItem.title,
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Divider(
+                      thickness: 1,
+                      color: Colors.grey,
+                    ),
+                    const SizedBox(height: 20),
+                    Text(othersListItem.describe,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16,
 
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );

@@ -50,40 +50,42 @@ class ListDetailPage extends ConsumerWidget {
                       }),
             ],
           ),
-          body: Container(
-                // 余白を付ける
-                padding: EdgeInsets.all(30),
-                child: Center(
-                  child: Column(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(5),
-                        child:listitem.imgURL  != null
-                            ? Image.network(listitem.imgURL)
-                            : null,
-                      ),
-                      const SizedBox(height: 20),
-                      Text(listitem.title,
-                        style: TextStyle(
-                          fontSize: 20,
+          body: SingleChildScrollView(
+            child: Container(
+                  // 余白を付ける
+                  padding: EdgeInsets.all(30),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child:listitem.imgURL  != null
+                              ? Image.network(listitem.imgURL)
+                              : null,
                         ),
-                      ),
-                      const SizedBox(height: 20),
-                      Divider(
-                        thickness: 1,
-                        color: Colors.grey,
-                      ),
-                      const SizedBox(height: 20),
-                      Text(listitem.describe,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16,
+                        const SizedBox(height: 20),
+                        Text(listitem.title,
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: 20),
+                        Divider(
+                          thickness: 1,
+                          color: Colors.grey,
+                        ),
+                        const SizedBox(height: 20),
+                        Text(listitem.describe,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
+          ),
       );
     }
   }
