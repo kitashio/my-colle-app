@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -55,39 +57,37 @@ class CollectionPage extends ConsumerWidget {
             ],
           ),
           body: FutureBuilder(
-            future: ref.read(CollectionPageProvider).fetchData(user),
+            future: ref.read(CollectionPageProvider).fetchData(user),//データ取得
             builder: (BuildContext context, snapshot,) {
 
             final List<Items> collections = ref.read(CollectionPageProvider).collectionItems;
 
-            //もしコレクションのデータがなければ（取得中も含む）ぐるぐるを表示
+            //取得中のぐるぐるを表示
             if (collections == null) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
-            //コレクションデータをリスト表示
+
+            //データ１つずつウィジェット作る
             final widgets = collections.map((collections) =>
                 StreamBuilder(
                   stream: FirebaseFirestore.instance
                       .collection('collection')
                       .doc(collections.docId)
                       .collection('items')
-                      .orderBy("createdAt", descending: false)
+                      .orderBy("createdAt", descending: true)
                       .limit(3)
                       .snapshots(),
                   builder: (context, snapshot) {
 
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    getItems(AsyncSnapshot<QuerySnapshot> snapshot) {
-                      return snapshot.data.docs.map((doc) =>
-                          doc["imgURL"])
-                          .toList();
-                    }
+                    if(snapshot.data == null) {
+                      return CircularProgressIndicator();}
+
+                    int docsLength = 0;
+                    final docs = snapshot.data.docs;
+                     docsLength = docs.length;
+
                     return GestureDetector(
                       onTap: () async {
                         //それぞれデータを定義
@@ -101,20 +101,11 @@ class CollectionPage extends ConsumerWidget {
                       },
                       child: Card(
                         child: Padding(
-                          padding: const EdgeInsets.all(13.0),
+                          padding: const EdgeInsets.all(11.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children:[
-                              Row(children: [
-                                Image.network(getItems(snapshot),height: 170,width: 170,fit: BoxFit.cover,),
-                                Column(
-                                  children: [
-                                    Image.network(user.photoURL,height: 85,width: 170,fit: BoxFit.cover,),
-                                    Image.network(user.photoURL,height: 85,width: 170,fit: BoxFit.cover,),
-                                  ],
-                                ),
-                              ],),
-                              SizedBox(height: 5),
+                              ref.read(CollectionPageProvider).setImage(docs),
                               //コレクションのタイトル表示
                               Text(collections.title??'title',
                                 style: const TextStyle(
@@ -122,7 +113,7 @@ class CollectionPage extends ConsumerWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Text('0件の画像',
+                              Text('$docsLength件の画像',
                                 style: const TextStyle(
                                   fontSize: 10,
                                 ),

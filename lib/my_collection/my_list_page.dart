@@ -63,7 +63,7 @@ class ListPage extends ConsumerWidget {
                   children: [
                     GestureDetector(
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(2),
                         child: listitems.imgURL != null
                             ? Image.network(listitems.imgURL,
                           height: 180,
@@ -88,9 +88,9 @@ class ListPage extends ConsumerWidget {
                 Text('uid:  '+ collectionitem.uid),
                 Text(collectionitem.describe,),
                 GridView.count(
-                    padding: EdgeInsets.all(8),
+                    padding: EdgeInsets.all(10),
                     crossAxisCount: 2,
-                    childAspectRatio: 0.88, // 高さ
+                    childAspectRatio: 0.86, // 高さ
                     shrinkWrap: true,
                     children: widgets
                 ),
