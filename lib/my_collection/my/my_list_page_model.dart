@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -40,18 +41,4 @@ class ListPageModel with ChangeNotifier {
     this.listitems = items;
     notifyListeners();
   }
-
-  int listDocLength = 0;
-  void listDocLengthCounter (String docId) async {
-    QuerySnapshot _myDoc = await FirebaseFirestore.instance
-        .collection('collection')
-        .doc(docId)
-        .collection('items')
-        .get();
-    List<DocumentSnapshot> _myDocCount = _myDoc.docs;
-    listDocLength = _myDocCount.length;
-  }
-
-
-
 }

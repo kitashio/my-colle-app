@@ -8,15 +8,12 @@ import 'my_list_add.dart';
 import 'my_list_detail.dart';
 
 class ListPage extends ConsumerWidget {
-  ListPage(this.collectionitem);
+  ListPage(this.collectionitem); //コレクションデータを受け取る
   final Items collectionitem;
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
-    final String collectionDocId = collectionitem.docId;
-
-    ref.watch(ItemListPageProvider).listDocLengthCounter(collectionDocId);
-    final int docCount = ref.read(ItemListPageProvider).listDocLength;
+    final String collectionDocId = collectionitem.docId; //コレクションのドキュメントID定義
 
     return Scaffold(
           appBar: AppBar(
@@ -34,6 +31,8 @@ class ListPage extends ConsumerWidget {
                           MaterialPageRoute(builder: (context) => ListAddPage(collectionDocId)),
                         );
                         ref.watch(ItemListAddProvider).imageFile = null;
+                        ref.watch(ItemListAddProvider).title = null;
+                        ref.watch(ItemListAddProvider).describe = null;
                         if (added != null && added) {
                           final snackBar = SnackBar(
                             backgroundColor: ref.read(AppbarBackgroundColorProvider),
@@ -85,7 +84,6 @@ class ListPage extends ConsumerWidget {
             ).toList();
             return Column(
               children: [
-                Text('uid:  '+ collectionitem.uid),
                 Text(collectionitem.describe,),
                 GridView.count(
                     padding: EdgeInsets.all(10),

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -34,87 +35,76 @@ class OthersCollectionPage extends ConsumerWidget {
             future: ref.read(OthersCollectionPageProvider).fetchData(),
             builder: (BuildContext context, snapshot,) {
 
-          final List<Items> othersItems =
+          final List<Items> othersCollections =
               ref.read(OthersCollectionPageProvider).othersitems;
 
-          if (othersItems == null) {
+          if (othersCollections == null) {
             return const CircularProgressIndicator();
           }
 
-          final List<Widget> widgets = othersItems
-              .map((othersItems) =>
-              GestureDetector(
-                onTap: () async {
+          final List<Widget> widgets = othersCollections
+              .map((othersCollections) =>
+              StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection('collection')
+                    .doc(othersCollections.docId)
+                    .collection('items')
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  //データ取得中のローディング
+                  if(snapshot.data == null) {
+                    return CircularProgressIndicator();}
 
-                  final aaa =
+                  int docsLength = 0; //ドキュメント（アイテム）数を入れる型＆初期値
+                  final docs = snapshot.data.docs; //ドキュメント（アイテム）
+                  docsLength = docs.length; //ドキュメント（アイテム）数を代入
 
-
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => OthersListPage(othersItems)),
-                  );
-                },
-                child: Column(
-                  children: [
-                    Stack(
-                      alignment: Alignment.center,
-                      children:[
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
-                          child: othersItems.imgURL != null
-                              ? Image.network(othersItems.imgURL,
-                            height: 180,
-                            width: 180,
-                            fit: BoxFit.cover,)
-                              : null,
-                        ),
-                        Text(othersItems.title??'title',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            letterSpacing: 2,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 3, 0, 0),
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 23,
-                            width: 23,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                fit: BoxFit.fill,
-                                image: NetworkImage('${ref.read(OthersCollectionPageProvider).getData(othersItems.uid)}'),
+                  return GestureDetector(
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => OthersListPage(othersCollections)),
+                      );
+                    },
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(6),
+                        child: Column(
+                          children: [
+                            //アイテム画像表示
+                            ref.read(OthersCollectionPageProvider).setImage(docs),
+                            Text(othersCollections.title,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 3, 0, 0),
+                              child: Row(
+                                children: [
+                                  Text('name'),
+                                  SizedBox(
+                                    height: 25.0,
+                                    width: 25.0,
+                                    child: IconButton(
+                                        onPressed: () {
+                                        },
+                                        padding: EdgeInsets.fromLTRB(5,0,0,0),
+                                        icon: Icon(Icons.favorite_border,
+                                          size: 20,
+                                          color: Colors.brown,),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 25.0,
-                            width: 25.0,
-                            child: IconButton(
-                                onPressed: () {
-                                },
-                                padding: EdgeInsets.fromLTRB(5,0,0,0),
-                                icon: Icon(Icons.favorite_border,
-                                  size: 25,
-                                  color: Colors.brown,),
-                            ),
-                          ),
-                        ],
+                            )
+                          ],
+                        ),
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  );
+                }
               ),
           ).toList();
           return GridView.count(
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.all(10),
               crossAxisCount: 2,
               shrinkWrap: true,
               childAspectRatio: 0.87,

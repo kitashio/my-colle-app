@@ -49,4 +49,88 @@ class OthersCollectionPageModel with ChangeNotifier {
     return imgURL;
   }
 
+  Widget setImage (docs) {
+    String doc1;
+    String doc2;
+    String doc3;
+
+    Widget nullImage (double h, double w) {
+      return Container(child: Icon(Icons.add,color: Colors.white,),
+          color: Color.fromRGBO(209, 209, 209, 100), height: h, width: w);
+    }
+    Widget setImage (doc,double h, double w) {
+      return Image.network(doc, height: h, width: w, fit: BoxFit.cover);
+    }
+
+    switch (docs.length) {
+      case 0:
+        return Row(children: [
+          nullImage(120, 80),
+          Padding(
+            padding: const EdgeInsets.all(2),
+            child: Column(
+              children: [
+                nullImage(59,80),
+                SizedBox(height: 2),
+                nullImage(59,80),
+              ],
+            ),
+          ),
+        ],);
+        break;
+      case 1:
+        doc1 = docs[0].data()["imgURL"];
+        return Row(children: [
+          setImage(doc1,120,80),
+          Padding(
+            padding: const EdgeInsets.all(2),
+            child: Column(
+              children: [
+                nullImage(59,80),
+                SizedBox(height: 2),
+                nullImage(59,80),
+              ],
+            ),
+          ),
+        ],);
+        break;
+      case 2:
+        doc1 = docs[0].data()["imgURL"];
+        doc2 = docs[1].data()["imgURL"];
+        return Row(children: [
+          setImage(doc1,120,80),
+          Padding(
+            padding: const EdgeInsets.all(2),
+            child: Column(
+              children: [
+                setImage(doc2,59,80),
+                SizedBox(height: 2),
+                nullImage(59,80),
+              ],
+            ),
+          ),
+        ],);
+        break;
+      default:
+        doc1 = docs[0].data()["imgURL"];
+        doc2 = docs[1].data()["imgURL"];
+        doc3 = docs[2].data()["imgURL"];
+        return Row(children: [
+          setImage(doc1,120,80),
+          Padding(
+            padding: const EdgeInsets.all(2),
+            child: Column(
+              children: [
+                setImage(doc2,59,80),
+                SizedBox(height: 2),
+                setImage(doc3,59,80),
+              ],
+            ),
+          ),
+        ],);
+        break;
+    }
+  }
+
+
 }

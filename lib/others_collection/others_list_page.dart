@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfirstapp/model/setting_model.dart';
-import 'package:myfirstapp/my_collection/my/my_list_page_model.dart';
 import '../model/Items.dart';
 import 'Others/others_list_page_model.dart';
 import 'others_list_detail_page.dart';
@@ -15,14 +14,10 @@ class OthersListPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final String collectionDocId = othersCollectionItem.docId;
 
-
-    ref.watch(ItemListPageProvider).listDocLengthCounter(collectionDocId);
-    final int docCount = ref.read(ItemListPageProvider).listDocLength;
-
     return Scaffold(
         appBar: AppBar(
           title: ref.read(AppbarProvider)
-              .setTitle(othersCollectionItem.title + ' ($docCount)'),
+              .setTitle(othersCollectionItem.title),
           iconTheme: IconThemeData(color: ref.read(AppbarProvider).setIconcolor(),),
           elevation: 0.0,
           backgroundColor:ref.read(AppbarBackgroundColorProvider),
@@ -51,7 +46,7 @@ class OthersListPage extends ConsumerWidget {
                 children: [
                   GestureDetector(
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(2),
                       child: othersListItems.imgURL != null
                           ? Image.network(othersListItems.imgURL,
                         height: 180,

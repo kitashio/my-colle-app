@@ -19,60 +19,62 @@ class ColleAddPage extends ConsumerWidget {
         backgroundColor: ref.read(AppbarBackgroundColorProvider),
         elevation: 0.0,
       ),
-      body: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: <Widget>[
-                // タイトル入力フィールド
-                TextField(
-                  decoration: InputDecoration(
-                      labelText: 'コレクションタイトル',
-                      filled: true,
-                      fillColor: Colors.grey.shade200,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide.none,
-                      )
-                  ),
-                  onChanged: (text){
-                    ref.read(CollectionAddPageProvider).title = text;
-                  },
-                ),
-                const SizedBox(height: 25),
-                // 説明文入力フィールド
-                TextField(
-                  maxLines: 6,
-                  keyboardType: TextInputType.multiline,
-                  decoration: InputDecoration(
-                      labelText: '説明',
-                      filled: true,
-                      fillColor: Colors.grey.shade200,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide.none,
-                      )
-                  ),
-                  onChanged: (text){
-                    ref.read(CollectionAddPageProvider).describe = text;
-                  },
-                ),
-                const SizedBox(height: 30),
-                Container(
-                  width: 100,
-                  // リスト追加ボタン
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Color.fromRGBO(150, 186, 255, 100), //ボタンの背景色
+      body: SingleChildScrollView(
+        child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: <Widget>[
+                  // タイトル入力フィールド
+                  TextField(
+                    decoration: InputDecoration(
+                        labelText: 'コレクションタイトル',
+                        filled: true,
+                        fillColor: Colors.grey.shade200,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide.none,
+                        )
                     ),
-                    onPressed: () {
-                      ref.read(CollectionAddPageProvider).collectionAdd(context,user);
+                    onChanged: (text){
+                      ref.read(CollectionAddPageProvider).title = text;
                     },
-                    child: Text('登録'),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 25),
+                  // 説明文入力フィールド
+                  TextField(
+                    maxLines: 6,
+                    keyboardType: TextInputType.multiline,
+                    decoration: InputDecoration(
+                        labelText: '説明',
+                        filled: true,
+                        fillColor: Colors.grey.shade200,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide.none,
+                        )
+                    ),
+                    onChanged: (text){
+                      ref.read(CollectionAddPageProvider).describe = text;
+                    },
+                  ),
+                  const SizedBox(height: 30),
+                  Container(
+                    width: 100,
+                    // リスト追加ボタン
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: ref.read(AppbarProvider).setIconcolor(), //ボタンの背景色
+                      ),
+                      onPressed: () {
+                        ref.read(CollectionAddPageProvider).collectionAdd(context,user);
+                      },
+                      child: Text('登録'),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
+      ),
     );
   }
 }

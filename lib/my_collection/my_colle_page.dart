@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +6,6 @@ import 'package:myfirstapp/model/setting_model.dart';
 import '../model/Items.dart';
 import 'my/my_colle_add_model.dart';
 import 'my/my_colle_page_model.dart';
-import 'my/my_list_page_model.dart';
 import 'my_colle_add.dart';
 import 'my_list_page.dart';
 
@@ -41,7 +38,8 @@ class CollectionPage extends ConsumerWidget {
                         fullscreenDialog: true,
                         builder: (context) => ColleAddPage(user)),
                   );
-                  ref.watch(CollectionAddPageProvider).imageFile = null;
+                  ref.watch(CollectionAddPageProvider).title = null;
+                  ref.watch(CollectionAddPageProvider).describe = null;
                   //もしコレクションがあったら（追加されていたら）スナックバー表示
                   if (added != null && added) {
                     final snackBar = SnackBar(
@@ -62,7 +60,7 @@ class CollectionPage extends ConsumerWidget {
 
             final List<Items> collections = ref.read(CollectionPageProvider).collectionItems;
 
-            //取得中のぐるぐるを表示
+            //取得中のローディング表示
             if (collections == null) {
               return const Center(
                 child: CircularProgressIndicator(),
@@ -72,6 +70,7 @@ class CollectionPage extends ConsumerWidget {
             //データ１つずつウィジェット作る
             final widgets = collections.map((collections) =>
                 StreamBuilder(
+                  //コレクションのアイテムを取得
                   stream: FirebaseFirestore.instance
                       .collection('collection')
                       .doc(collections.docId)
@@ -80,18 +79,17 @@ class CollectionPage extends ConsumerWidget {
                       .limit(3)
                       .snapshots(),
                   builder: (context, snapshot) {
-
+                    //データ取得中のローディング
                     if(snapshot.data == null) {
                       return CircularProgressIndicator();}
 
-                    int docsLength = 0;
-                    final docs = snapshot.data.docs;
-                     docsLength = docs.length;
+                    int docsLength = 0; //ドキュメント（アイテム）数を入れる型＆初期値
+                    final docs = snapshot.data.docs; //ドキュメント（アイテム）
+                     docsLength = docs.length; //ドキュメント（アイテム）数を代入
 
                     return GestureDetector(
                       onTap: () async {
-                        //それぞれデータを定義
-                        //タップしたら画面遷移＋データも渡す
+                        //アイテムページへ画面遷移（コレクションデータも渡す）
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -101,21 +99,23 @@ class CollectionPage extends ConsumerWidget {
                       },
                       child: Card(
                         child: Padding(
-                          padding: const EdgeInsets.all(11.0),
+                          padding: const EdgeInsets.all(10.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children:[
+                              //アイテム画像表示
                               ref.read(CollectionPageProvider).setImage(docs),
-                              //コレクションのタイトル表示
-                              Text(collections.title??'title',
+                              //コレクションタイトル表示
+                              Text(collections.title,
                                 style: const TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
+                              //アイテム数表示
                               Text('$docsLength件の画像',
                                 style: const TextStyle(
-                                  fontSize: 10,
+                                  fontSize: 15,
                                 ),
                               ),
                             ],
@@ -126,12 +126,12 @@ class CollectionPage extends ConsumerWidget {
                   }
                 ),
             ).toList(); //リスト型へ
-            //グリッドの画面オーバーエラーを防ぐためのスクロールビュー
+
             return GridView.count(
                 padding: EdgeInsets.all(8),
                 crossAxisCount: 1,
                 shrinkWrap: true,
-                childAspectRatio: 1.5,
+                childAspectRatio: 1.45,
                 children: widgets
             );
           }
