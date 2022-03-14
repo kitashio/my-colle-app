@@ -70,31 +70,28 @@ class OthersCollectionPage extends ConsumerWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(6),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             //アイテム画像表示
                             ref.read(OthersCollectionPageProvider).setImage(docs),
-                            Text(othersCollections.title,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(10, 3, 0, 0),
-                              child: Row(
-                                children: [
-                                  Text('name'),
-                                  SizedBox(
-                                    height: 25.0,
-                                    width: 25.0,
-                                    child: IconButton(
-                                        onPressed: () {
-                                        },
-                                        padding: EdgeInsets.fromLTRB(5,0,0,0),
-                                        icon: Icon(Icons.favorite_border,
-                                          size: 20,
-                                          color: Colors.brown,),
-                                    ),
+                            Text(' ' + othersCollections.title,style: TextStyle(fontWeight: FontWeight.bold),),
+                            Row(
+                              children: [
+                                Text(' minn',style: TextStyle(fontSize: 12),),
+                                SizedBox(
+                                  height: 20.0,
+                                  width: 15.0,
+                                  child: IconButton(
+                                    onPressed: () {
+                                    },
+                                    alignment: Alignment.bottomRight,
+                                    icon: Icon(Icons.favorite_border,
+                                      size: 18,
+                                      color: Colors.brown,),
                                   ),
-                                ],
-                              ),
-                            )
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -107,7 +104,7 @@ class OthersCollectionPage extends ConsumerWidget {
               padding: EdgeInsets.all(10),
               crossAxisCount: 2,
               shrinkWrap: true,
-              childAspectRatio: 0.87,
+              childAspectRatio: 0.98,
               children: widgets
           );
          }

@@ -108,14 +108,14 @@ class CollectionPage extends ConsumerWidget {
                               //コレクションタイトル表示
                               Text(collections.title,
                                 style: const TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               //アイテム数表示
                               Text('$docsLength件の画像',
                                 style: const TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 13,
                                 ),
                               ),
                             ],
@@ -131,7 +131,7 @@ class CollectionPage extends ConsumerWidget {
                 padding: EdgeInsets.all(8),
                 crossAxisCount: 1,
                 shrinkWrap: true,
-                childAspectRatio: 1.45,
+                childAspectRatio: 1.5,
                 children: widgets
             );
           }

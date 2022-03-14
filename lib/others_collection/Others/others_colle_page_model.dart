@@ -55,8 +55,7 @@ class OthersCollectionPageModel with ChangeNotifier {
     String doc3;
 
     Widget nullImage (double h, double w) {
-      return Container(child: Icon(Icons.add,color: Colors.white,),
-          color: Color.fromRGBO(209, 209, 209, 100), height: h, width: w);
+      return Container(color: Color.fromRGBO(209, 209, 209, 100), height: h, width: w);
     }
     Widget setImage (doc,double h, double w) {
       return Image.network(doc, height: h, width: w, fit: BoxFit.cover);
