@@ -81,7 +81,8 @@ class CollectionPage extends ConsumerWidget {
                   builder: (context, snapshot) {
                     //データ取得中のローディング
                     if(snapshot.data == null) {
-                      return Center(child: CircularProgressIndicator(color: Colors.black,));}
+                      return Center(child: CircularProgressIndicator(color: Colors.black,));
+                    }
 
                     int docsLength = 0; //ドキュメント（アイテム）数を入れる型＆初期値
                     final docs = snapshot.data.docs; //ドキュメント（アイテム）
