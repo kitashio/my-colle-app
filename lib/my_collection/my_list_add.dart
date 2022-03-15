@@ -95,9 +95,30 @@ class ListAddPage extends ConsumerWidget {
                     ),
                   onPressed: () async {
                     try {
+                      //もしタイトルが入力されていない場合
+                      if (ref.read(ItemListAddProvider).title == null||
+                          ref.read(ItemListAddProvider).title.isEmpty) {
+                        throw 'タイトルが入力されていません。';
+                      }
+                      //もし説明文が入力されていない場合
+                      if (ref.read(ItemListAddProvider).describe == null||
+                          ref.read(ItemListAddProvider).describe.isEmpty) {
+                        throw '説明文が入力されていません。';
+                      }
+                      showGeneralDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          barrierColor: Colors.black.withOpacity(0.5),
+                          pageBuilder: (BuildContext context, Animation animation, Animation secondaryAnimation) {
+                            return Center(
+                              child: CircularProgressIndicator(color: Colors.white,),
+                            );
+                          }
+                      );
                       //Firestoreにdoc追加
                       await ref.read(ItemListAddProvider).addItem(collectionDocId);
                       //前画面に戻る
+                      Navigator.of(context).pop(true);
                       Navigator.of(context).pop(true);
                     } catch (e) {
                       //前画面でスナックバー表示

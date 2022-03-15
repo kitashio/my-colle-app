@@ -15,7 +15,7 @@ class TopUserPage extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(30,220,30,0),
             child: Column(
               children: [
-                Image.asset('assets/image/mycolleapp_icon.transparent.png',
+                Image.asset('assets/image/logo.png',
                 height: 200,),
                 const SizedBox(height: 30),
                 RichText(
@@ -30,7 +30,7 @@ class TopUserPage extends StatelessWidget {
                       TextSpan(text: 'Your Collection',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(61, 86, 178, 100)
+                          color: Color.fromRGBO(62, 73, 122, 100)
                         ),
                       ),
                     ],

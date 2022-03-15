@@ -73,7 +73,7 @@ class MyPage extends ConsumerWidget {
                               style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
-                                  color: Color.fromRGBO(61, 86, 178, 100)),
+                                  color: ref.read(AppbarProvider).setAccentcolor(),),
                             ),
                           ],
                         ),
@@ -87,7 +87,7 @@ class MyPage extends ConsumerWidget {
                               style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
-                                  color: Color.fromRGBO(61, 86, 178, 100)),
+                                  color: ref.read(AppbarProvider).setAccentcolor(),),
                             ),
                           ],
                         ),

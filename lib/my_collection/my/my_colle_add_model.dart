@@ -52,10 +52,22 @@ class CollectionAddModel extends ChangeNotifier {
   }
 
   void collectionAdd (context, User user) async {
+    bool visibleLoading = false;
     try {
+      showGeneralDialog(
+          context: context,
+          barrierDismissible: false,
+          barrierColor: Colors.black.withOpacity(0.5),
+          pageBuilder: (BuildContext context, Animation animation, Animation secondaryAnimation) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+      );
       //コレクションデータをFiretoreへ保存
       await addItem(user);
       //前画面（コレクションページ）へ戻る
+      Navigator.of(context).pop(true);
       Navigator.of(context).pop(true);
     } catch (e) {
       //処理完了後スナックバー表示する

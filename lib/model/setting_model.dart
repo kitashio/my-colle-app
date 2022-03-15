@@ -23,4 +23,9 @@ class AppbarController extends ChangeNotifier{
         Color setIconcolor (){
                 return Colors.black;
         }
+
+        Color setAccentcolor (){
+                return Color.fromRGBO(62, 73, 122, 100);
+        }
+
 }

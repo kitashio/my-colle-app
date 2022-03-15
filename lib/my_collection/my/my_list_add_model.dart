@@ -21,14 +21,6 @@ class ListAddModel with ChangeNotifier {
 
   //Firestoreにアイテムを追加する処理
   Future addItem (String docId) async {
-    //もしタイトルが入力されていない場合
-    if (title == null||title.isEmpty) {
-      throw 'タイトルが入力されていません。';
-    }
-    //もし説明文が入力されていない場合
-    if (describe == null||describe.isEmpty) {
-      throw '説明文が入力されていません。';
-    }
 
     //ドキュメントを定義
     final doc = FirebaseFirestore.instance

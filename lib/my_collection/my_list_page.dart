@@ -53,7 +53,7 @@ class ListPage extends ConsumerWidget {
             final List<Items> listitems = ref.read(ItemListPageProvider).listitems;
 
             if (listitems == null) {
-              return const CircularProgressIndicator();
+              return Center(child: const CircularProgressIndicator(color: Colors.black));
             }
 
             final List<Widget> widgets = listitems
@@ -84,7 +84,7 @@ class ListPage extends ConsumerWidget {
             ).toList();
             return Column(
               children: [
-                Text(collectionitem.describe,),
+                // Text(collectionitem.describe,),
                 GridView.count(
                     padding: EdgeInsets.all(10),
                     crossAxisCount: 2,

@@ -39,7 +39,7 @@ class OthersCollectionPage extends ConsumerWidget {
               ref.read(OthersCollectionPageProvider).othersitems;
 
           if (othersCollections == null) {
-            return const CircularProgressIndicator();
+            return  Center(child: CircularProgressIndicator(color: Colors.black,));
           }
 
           final List<Widget> widgets = othersCollections
