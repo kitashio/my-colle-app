@@ -12,7 +12,7 @@ final ItemListDetailPageProvider = ChangeNotifierProvider<ListDetailPageModel>(
 
 class ListDetailPageModel with ChangeNotifier {
 
-  String _label;
+  late String _label;
 
   _useCamera (BuildContext context, bool b) {
       _label = '削除しますか？' + (b ? 'はい' : 'いいえ');

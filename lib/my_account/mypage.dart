@@ -29,7 +29,7 @@ class MyPage extends ConsumerWidget {
                 return IconButton(
                     onPressed: () async {
                       ref.read(MyPageProvider).googleSignout();
-                          await Navigator.pop(context);
+                          Navigator.pop(context);
                     },
                     icon: Icon(Icons.logout, size: 25),);
               }
@@ -54,7 +54,7 @@ class MyPage extends ConsumerWidget {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Text(user.displayName,
+                  Text(user.displayName!,
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,

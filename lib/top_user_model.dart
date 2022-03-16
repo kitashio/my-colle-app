@@ -23,16 +23,17 @@ class UserSigninController extends ChangeNotifier {
     if (signinAccount == null) return;
 
     GoogleSignInAuthentication auth = await signinAccount.authentication;
-    final GoogleAuthCredential credential =
+    final OAuthCredential credential =
     GoogleAuthProvider.credential(
       idToken: auth.idToken,
       accessToken: auth.accessToken,
     );
-    User user =
+    User? user =
         (await FirebaseAuth.instance.signInWithCredential(credential)).user;
 
     //ユーザ情報が既に登録されているか確認
-    var userDoc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+    var userDoc = await FirebaseFirestore.instance
+        .collection('users').doc(user?.uid).get();
 
     if (user != null) {
       //既存ユーザでなければFirestoreに登録

@@ -13,7 +13,7 @@ final OthersListPageProvider = ChangeNotifierProvider<OthersListPageModel>(
 
 class OthersListPageModel with ChangeNotifier {
 
-  List<Items> othersListItems;
+  late List<Items> othersListItems;
 
   Future fetchData (String collectionDocId) async {
 

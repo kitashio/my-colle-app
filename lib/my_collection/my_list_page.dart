@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfirstapp/model/setting_model.dart';
@@ -30,9 +32,9 @@ class ListPage extends ConsumerWidget {
                           context,
                           MaterialPageRoute(builder: (context) => ListAddPage(collectionDocId)),
                         );
-                        ref.watch(ItemListAddProvider).imageFile = null;
-                        ref.watch(ItemListAddProvider).title = null;
-                        ref.watch(ItemListAddProvider).describe = null;
+                        ref.watch(ItemListAddProvider).imageFile = '' as File;
+                        ref.watch(ItemListAddProvider).title = '';
+                        ref.watch(ItemListAddProvider).describe = '';
                         if (added != null && added) {
                           final snackBar = SnackBar(
                             backgroundColor: ref.read(AppbarBackgroundColorProvider),
@@ -78,7 +80,7 @@ class ListPage extends ConsumerWidget {
                         );
                       },
                     ),
-                    Text(listitems.title??'title',),
+                    Text(listitems.title,),
                   ],
                 ),
             ).toList();

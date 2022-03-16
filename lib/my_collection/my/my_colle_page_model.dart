@@ -13,8 +13,8 @@ final CollectionPageProvider = ChangeNotifierProvider<CollectionPageModel>(
 
 class CollectionPageModel extends ChangeNotifier {
 
-  List<Items> collectionItems;
-  List<Items> items;
+  late List<Items> collectionItems;
+  late List<Items> items;
 
 
   //コレクションデータを全て取得
@@ -75,7 +75,6 @@ class CollectionPageModel extends ChangeNotifier {
             ),
           ),
         ],);
-        break;
       case 1:
         doc1 = docs[0].data()["imgURL"];
         return Row(children: [
@@ -91,7 +90,6 @@ class CollectionPageModel extends ChangeNotifier {
             ),
           ),
         ],);
-        break;
       case 2:
         doc1 = docs[0].data()["imgURL"];
         doc2 = docs[1].data()["imgURL"];
@@ -108,7 +106,6 @@ class CollectionPageModel extends ChangeNotifier {
             ),
           ),
         ],);
-        break;
       default:
         doc1 = docs[0].data()["imgURL"];
         doc2 = docs[1].data()["imgURL"];
@@ -126,7 +123,6 @@ class CollectionPageModel extends ChangeNotifier {
             ),
           ),
         ],);
-        break;
     }
   }
 }

@@ -10,8 +10,8 @@ class ListDetailPage extends ConsumerWidget {
   final Items listitem;
 
   const ListDetailPage({
-    Key key,
-    this.listitem
+    Key? key,
+    required this.listitem
   }) : super(key: key);
 
     @override

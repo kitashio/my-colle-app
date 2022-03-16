@@ -38,8 +38,8 @@ class CollectionPage extends ConsumerWidget {
                         fullscreenDialog: true,
                         builder: (context) => ColleAddPage(user)),
                   );
-                  ref.watch(CollectionAddPageProvider).title = null;
-                  ref.watch(CollectionAddPageProvider).describe = null;
+                  ref.watch(CollectionAddPageProvider).title = '';
+                  ref.watch(CollectionAddPageProvider).describe = '';
                   //もしコレクションがあったら（追加されていたら）スナックバー表示
                   if (added != null && added) {
                     final snackBar = SnackBar(
@@ -76,7 +76,6 @@ class CollectionPage extends ConsumerWidget {
                       .doc(collections.docId)
                       .collection('items')
                       .orderBy("createdAt", descending: true)
-                      .limit(3)
                       .snapshots(),
                   builder: (context, snapshot) {
                     //データ取得中のローディング
@@ -84,9 +83,7 @@ class CollectionPage extends ConsumerWidget {
                       return Center(child: CircularProgressIndicator(color: Colors.black,));
                     }
 
-                    int docsLength = 0; //ドキュメント（アイテム）数を入れる型＆初期値
-                    final docs = snapshot.data.docs; //ドキュメント（アイテム）
-                     docsLength = docs.length; //ドキュメント（アイテム）数を代入
+                    final docs = snapshot.data; //ドキュメント（アイテム）
 
                     return GestureDetector(
                       onTap: () async {
@@ -114,7 +111,7 @@ class CollectionPage extends ConsumerWidget {
                                 ),
                               ),
                               //アイテム数表示
-                              Text('$docsLength件の画像',
+                              Text('件の画像',
                                 style: const TextStyle(
                                   fontSize: 13,
                                 ),

@@ -14,7 +14,7 @@ final OthersCollectionPageProvider = ChangeNotifierProvider<OthersCollectionPage
 
 class OthersCollectionPageModel with ChangeNotifier {
 
-  List<Items> othersitems;
+  late List<Items> othersitems;
 
   Future fetchData () async {
     //コレクションを取得

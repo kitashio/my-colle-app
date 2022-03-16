@@ -15,7 +15,7 @@ final CollectionAddPageProvider = ChangeNotifierProvider<CollectionAddModel>(
 class CollectionAddModel extends ChangeNotifier {
   String title  = '';
   String describe = '';
-  File imageFile;
+  late File imageFile;
   final picker = ImagePicker();
 
 

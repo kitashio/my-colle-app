@@ -9,13 +9,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(
-    const ProviderScope(child: MyApp()
+    const ProviderScope(child: MyApp(key: null,)
     ),
   );
 }
 
 class MyApp extends ConsumerWidget {
-  const MyApp({Key key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

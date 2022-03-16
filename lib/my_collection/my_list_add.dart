@@ -7,7 +7,6 @@ import 'my/my_list_add_model.dart';
 class ListAddPage extends ConsumerWidget {
 
   final String collectionDocId;
-  //コンストラクタでdocId受け取る
   const ListAddPage(this.collectionDocId);
 
   @override
@@ -41,10 +40,9 @@ class ListAddPage extends ConsumerWidget {
                           ? Image.file(ref.watch(ItemListAddProvider).imageFile, fit: BoxFit.cover,)
                           : Container(color: Colors.grey,),
                     ),
-                    IconButton(icon: Icon(Icons.add_circle,
+                    Icon(Icons.add_circle,
                       size: 35,
                       color: Colors.white,),
-                    ),
                   ],
                 ),
               ),

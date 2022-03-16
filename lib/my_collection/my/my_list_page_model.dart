@@ -14,7 +14,7 @@ final ItemListPageProvider = ChangeNotifierProvider<ListPageModel>(
 
 class ListPageModel with ChangeNotifier {
 
-  List<Items> listitems;
+  late List<Items> listitems;
 
   Future fetchData (String collectionDocId) async {
 

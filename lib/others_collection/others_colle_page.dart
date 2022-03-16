@@ -55,9 +55,7 @@ class OthersCollectionPage extends ConsumerWidget {
                   if(snapshot.data == null) {
                     return CircularProgressIndicator();}
 
-                  int docsLength = 0; //ドキュメント（アイテム）数を入れる型＆初期値
-                  final docs = snapshot.data.docs; //ドキュメント（アイテム）
-                  docsLength = docs.length; //ドキュメント（アイテム）数を代入
+                  final docs = snapshot.data; //ドキュメント（アイテム）
 
                   return GestureDetector(
                     onTap: () async {

@@ -12,10 +12,11 @@ final ItemListAddProvider = ChangeNotifierProvider<ListAddModel>(
 );
 
 class ListAddModel with ChangeNotifier {
-  String title;
-  String describe;
-  String docId;
-  File imageFile;
+  late String title;
+  late String describe;
+  late String docId;
+  late File imageFile;
+  late String imgURL;
 
   final picker = ImagePicker();
 
@@ -33,7 +34,7 @@ class ListAddModel with ChangeNotifier {
     DateTime now = DateTime.now();
     Timestamp createdAt = Timestamp.fromDate(now);
 
-    String imgURL;
+
     //もしFileがあれば
     if (imageFile != null) {
       //  storageにアップロード
@@ -56,9 +57,9 @@ class ListAddModel with ChangeNotifier {
   Future pickImage() async {
     //ライブラリを開いて選択
     final pickedFile = await picker.pickImage(source: ImageSource.gallery,
-        imageQuality: 60);
+        imageQuality: 20,maxHeight: 1200,maxWidth: 1200);
     //選択した画像ファイルを代入
-    imageFile = File(pickedFile.path);
+    imageFile = File(pickedFile!.path);
     notifyListeners();
   }
 
